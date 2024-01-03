@@ -45,7 +45,7 @@ class PlaylistUpdate(LoginRequiredMixin, UpdateView):
 
 class PlaylistDelete(LoginRequiredMixin, DeleteView):
     model = Playlist
-    success_url = '/playlists'
+    success_url = '/songs'
 
 class SongList(ListView):
    model = Song
