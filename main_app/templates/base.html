@@ -7,18 +7,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Melodix</title>
+    <script src="https://kit.fontawesome.com/fc377b8991.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <header>
-        <nav class="page-nav">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Search</a></li>
-            </ul>
+        <nav class="top-nav">
+                <div>
+                    <a href="/" title="Home" class="nav-logo">
+                    <i class="fa-brands fa-spotify"></i> Melodix
+                </a></div>
+                <div class="nav-home"><a href="/" title="Home">
+                    <i class="fa-solid fa-house"></i> Home
+                </a></div>
+                <div class="nav-search"><a href="/">
+                    <i class="fa-solid fa-magnifying-glass"></i> Search
+                </a></div>
         </nav>
+        <aside class="library-nav">
+
+        </aside>
     </header>
-    <main class="container">
+    <main class="main-container">
         {% block content %}
         {% endblock %}
     </main>
