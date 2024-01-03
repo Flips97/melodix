@@ -29,9 +29,17 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
     model = Playlist
     fields = ['name', 'description']
 
+    # def form_valid(self, form):
+    #     form.instance.user = self.request.user
+    #     return super().form_valid(form)
+    
     def form_valid(self, form):
         form.instance.user = self.request.user
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        selected_songs = self.request.POST.getlist('selected_songs')
+        self.object.songs.set(selected_songs)
+        return response
+
     
     def get_context_data(self, **kwargs):
        context = super().get_context_data(**kwargs)
