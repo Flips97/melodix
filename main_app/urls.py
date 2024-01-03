@@ -9,5 +9,7 @@ urlpatterns = [
     path('playlists/<int:pk>/update/', views.PlaylistUpdate.as_view(), name='playlists_update'),
     path('playlists/<int:pk>/delete/', views.PlaylistDelete.as_view(), name='playlists_delete'),
     path('songs/', views.SongList.as_view(), name='songs_index'),
+    path('songs/create/', views.SongCreate.as_view(), name='songs_create'),
+    path('songs/<int:pk>/delete/', views.SongDelete.as_view(), name='songs_delete'),
     path('accounts/signup/', views.signup, name='signup'),
 ]
