@@ -1,0 +1,22 @@
+{% if query %}
+
+    <div class="showing-results">
+        <p>Showing results for "{{ query }}"</p>
+    </div>
+
+    {% if playlists %}
+        {% for playlist in playlists %}
+            <a href="{% url 'index' %}">{{ playlist.name }}</a>
+        {{ endfor }}
+    {% endif %}
+    {% if user %}
+        {% for user in users %}
+            <a href="#">{{ user.username }}</a>
+        {% endfor %}
+    {% endif %}
+
+{% else %}
+    <div class="basic">
+        <span>Enter a search term above.</span>
+    </div>
+{% endif %}
