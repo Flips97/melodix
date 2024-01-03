@@ -9,13 +9,14 @@
     --secondary-dark: hsl(231, 74%, 39%);
     --secondary-light: hsl(231, 73%, 59%);
 
-    --background: hsl(0, 0%, 10%);
-    --foreground: hsl(0, 0%, 15%);
+    --background: hsl(0, 0%, 0%);
+    --foreground: hsl(0, 0%, 8%);
     --border: hsl(0, 0%, 25%);
+    --border-translucent: hsla(0, 0%, 25%, .3);
 
-    --copy: hsl(0, 0%, 98%);
-    --copy-light: hsl(0, 0%, 85%);
-    --copy-lighter: hsl(0, 0%, 65%);
+    --copy: hsl(0, 0%, 95%);
+    --copy-light: hsl(0, 0%, 75%);
+    --copy-lighter: hsl(0, 0%, 55%);
 
     --success: hsl(120, 73%, 49%);
     --warning: hsl(60, 73%, 49%);
@@ -23,6 +24,8 @@
     --success-content: hsl(0, 0%, 0%);
     --warning-content: hsl(0, 0%, 0%);
     --error-content: hsl(0, 71%, 99%);
+
+    --border-radius: 9px
 }
 
 * {
@@ -57,7 +60,7 @@ li {
     height: 9rem;
     padding: 2rem;
     margin: .5rem;
-    border-radius: 9px;
+    border-radius: var(--border-radius);
     font-size: .85rem;
     display: flex;
     flex-direction: column;
@@ -82,6 +85,10 @@ li {
     font-size: 1.3rem;
 }
 
+.nav-search {
+    color: var(--copy-light);
+}
+
 .library-nav {
     background-color: var(--foreground);
     position: fixed;
@@ -90,7 +97,75 @@ li {
     width: 16rem;
     height: calc(100vh - 10.5rem);
     margin: .5rem;
-    border-radius: 9px;
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.lib-nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    color: var(--copy-light);
+}
+
+.lib-nav-create-playlist,
+.lib-nav-find-playlists {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: var(--border-translucent);
+    border-radius: var(--border-radius);
+    margin: .5rem;
+    height: 7.5rem;
+}
+
+.lib-nav-find-playlists {
+    height: 8.35rem;
+}
+
+.lib-nav-create-playlist > div,
+.lib-nav-find-playlists > div {
+    display: flex;
+    flex-direction: column;;
+    gap: .5rem;
+}
+
+.lib-nav-your-div {
+    display: flex;
+    gap: 1rem;
+}
+
+.lib-nav-p-bold {
+    font-weight: 600;
+    font-size: .85rem;
+}
+
+.lib-nav-p-light {
+    font-weight: 300;
+    font-size: .75rem;
+}
+
+.lib-nav-create-playlist > button,
+.lib-nav-find-playlists > a > button {
+    padding-inline: 1rem;
+    padding-block: .5rem;
+    background-color: var(--copy);
+    width: fit-content;
+    border-radius: 50px;
+    font-size: .75rem;
+    font-weight: 600;
+    border: none;
+    margin-bottom: -5px;
+}
+
+.lib-nav-find-playlists > a > button:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+    transition: transform 0.1s ease;
 }
 
 .main-container {
@@ -101,16 +176,17 @@ li {
     width: calc(100vw - 17.5rem);
     height: calc(100vh - 1rem);
     margin: .5rem;
-    border-radius: 9px;
+    border-radius: var(--border-radius);
 }
 
-.top-home {
+.top-fixed {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
     padding-block: .5rem;
     padding-inline: 1.5rem;
+    background-color: var(--background)
 }
 
 .backforth-buttons {
@@ -131,13 +207,10 @@ li {
 
 .login-buttons {
     display: flex;
-    /* justify-content: flex-end; */
     gap: 1rem;
-    /* padding-block: .5rem;
-    padding-inline: 1.5rem; */
 }
 
-.login-buttons > button {
+.login-buttons > a > button {
     border-radius: 100px;
     padding-block: .75rem;
     padding-inline: 1.5rem;
@@ -153,4 +226,8 @@ li {
 .login-btn {
     background-color: var(--copy);
     color: var(--primary-content);
+}
+
+.page-container {
+    overflow-y: auto;
 }
