@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="page-container">
+
+            <div class="index-playlist">
+                <div class="playlist-cover">
+                    <i class="fa-solid fa-icons"></i>
+                </div>
+                <div class="playlist-name">
+                    {{ playlist.name }}
+                </div>
+                <div class="playlist-description">
+                    {{ playlist.description }}
+                </div>
+                <div>
+                    <a href="{% url 'playlists_update' playlist.id %}">
+                        <button>Edit</button>
+                    </a>
+                    <a href="{% url 'playlists_delete' playlist.id %}">
+                        <button>Delete</button>
+                    </a>
+                </div>
+            </div>
+
+</div>
+
+{% endblock %}
