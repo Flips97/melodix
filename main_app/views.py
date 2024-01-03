@@ -94,7 +94,6 @@ def search_view(request):
 def search_bar(request):
     return render(request, 'search_bar.html')
    
-
 def signup(request):
   error_message = ''
   if request.method == 'POST':
