@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Playlist, Song, User
 from django.db.models import Q
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 def home(request):
@@ -70,24 +71,26 @@ def unassoc_song(request, playlist_id, song_id):
   return redirect('detail', playlist_id=playlist_id)
 
 @login_required
-def profile_index(request):
-   playlists = Playlist.objects.filter(user=request.user)
+def profile_index(request, user_id):
+   user = get_object_or_404(User, id=user_id)
+   playlists = Playlist.objects.filter(user=user)
    return render(request, 'profile_index.html', {
-      'playlists': playlists
+      'playlists': playlists,
+      'profile_user': user
    })
 
 def search_view(request):
    query = request.GET.get('q', '')
-   playlist = Playlist.objects.filter(
+   playlists = Playlist.objects.filter(
       Q(name__icontains=query)
    )
-   user = User.objects.filter(
+   users = User.objects.filter(
       Q(username__icontains=query)
    )
 
    return render(request, 'search_bar.html', {
-      'playlist': playlist,
-      'user': user,
+      'playlists': playlists,
+      'users': users,
        'query': query  
    })
 
