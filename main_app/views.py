@@ -11,7 +11,7 @@ def home(request):
     return render(request, 'home.html')
 
 def playlist_index(request):
-    playlists = Playlist.objects.filter(user=request.user)
+    playlists = Playlist.objects.all()
     return render(request, 'playlists/index.html', {
         'playlists': playlists
     })
