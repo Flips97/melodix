@@ -10,13 +10,13 @@
 
     {% if playlists %}
         {% for playlist in playlists %}
-            <a href="{% url 'index' %}">{{ playlist.name }}</a>
+            <a href="{% url 'detail' playlist.id %}">{{ playlist.name }}</a>
         {% endfor %}
     {% endif %}
     
     {% if users %}
         {% for user in users %}
-            <a href="#">{{ user.username }}</a>
+            <a href="{% url 'profile_index' user.id %}">{{ user.username }}</a>
         {% endfor %}
     {% endif %}
 
