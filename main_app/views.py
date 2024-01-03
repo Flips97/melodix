@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Playlist, Song
+from .forms import PlaylistForm
 
 # Create your views here.
 def home(request):
@@ -20,26 +21,19 @@ def playlist_index(request):
 def playlists_detail(request, playlist_id):
     playlist = Playlist.objects.get(id=playlist_id)
     # create list of songs
-    id_list = playlist.songs.all().values_list('id')
+    # id_list = playlist.songs.all().values_list('id')
     return render(request, 'playlists/detail.html', {
         'playlist': playlist
     })
 
 class PlaylistCreate(LoginRequiredMixin, CreateView):
     model = Playlist
-    fields = ['name', 'description']
-
-    # def form_valid(self, form):
-    #     form.instance.user = self.request.user
-    #     return super().form_valid(form)
+    fields = ['name', 'description', 'songs']
     
+
     def form_valid(self, form):
         form.instance.user = self.request.user
-        response = super().form_valid(form)
-        selected_songs = self.request.POST.getlist('selected_songs')
-        self.object.songs.set(selected_songs)
-        return response
-
+        return super().form_valid(form)
     
     def get_context_data(self, **kwargs):
        context = super().get_context_data(**kwargs)
@@ -48,7 +42,7 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
 # 
 class PlaylistUpdate(LoginRequiredMixin, UpdateView):
     model = Playlist
-    fields = ['name', 'description']
+    fields = ['name', 'description', 'songs']
 
 class PlaylistDelete(LoginRequiredMixin, DeleteView):
     model = Playlist

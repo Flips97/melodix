@@ -14,28 +14,6 @@
         {{ form.as_table }}
     </table>
 
-    <br>
-    <hr>
-    <br>
-
-    <div>
-        <h5>ADD SONGS</h5>
-
-        <div>
-
-                <select name="" id="id_songs" multiple>
-                    {% if songs %}
-                        {% for song in songs %}
-                            <option value="{{ song.id }}">{{ song.name }}</option>
-                            
-                        {% endfor %}
-                    {% endif %}
-                </select> 
-                
-
-        </div>
-    </div>
-
     <input type="submit" value="Submit!">
 </form>
 
