@@ -92,6 +92,7 @@ li {
 }
 
 .library-nav {
+    overflow-y: auto;
     background-color: var(--foreground);
     position: fixed;
     left: 0;

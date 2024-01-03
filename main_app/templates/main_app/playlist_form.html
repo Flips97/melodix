@@ -13,6 +13,26 @@
     <table>
         {{ form.as_table }}
     </table>
+
+    <br>
+    <hr>
+    <br>
+
+    <div>
+        <h5>ADD SONGS</h5>
+
+        <div>
+            {% for song in songs.all %}
+
+                {{ song.name }}
+
+            {% endfor %}
+        </div>
+    </div>
+<br><br>
+<hr>
+<br><br>
+
     <input type="submit" value="Submit!">
 </form>
 
