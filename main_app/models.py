@@ -18,3 +18,4 @@ class Playlist(models.Model):
     user_favorite = models.ManyToManyField(User, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_playlist_set')
     description = models.TextField(max_length=250)
+
