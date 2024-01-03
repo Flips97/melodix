@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
 {% if query %}
 
     <div class="showing-results">
@@ -7,9 +11,10 @@
     {% if playlists %}
         {% for playlist in playlists %}
             <a href="{% url 'index' %}">{{ playlist.name }}</a>
-        {{ endfor }}
+        {% endfor %}
     {% endif %}
-    {% if user %}
+    
+    {% if users %}
         {% for user in users %}
             <a href="#">{{ user.username }}</a>
         {% endfor %}
@@ -20,3 +25,5 @@
         <span>Enter a search term above.</span>
     </div>
 {% endif %}
+
+{% endblock %}
