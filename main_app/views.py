@@ -36,6 +36,7 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
        context = super().get_context_data(**kwargs)
        context['songs'] = Song.objects.all()
+       context['song'] = Song.objects.get(id=song_id)
        return context
 # 
 class PlaylistUpdate(LoginRequiredMixin, UpdateView):
