@@ -10,9 +10,11 @@
     --secondary-light: hsl(231, 73%, 59%);
 
     --background: hsl(0, 0%, 0%);
+    --background-translucent: hsla(0, 0%, 0%, 0.3);
     --foreground: hsl(0, 0%, 8%);
     --border: hsl(0, 0%, 25%);
     --border-translucent: hsla(0, 0%, 25%, .3);
+    --border-translucent2: hsla(0, 0%, 25%, .1);
 
     --copy: hsl(0, 0%, 95%);
     --copy-light: hsl(0, 0%, 75%);
@@ -85,7 +87,7 @@ li {
     font-size: 1.3rem;
 }
 
-.nav-search {
+.nav-search > a {
     color: var(--copy-light);
 }
 
@@ -186,14 +188,24 @@ li {
     gap: 1rem;
     padding-block: .5rem;
     padding-inline: 1.5rem;
-    background-color: var(--background)
+    background-color: var(--background-translucent)
+}
+
+.avatar {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 100%;
+    background-color: var(--border);
+    padding: 2px;
+    display: grid;
+    place-items: center;
 }
 
 .backforth-buttons {
     padding-block: ;
     display: flex;
     gap: 1rem;
-    color: var(--copy);
+    color: var(--copy-light);
 }
 
 .backforth-buttons > div {
@@ -215,11 +227,22 @@ li {
     padding-block: .75rem;
     padding-inline: 1.5rem;
     border: none;
-    font-size: .75rem;
+    font-size: .85rem;
+    font-weight: 800;
+}
+
+.login-buttons > a > button:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+    transition: transform 0.1s ease;
 }
 
 .signup-btn {
     background-color: var(--background);
+    color: var(--copy-light);
+}
+
+.signup-btn:hover {
     color: var(--copy);
 }
 
@@ -230,4 +253,75 @@ li {
 
 .page-container {
     overflow-y: auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
 }
+
+.page-container-playlist {
+    overflow-y: auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    background: linear-gradient(to bottom, var(--border-translucent2), var(--background));
+    height: 100%;
+}
+
+.all-playlists-div {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+    width: fit-content;
+}
+
+.index-playlist {
+    display: flex;
+    flex-direction: column;
+    width: 12rem;
+    height: 16rem;
+    background-color: var(--background-translucent);
+    transition: background-color 0.3s ease;
+    border-radius: var(--border-radius);
+    align-items: center;
+    padding: .75rem;
+}
+
+.index-playlist:hover {
+    cursor: pointer;
+    background-color: var(--border-translucent);
+    transition: background-color 0.3s ease;
+}
+
+.playlist-cover {
+    width: 10.5rem;
+    height: 10.5rem;
+    background-color: var(--border-translucent);
+    border-radius: var(--border-radius);
+    display: grid;
+    place-items: center;
+    color: var(--copy-lighter);
+}
+
+.playlist-name {
+    font-weight: 600;
+    font-size: 1rem;
+    padding-inline: .5rem;
+    padding-block: .25rem;
+    margin-top: .5rem;
+    width: 100%;
+}
+
+.playlist-description {
+    width: 100%;
+    font-size: .75rem;
+    color: var(--copy-light);
+    padding-inline: .5rem;
+}
+
+/* style scrollbar */
+/* add dropdown for avatar */
