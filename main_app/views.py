@@ -32,6 +32,12 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+       context = super().get_context_data(**kwargs)
+       context['songs'] = 'Songs'
+       return context
+    
 
 class PlaylistUpdate(LoginRequiredMixin, UpdateView):
     model = Playlist
@@ -51,6 +57,16 @@ class SongCreate(LoginRequiredMixin, CreateView):
 class SongDelete(LoginRequiredMixin, DeleteView):
     model = Song
     success_url = 'songs/'
+
+@login_required
+def assoc_song(request, playlist_id, song_id):
+  Playlist.objects.get(id=playlist_id).songs.add(song_id)
+  return redirect('detail', playlist_id=playlist_id)
+
+@login_required
+def unassoc_song(request, playlist_id, song_id):
+  Playlist.objects.get(id=playlist_id).songs.remove(song_id)
+  return redirect('detail', playlist_id=playlist_id)
 
 def signup(request):
   error_message = ''
