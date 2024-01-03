@@ -1,9 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="page-container">
-
-<h1>All Playlists</h1>
+<div class="page-container-playlist">
+    
+    <div class="all-playlists-div">
+        {% for playlist in playlists %}
+            <div class="index-playlist">
+                <div class="playlist-cover">
+                    <i class="fa-solid fa-icons"></i>
+                </div>
+                <div class="playlist-name">
+                    {{ playlist.name }}
+                </div>
+                <div class="playlist-description">
+                    Playlist Description
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 
 
 </div>
