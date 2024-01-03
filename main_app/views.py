@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -16,19 +17,17 @@ def playlist_index(request):
         'playlists': playlists
     })
 
-@login_required
 def playlists_detail(request, playlist_id):
     playlist = Playlist.objects.get(id=playlist_id)
     # create list of songs
-
+    id_list = playlist.songs.all().values_list('id')
     return render(request, 'playlists/detail.html', {
-        'playlist': playlist,
-        # needs to render songs
+        'playlist': playlist
     })
 
 class PlaylistCreate(LoginRequiredMixin, CreateView):
     model = Playlist
-    fields = ['name']
+    fields = ['name', 'description']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -36,11 +35,22 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
 
 class PlaylistUpdate(LoginRequiredMixin, UpdateView):
     model = Playlist
-    fields = ['name']
+    fields = ['name', 'description']
 
 class PlaylistDelete(LoginRequiredMixin, DeleteView):
     model = Playlist
     success_url = '/playlists'
+
+class SongList(ListView):
+   model = Song
+
+class SongCreate(LoginRequiredMixin, CreateView):
+   model = Song
+   fields = '__all__'
+   
+class SongDelete(LoginRequiredMixin, DeleteView):
+    model = Song
+    success_url = 'songs/'
 
 def signup(request):
   error_message = ''
@@ -57,4 +67,4 @@ def signup(request):
   # A bad POST or a GET request, so render signup template
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
-  return render(request, 'registration/signup.html', context)    
+  return render(request, 'registration/signup.html', context) 
