@@ -38,7 +38,6 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
        context['songs_not_in_playlist'] = Song.objects.all()
        context['songs'] = 'Songs'
        return context
-    
 
 class PlaylistUpdate(LoginRequiredMixin, UpdateView):
     model = Playlist
