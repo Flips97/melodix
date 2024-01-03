@@ -28,7 +28,7 @@ def playlists_detail(request, playlist_id):
 
 class PlaylistCreate(LoginRequiredMixin, CreateView):
     model = Playlist
-    fields = ['name']
+    fields = ['name', 'description']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -36,7 +36,7 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
 
 class PlaylistUpdate(LoginRequiredMixin, UpdateView):
     model = Playlist
-    fields = ['name']
+    fields = ['name', 'description']
 
 class PlaylistDelete(LoginRequiredMixin, DeleteView):
     model = Playlist
