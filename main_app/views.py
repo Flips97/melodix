@@ -30,6 +30,10 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
     model = Playlist
     fields = ['name']
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
 class PlaylistUpdate(LoginRequiredMixin, UpdateView):
     model = Playlist
     fields = ['name']
