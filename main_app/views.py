@@ -35,8 +35,7 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
     
     def get_context_data(self, **kwargs):
        context = super().get_context_data(**kwargs)
-       context['songs_not_in_playlist'] = Song.objects.all()
-       context['songs'] = 'Songs'
+       context['songs'] = Song.objects.all()
        return context
 # 
 class PlaylistUpdate(LoginRequiredMixin, UpdateView):
@@ -45,7 +44,7 @@ class PlaylistUpdate(LoginRequiredMixin, UpdateView):
 
 class PlaylistDelete(LoginRequiredMixin, DeleteView):
     model = Playlist
-    success_url = '/songs'
+    success_url = '/playlists'
 
 class SongList(ListView):
    model = Song
