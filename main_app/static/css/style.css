@@ -134,6 +134,11 @@ li {
     gap: .5rem;
 }
 
+.lib-nav-your-div {
+    display: flex;
+    gap: 1rem;
+}
+
 .lib-nav-p-bold {
     font-weight: 600;
     font-size: .85rem;
@@ -145,7 +150,7 @@ li {
 }
 
 .lib-nav-create-playlist > button,
-.lib-nav-find-playlists > button {
+.lib-nav-find-playlists > a > button {
     padding-inline: 1rem;
     padding-block: .5rem;
     background-color: var(--copy);
@@ -155,6 +160,12 @@ li {
     font-weight: 600;
     border: none;
     margin-bottom: -5px;
+}
+
+.lib-nav-find-playlists > a > button:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+    transition: transform 0.1s ease;
 }
 
 .main-container {
@@ -199,7 +210,7 @@ li {
     gap: 1rem;
 }
 
-.login-buttons > button {
+.login-buttons > a > button {
     border-radius: 100px;
     padding-block: .75rem;
     padding-inline: 1.5rem;

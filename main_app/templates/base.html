@@ -26,7 +26,7 @@
         </nav>
         <aside class="library-nav">
             <div class="lib-nav-header">
-                <div>
+                <div class="lib-nav-your-div">
                     <i class="fa-solid fa-lines-leaning"></i>
                     Your Library
                 </div>
@@ -46,7 +46,7 @@
                     <p class="lib-nav-p-bold">Let's find some playlists to like</p>
                     <p class="lib-nav-p-light">We'll keep you updated when new songs are added</p>
                 </div>
-                <button>Browse Playlists</button>
+                <a href="{% url 'index' %}"><button>Browse Playlists</button></a>
             </div>
         </aside>
     </header>
@@ -57,8 +57,12 @@
                 <div><i class="fa-solid fa-chevron-right"></i></div>
             </div>
             <div class="login-buttons">
-                <button class="signup-btn">Sign up</button>
-                <button class="login-btn">Log In</button>
+                <a href="#">
+                    <button class="signup-btn">Sign up</button>
+                </a>
+                <a href="{% url 'login' %}">
+                    <button class="login-btn">Log In</button>
+                </a>
             </div>
         </div>
         {% block content %}
