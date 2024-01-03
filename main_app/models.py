@@ -14,8 +14,8 @@ class Song(models.Model):
 
 class Playlist(models.Model):
     name =  models.CharField(max_length=100)
-    songs = models.ManyToManyField(Song)
-    user_favorite = models.ManyToManyField(User)
+    songs = models.ManyToManyField(Song, blank=True)
+    user_favorite = models.ManyToManyField(User, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_playlist_set')
 
     
