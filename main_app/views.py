@@ -36,8 +36,7 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         response = super().form_valid(form)
-        selected_songs = self.request.POST.getlist('selected_songs')
-        self.object.songs.set(selected_songs)
+        self.object.songs.set(Song.objects.all())
         return response
 
     
