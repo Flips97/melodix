@@ -37,7 +37,7 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
        context = super().get_context_data(**kwargs)
        context['songs'] = Song.objects.all()
        return context
-
+# 
 class PlaylistUpdate(LoginRequiredMixin, UpdateView):
     model = Playlist
     fields = ['name', 'description']
