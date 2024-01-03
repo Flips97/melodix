@@ -10,7 +10,11 @@
 
     {% if playlists %}
         {% for playlist in playlists %}
+
             <a href="{% url 'detail' playlist.id %}">{{ playlist.name }}</a>
+
+            <a href="{% url 'index' %}">{{ playlist.name }}</a>
+
         {% endfor %}
     {% endif %}
     
