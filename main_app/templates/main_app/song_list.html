@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>All Songs</h1>
+
+{% for song in song_list %}
+    <div>
+        <span>{{ song.name }}</span>
+    </div>
+{% endfor %}
+
+{% endblock %}

@@ -13,6 +13,20 @@
     <table>
         {{ form.as_table }}
     </table>
+
+    <div>
+        <h5>assoc a song</h5>
+        <div>
+            {% for song in songs_not_in_playlist %}
+                <form method="POST" action="{% url 'assoc_song' playlist.id song.id %}">
+                    {% csrf_token %}
+                    {{song.name}}
+                </form>
+            {% endfor %}
+        </div>
+    </div>
+
+
     <input type="submit" value="Submit!">
 </form>
 
