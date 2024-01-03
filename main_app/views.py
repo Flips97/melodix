@@ -38,7 +38,7 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
        context['songs_not_in_playlist'] = Song.objects.all()
        context['songs'] = 'Songs'
        return context
-
+# 
 class PlaylistUpdate(LoginRequiredMixin, UpdateView):
     model = Playlist
     fields = ['name', 'description']
@@ -56,7 +56,7 @@ class SongCreate(LoginRequiredMixin, CreateView):
    
 class SongDelete(LoginRequiredMixin, DeleteView):
     model = Song
-    success_url = 'songs/'
+    success_url = '/songs'
 
 @login_required
 def assoc_song(request, playlist_id, song_id):
