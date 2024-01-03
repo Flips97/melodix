@@ -151,7 +151,7 @@ li {
     font-size: .75rem;
 }
 
-.lib-nav-create-playlist > button,
+.lib-nav-create-playlist > a > button,
 .lib-nav-find-playlists > a > button {
     padding-inline: 1rem;
     padding-block: .5rem;
@@ -325,5 +325,3 @@ li {
 
 /* style scrollbar */
 /* add dropdown for avatar */
-
-/* adding something something someting */
