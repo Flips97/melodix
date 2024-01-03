@@ -13,5 +13,8 @@ urlpatterns = [
     path('songs/', views.SongList.as_view(), name='songs_index'),
     path('songs/create/', views.SongCreate.as_view(), name='songs_create'),
     path('songs/<int:pk>/delete/', views.SongDelete.as_view(), name='songs_delete'),
+    path('profile/<int:user_id>/', views.profile_index, name='profile_index'),
+    path('search/', views.search_view, name='search_view'),
+    path('search_bar/', views.search_bar, name='search_bar_view'),
     path('accounts/signup/', views.signup, name='signup'),
 ]

@@ -5,8 +5,8 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Playlist, Song
-from .forms import PlaylistForm
+from .models import Playlist, Song, User
+from django.db.models import Q
 
 # Create your views here.
 def home(request):
@@ -28,10 +28,8 @@ def playlists_detail(request, playlist_id):
 
 class PlaylistCreate(LoginRequiredMixin, CreateView):
     model = Playlist
-=======
     fields = ['name', 'description', 'songs']
     
->>>>>>> main
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -40,7 +38,6 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
        context = super().get_context_data(**kwargs)
        context['songs'] = Song.objects.all()
-       context['song'] = Song.objects.get(id=song_id)
        return context
 # 
 class PlaylistUpdate(LoginRequiredMixin, UpdateView):
@@ -71,6 +68,32 @@ def assoc_song(request, playlist_id, song_id):
 def unassoc_song(request, playlist_id, song_id):
   Playlist.objects.get(id=playlist_id).songs.remove(song_id)
   return redirect('detail', playlist_id=playlist_id)
+
+@login_required
+def profile_index(request):
+   playlists = Playlist.objects.filter(user=request.user)
+   return render(request, 'profile_index.html', {
+      'playlists': playlists
+   })
+
+def search_view(request):
+   query = request.GET.get('q', '')
+   playlist = Playlist.objects.filter(
+      Q(name__icontains=query)
+   )
+   user = User.objects.filter(
+      Q(username__icontains=query)
+   )
+
+   return render(request, 'search_bar.html', {
+      'playlist': playlist,
+      'user': user,
+       'query': query  
+   })
+
+def search_bar(request):
+    return render(request, 'search_bar.html')
+   
 
 def signup(request):
   error_message = ''
