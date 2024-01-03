@@ -11,7 +11,7 @@ def home(request):
     return render(request, 'home.html')
 
 def playlist_index(request):
-    playlists = Playlist.objects.filter(user=request.user)
+    playlists = Playlist.objects.all()
     return render(request, 'playlists/index.html', {
         'playlists': playlists
     })
@@ -29,6 +29,10 @@ def playlists_detail(request, playlist_id):
 class PlaylistCreate(LoginRequiredMixin, CreateView):
     model = Playlist
     fields = ['name']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 class PlaylistUpdate(LoginRequiredMixin, UpdateView):
     model = Playlist
