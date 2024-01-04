@@ -9,6 +9,7 @@ from .models import Playlist, Song, User
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 
+
 # Create your views here.
 def home(request):
     playlists = Playlist.objects.all()
@@ -115,4 +116,3 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context) 
-
