@@ -21,13 +21,25 @@
     <div class="detial-main">
         <div class="detail-menu">
             <div class="detail-favorite">
-                <i class="fa-regular fa-heart"></i>
-                <i class="fa-solid fa-heart hidden"></i> 
-                <!-- ADD ANIMATION TO REVEAL SECOND HEART AND MAKE GREEN ON CLICK -->
+                <input type="checkbox" id="heartToggle">
+                <label for="heartToggle">
+                    <i class="fa-regular fa-heart"></i>
+                    <i class="fa-solid fa-heart"></i>
+                </label>
             </div>
+            {% if request.user == playlist.user %}
             <div class="detail-ellipsis">
-                <i class="fa-solid fa-ellipsis"></i>
+                <i class="fa-solid fa-ellipsis" id="ellipsis"></i>
+                <div class="dropdown-detail" id="dropdown-detail">
+                    <a href="{% url 'playlists_update' playlist.id %}">
+                        <button>Edit</button>
+                    </a>
+                    <a href="{% url 'playlists_delete' playlist.id %}">
+                        <button>Delete</button>
+                    </a>
+                </div>
             </div>
+            {% endif %}
         </div>
         <div class="detail-songs">
             {% if playlist.songs.count %}
@@ -49,23 +61,17 @@
             {% endif %}
         </div>
     </div>
-
-
-    <div>
-
-    
-        {% if request.user == playlist.user %}
-            <div>
-                <a href="{% url 'playlists_update' playlist.id %}">
-                    <button>Edit</button>
-                </a>
-                <a href="{% url 'playlists_delete' playlist.id %}">
-                    <button>Delete</button>
-                </a>
-            </div>
-        {% endif %}
-    </div>
-    
 </div>
+
+<script>
+
+    const dropdownDetail = document.getElementById('dropdown-detail');
+    const ellipsis = document.getElementById('ellipsis');
+
+    ellipsis.addEventListener('click', function() {
+        dropdownDetail.classList.toggle('active');
+    })
+
+</script>
 
 {% endblock %}
