@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -55,6 +55,7 @@ class SongList(ListView):
 class SongCreate(LoginRequiredMixin, CreateView):
    model = Song
    fields = '__all__'
+   success_url = '/songs'
    
 class SongDelete(LoginRequiredMixin, DeleteView):
     model = Song
