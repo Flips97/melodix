@@ -93,6 +93,10 @@ def fav_playlist(request, user_id, playlist_id):
     Playlist.objects.get(id=playlist_id).user_favorite.add(user_id)
     return redirect('detail', playlist_id=playlist_id)
 
+def unfav_playlist(request, user_id, playlist_id):
+   Playlist.objects.get(id=playlist_id).user_favorite.remove(user_id)
+   return redirect('detail', playlist_id=playlist_id)
+
 def search_view(request):
    query = request.GET.get('q', '')
    playlists = Playlist.objects.filter(
