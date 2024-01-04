@@ -103,8 +103,8 @@
         <div class="top-fixed translucent" id="top-fixed">
             <div class="top-fixed-left">
                 <div class="backforth-buttons">
-                    <div><i class="fa-solid fa-chevron-left"></i></div>
-                    <div><i class="fa-solid fa-chevron-right"></i></div>
+                    <div id="back-btn"><i class="fa-solid fa-chevron-left"></i></div>
+                    <div id="forward-btn"><i class="fa-solid fa-chevron-right"></i></div>
                 </div>
     
                 {% if '/search_bar/' in request.path or '/search/' in request.path %}
@@ -150,6 +150,19 @@
         const topFixed = document.getElementById('top-fixed');
         const avatar = document.getElementById('avatar');
         const dropdown = document.getElementById('dropdown');
+        const forwardBtn = document.getElementById('forward-btn');
+        const backBtn = document.getElementById('back-btn');
+
+        forwardBtn.addEventListener('click', goForward);
+        backBtn.addEventListener('click', goBack)
+
+        function goBack() {
+            window.history.back();
+        }
+
+        function goForward() {
+            window.history.forward();
+        }
     
         avatar.addEventListener('click', function (evt) {
             dropdown.classList.toggle('active');
