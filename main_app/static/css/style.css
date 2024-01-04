@@ -243,6 +243,7 @@ li {
 
 .main-container {
     background-color: var(--foreground);
+    overflow-y: auto;
     position: fixed;
     left: 16.5rem;
     top: 0;
@@ -260,11 +261,11 @@ li {
     padding-block: .5rem;
     padding-inline: 1.5rem;
     background-color: var(--background);
-    position: absolute;
     top: 0;
-    left: 0;
+    left: 17rem;
     width: calc(100vw - 17.5rem);
     z-index: 9999;
+    position: fixed;
 }
 
 .translucent {
@@ -341,7 +342,7 @@ li {
 .logout-btn:hover,
 .profile-btn:hover {
     border-radius: 5px;
-    background-color: var(--border);
+    background-color: var(--border-translucent);
 }
 
 .active {
@@ -569,6 +570,58 @@ li {
     z-index: 0;
     pointer-events: none;
 }
+
+.disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+}
+
+.back-btn:hover,
+.forward-btn:hover {
+    cursor: pointer;
+}
+
+.user-things {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 20rem;
+    background: linear-gradient(to bottom, var(--secondary-dark), var(--foreground));
+    padding: 2rem;
+}
+
+.user-things-2 {
+    margin-top: 2rem;
+    padding: 2rem;
+}
+
+.user-avatar-photo {
+    border-radius: 100%;
+    background-color: var(--background-translucent);
+    width: 15rem;
+    height: 15rem;
+    display: grid;
+    place-items: center;
+    font-size: 3rem;
+    color: var(--copy-lighter);
+}
+
+.username-user {
+    font-size: 5rem;
+    font-weight: 800;
+    max-width: 35rem; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-tagline {
+    font-size: .85rem;
+    font-weight: 300;
+    width: max-content;
+    color: var(--copy);
+}
+
 
 /* style search page */
 /* style details page */
