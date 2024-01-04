@@ -264,6 +264,7 @@ li {
     top: 0;
     left: 0;
     width: calc(100vw - 17.5rem);
+    z-index: 9999;
 }
 
 .translucent {
@@ -299,6 +300,52 @@ li {
     padding: 2px;
     display: grid;
     place-items: center;
+    position: relative;
+}
+
+.avatar:hover {
+    cursor: pointer;
+}
+
+.dropdown {
+    position: absolute;
+    top: 110%; 
+    right: 1.5rem; 
+    display: none;
+    width: 10.25rem;
+    height: 5.25rem;
+    background-color: var(--background-translucent);
+    border-radius: 7px;
+    padding: .5rem;
+    font-size: .85rem;
+    font-weight: 300rem;
+    z-index: 9999;
+}
+
+.logout-btn, 
+.profile-btn {
+    width: 9.25rem;
+    height: 2rem;
+    background-color: transparent;
+    border: none;
+    color: var(--copy);
+    text-align: left;
+    padding-inline: .5rem;
+    padding-block: .25rem;
+}
+
+.logout-btn {
+    margin-top: .25rem;
+}
+
+.logout-btn:hover,
+.profile-btn:hover {
+    border-radius: 5px;
+    background-color: var(--border);
+}
+
+.active {
+    display: block;
 }
 
 .backforth-buttons {
@@ -478,13 +525,13 @@ li {
 .tagline {
     position: absolute; 
     bottom: 18%; 
-    left: 30.5%; 
+    left: 27.5%; 
     transform: translate(-50%, -50%); 
     z-index: 5;
-    font-size: 1rem;
+    font-size: .85rem;
     font-weight: 300;
     width: max-content;
-    color: var(--copy-light);
+    color: var(--copy);
 }
 
 .overlay {
@@ -494,10 +541,10 @@ li {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.07);
-    z-index: 1;
+    z-index: 0;
+    pointer-events: none;
 }
 
-/* add dropdown for avatar */
 /* style search page */
 /* style details page */
 /* style forms */

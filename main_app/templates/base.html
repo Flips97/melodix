@@ -119,12 +119,15 @@
 
             <div class="login-buttons">
                 {% if user.is_authenticated %}
-                    <form method="POST" action="{% url 'logout' %}">
-                        {% csrf_token %}
-                        <button type="submit">logout</button>
-                    </form>
-                    <div class="avatar">
+                    <div class="avatar" id="avatar">
                         <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="dropdown" id="dropdown">
+                        <a href="#"><button class="profile-btn">Profile</button></a>
+                        <form method="POST" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="logout-btn">Logout</button>
+                        </form>
                     </div>
                 {% else %}
                 <a href="{% url 'signup' %}">
@@ -145,16 +148,23 @@
 
     <script>
         const topFixed = document.getElementById('top-fixed');
-
-        window.addEventListener('scroll', function () {
-            if (window.scrollY > 0) {
-                console.log('scrolling')
-                topFixed.classList.add('translucent');
-            } else {
-                console.log('not scrolling')
-                topFixed.classList.remove('translucent');
-            }
+        const avatar = document.getElementById('avatar');
+        const dropdown = document.getElementById('dropdown');
+    
+        avatar.addEventListener('click', function (evt) {
+            dropdown.classList.toggle('active');
         });
+    
+        // window.addEventListener('scroll', function () {
+        //     if (window.scrollY > 0) {
+        //         console.log('scrolling');
+        //         topFixed.classList.add('translucent');
+        //         dropdown.classList.remove('active');
+        //     } else {
+        //         console.log('not scrolling');
+        //         topFixed.classList.remove('translucent');
+        //     }
+        // });
     </script>
 </body>
 </html>
