@@ -9,7 +9,6 @@
     <title>Melodix</title>
     <script src="https://kit.fontawesome.com/fc377b8991.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-
 </head>
 <body>
     <header>
@@ -26,6 +25,7 @@
                 </a></div>
         </nav>
         <aside class="library-nav">
+
             <div class="lib-nav-header">
                 <div class="lib-nav-your-div">
                     <i class="fa-solid fa-lines-leaning"></i>
@@ -35,6 +35,28 @@
                     <i class="fa-solid fa-plus"></i>
                 </div>
             </div>
+
+            {% if user.is_authenticated %}
+                <div class="all-playlists-div">
+                    {% for playlist in user.created_playlist_set.all %}
+                        <a href="{% url 'detail' playlist.id %}">
+                            <div class="index-playlist">
+                                <div class="playlist-cover">
+                                    <i class="fa-solid fa-icons"></i>
+                                </div>
+                                <div class="playlist-name">
+                                    {{ playlist.name }}
+                                </div>
+                                <div class="playlist-description">
+                                    Playlist Description
+                                </div>                 
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+
             <div class="lib-nav-create-playlist">
                 <div>
                     <p class="lib-nav-p-bold">Create your first playlist</p>
@@ -77,12 +99,14 @@
                 <div><i class="fa-solid fa-chevron-left"></i></div>
                 <div><i class="fa-solid fa-chevron-right"></i></div>
             </div>
+
             <div>
                 <form action="{% url 'search_view' %}" method="GET" class="search-bar-div">
                     <input type="text" name="q" id="search-bar" placeholder="Search Melodix...">
                     <button type="submit">Search</button>
                 </form>
             </div>
+
             <div class="login-buttons">
                 {% if user.is_authenticated %}
                     <form method="POST" action="{% url 'logout' %}">

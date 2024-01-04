@@ -6,7 +6,12 @@
 {% for song in song_list %}
     <div>
         <span>{{ song.name }}</span>
-        <a href="{% url 'songs_delete' song.id %}"><button>Delete</button></a>
+
+        {% if request.user == song.user %}
+        <div>
+            <a href="{% url 'songs_delete' song.id %}"><button>Delete</button></a>
+        </div>
+        {% endif %}
     </div>
 {% endfor %}
 

@@ -21,14 +21,17 @@
             {% endfor %}
         {% endif %}
     </div>
-    <div>
-        <a href="{% url 'playlists_update' playlist.id %}">
-            <button>Edit</button>
-        </a>
-        <a href="{% url 'playlists_delete' playlist.id %}">
-            <button>Delete</button>
-        </a>
-    </div>
+
+    {% if request.user == playlist.user %}
+        <div>
+            <a href="{% url 'playlists_update' playlist.id %}">
+                <button>Edit</button>
+            </a>
+            <a href="{% url 'playlists_delete' playlist.id %}">
+                <button>Delete</button>
+            </a>
+        </div>
+    {% endif %}
 
 </div>
 
