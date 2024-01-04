@@ -1,18 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>All Songs</h1>
 
-{% for song in song_list %}
-    <div>
-        <span>{{ song.name }}</span>
+<div class="page-container">
+    <h1>All Songs</h1>
 
-        {% if request.user == song.user %}
+    {% for song in song_list %}
         <div>
-            <a href="{% url 'songs_delete' song.id %}"><button>Delete</button></a>
+            <span>{{ song.name }}</span>
+    
+            {% if request.user == song.user %}
+            <div>
+                <a href="{% url 'songs_delete' song.id %}"><button>Delete</button></a>
+            </div>
+            {% endif %}
         </div>
-        {% endif %}
-    </div>
-{% endfor %}
+    {% endfor %}
+</div>
+
 
 {% endblock %}

@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<div class="page-container">
     <h1>Delete Song</h1>
 
     <h4>Are you sure you want to delete <span>{{ object.name }}</span>?</h4>
@@ -10,4 +12,6 @@
         <input type="submit" value="Yes - Delete!" class="btn">
         <a href="{% url 'songs_index' %}">Cancel</a>
     </form>
+</div>
+
 {% endblock %}
