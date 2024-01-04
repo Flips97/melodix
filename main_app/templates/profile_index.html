@@ -1,9 +1,26 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
-<div class="page-container-playlist">
 
-    <h1>{{ profile_user.username }}</h1>
+<div class="page-container-home">
+    <div class="user-things">
+        <div class="user-avatar-photo">
+            <i class="fa-solid fa-user"></i>
+        </div>
+        <div class="user-things-2">
+            <div class="user-title-photo">
+                <h1 class="username-user">{{ profile_user.username }}</h1>
+            </div>
+            <div class="user-tagline">
+                000 Public Playlists
+            </div>
+        </div>
+            
+
+    </div>
+
+    
     
     <div class="all-playlists-div">
         {% for playlist in playlists %}

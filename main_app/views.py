@@ -11,7 +11,8 @@ from django.shortcuts import get_object_or_404
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
+    playlists = Playlist.objects.all()
+    return render(request, 'home.html', {'playlists': playlists})
 
 def playlist_index(request):
     playlists = Playlist.objects.all()

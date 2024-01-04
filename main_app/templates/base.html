@@ -20,7 +20,7 @@
                 <div class="nav-home"><a href="/" title="Home">
                     <i class="fa-solid fa-house"></i> Home
                 </a></div>
-                <div class="nav-search"><a href="/">
+                <div class="nav-search"><a href="/search_bar">
                     <i class="fa-solid fa-magnifying-glass"></i> Search
                 </a></div>
         </nav>
@@ -31,90 +31,102 @@
                     <i class="fa-solid fa-lines-leaning"></i>
                     Your Library
                 </div>
-                <div>
-                    <i class="fa-solid fa-plus"></i>
-                </div>
+                <a href="{% url 'playlists_create' %}">
+                    <div class="lib-nav-new">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                </a>
             </div>
 
             {% if user.is_authenticated %}
-                <div class="all-playlists-div">
+                <div class="base-playlists-div">
                     {% for playlist in user.created_playlist_set.all %}
                         <a href="{% url 'detail' playlist.id %}">
-                            <div class="index-playlist">
-                                <div class="playlist-cover">
+                            <div class="base-playlist">
+                                <div class="base-playlist-cover">
                                     <i class="fa-solid fa-icons"></i>
                                 </div>
-                                <div class="playlist-name">
-                                    {{ playlist.name }}
+                                <div class="base-playlist-nameuser">
+                                    <div class="base-playlist-name">
+                                        {{ playlist.name }}
+                                    </div>
+                                    <div class="base-playlist-user">
+                                        {{ playlist.user }}
+                                    </div> 
                                 </div>
-                                <div class="playlist-description">
-                                    Playlist Description
-                                </div>                 
                             </div>
                         </a>
                     {% endfor %}
                 </div>
+
+
+
+            {% else %}
+                <div class="lib-nav-create-playlist">
+                    <div>
+                        <p class="lib-nav-p-bold">Create your first playlist</p>
+                        <p class="lib-nav-p-light">It's easy, we'll help you</p>
+                    </div>
+                    <a href="{% url 'playlists_create' %}">
+                        <button>Create Playlist</button>
+                    </a>
+                </div>
+                <div class="lib-nav-find-playlists">
+                    <div>
+                        <p class="lib-nav-p-bold">Let's find some playlists to like</p>
+                        <p class="lib-nav-p-light">We'll keep you updated when new songs are added</p>
+                    </div>
+                    <a href="{% url 'index' %}"><button>Browse Playlists</button></a>
+                </div>
+                <div class="lib-nav-find-playlists">
+                    <div>
+                        <p class="lib-nav-p-bold">Add some songs to the database</p>
+                        <p class="lib-nav-p-light">It's fast and easy</p>
+                    </div>
+                    <a href="{% url 'songs_create' %}">
+                        <button>Add A Song</button>
+                    </a>
+                </div>
+                <div class="lib-nav-find-playlists">
+                    <div>
+                        <p class="lib-nav-p-bold">Let's find some songs you like</p>
+                        <p class="lib-nav-p-light">Check out a full list of songs</p>
+                    </div>
+                    <a href="{% url 'songs_index' %}">
+                        <button>Browse Songs</button>
+                    </a>
+                </div>
             {% endif %}
-
-
-            <div class="lib-nav-create-playlist">
-                <div>
-                    <p class="lib-nav-p-bold">Create your first playlist</p>
-                    <p class="lib-nav-p-light">It's easy, we'll help you</p>
-                </div>
-                <a href="{% url 'playlists_create' %}">
-                    <button>Create Playlist</button>
-                </a>
-            </div>
-            <div class="lib-nav-find-playlists">
-                <div>
-                    <p class="lib-nav-p-bold">Let's find some playlists to like</p>
-                    <p class="lib-nav-p-light">We'll keep you updated when new songs are added</p>
-                </div>
-                <a href="{% url 'index' %}"><button>Browse Playlists</button></a>
-            </div>
-            <div class="lib-nav-find-playlists">
-                <div>
-                    <p class="lib-nav-p-bold">Add some songs to the database</p>
-                    <p class="lib-nav-p-light">It's fast and easy</p>
-                </div>
-                <a href="{% url 'songs_create' %}">
-                    <button>Add A Song</button>
-                </a>
-            </div>
-            <div class="lib-nav-find-playlists">
-                <div>
-                    <p class="lib-nav-p-bold">Let's find some songs you like</p>
-                    <p class="lib-nav-p-light">Check out a full list of songs</p>
-                </div>
-                <a href="{% url 'songs_index' %}">
-                    <button>Browse Songs</button>
-                </a>
-            </div>
         </aside>
     </header>
     <main class="main-container">
-        <div class="top-fixed">
-            <div class="backforth-buttons">
-                <div><i class="fa-solid fa-chevron-left"></i></div>
-                <div><i class="fa-solid fa-chevron-right"></i></div>
-            </div>
-
-            <div>
-                <form action="{% url 'search_view' %}" method="GET" class="search-bar-div">
-                    <input type="text" name="q" id="search-bar" placeholder="Search Melodix...">
-                    <button type="submit">Search</button>
-                </form>
+        <div class="top-fixed translucent" id="top-fixed">
+            <div class="top-fixed-left">
+                <div class="backforth-buttons">
+                    <div class="back-btn" id="back-btn" title="Go back"><i class="fa-solid fa-chevron-left"></i></div>
+                    <div class="forward-btn" id="forward-btn" title="Go forward"><i class="fa-solid fa-chevron-right"></i></div>
+                </div>
+    
+                {% if '/search_bar/' in request.path or '/search/' in request.path %}
+                    <div>
+                        <form action="{% url 'search_view' %}" method="GET" class="search-bar-div">
+                            <input type="text" name="q" id="search-bar" placeholder="Search Melodix...">
+                        </form>
+                    </div>
+                {% endif %}
             </div>
 
             <div class="login-buttons">
                 {% if user.is_authenticated %}
-                    <form method="POST" action="{% url 'logout' %}">
-                        {% csrf_token %}
-                        <button type="submit">logout</button>
-                    </form>
-                    <div class="avatar">
+                    <div class="avatar" id="avatar">
                         <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="dropdown" id="dropdown">
+                        <a href="{% url 'profile_index' user.id %}"><button class="profile-btn">Profile</button></a>
+                        <form method="POST" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="logout-btn">Logout</button>
+                        </form>
                     </div>
                 {% else %}
                 <a href="{% url 'signup' %}">
@@ -127,13 +139,50 @@
             </div>
         </div>
         {% block content %}
+        
         {% endblock %}
     </main>
     <footer class="page-footer">
 
     </footer>
-</body>
-</html>
 
+    <script>
+        const topFixed = document.getElementById('top-fixed');
+        const avatar = document.getElementById('avatar');
+        const dropdown = document.getElementById('dropdown');
+        const forwardBtn = document.getElementById('forward-btn');
+        const backBtn = document.getElementById('back-btn');
+
+        forwardBtn.addEventListener('click', () => {
+            goForward();
+        });
+
+        backBtn.addEventListener('click', () => {
+            goBack();
+        });
+
+        function goBack() {
+            window.history.back();
+        }
+
+        function goForward() {
+            window.history.forward();
+        }
+    
+        avatar.addEventListener('click', function (evt) {
+            dropdown.classList.toggle('active');
+        });
+    
+        // window.addEventListener('scroll', function () {
+        //     if (window.scrollY > 0) {
+        //         console.log('scrolling');
+        //         topFixed.classList.add('translucent');
+        //         dropdown.classList.remove('active');
+        //     } else {
+        //         console.log('not scrolling');
+        //         topFixed.classList.remove('translucent');
+        //     }
+        // });
+    </script>
 </body>
 </html>

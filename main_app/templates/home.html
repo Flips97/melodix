@@ -1,8 +1,43 @@
 
 {% extends 'base.html' %}
+{% load static %} 
 {% block content %}
 
-<div class="page-container-playlist">
+<div class="page-container-home">
+
+    <div class="photo-container">
+        <div class="photo-title">
+            <h1>Melodix Playlist DB</h1>
+        </div>
+        <div class="tagline">
+            Discover, Create, Share: Melodix - Your Ultimate Music Hub.
+        </div>
+        <img src="{% static 'assets/img1.jpg' %}" alt="" class="photo">
+        <div class="overlay"></div>
+    </div>
+
+    <div class="home-row-scroll">
+        <div class="all-playlists-div-row">
+            {% for playlist in playlists %}
+                <a href="{% url 'detail' playlist.id %}">
+                    <div class="index-playlist">
+                        <div class="playlist-cover">
+                            <i class="fa-solid fa-icons"></i>
+                        </div>
+                        <div class="playlist-name">
+                            {{ playlist.name }}
+                        </div>
+                        <div class="playlist-description">
+                            Playlist Description
+                        </div>                 
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+    
+
+
 
 </div>
 

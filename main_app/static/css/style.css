@@ -11,14 +11,17 @@
 
     --background: hsl(0, 0%, 0%);
     --background-translucent: hsla(0, 0%, 0%, 0.3);
+    --background-translucent2: hsla(0, 0%, 0%, 0.1);
     --foreground: hsl(0, 0%, 8%);
     --border: hsl(0, 0%, 25%);
     --border-translucent: hsla(0, 0%, 25%, .3);
-    --border-translucent2: hsla(0, 0%, 25%, .1);
+    --border-translucent2: hsla(0, 0%, 25%, .2);
+    --border-translucent3: hsla(0, 0%, 25%, .1);
 
     --copy: hsl(0, 0%, 95%);
     --copy-light: hsl(0, 0%, 75%);
     --copy-lighter: hsl(0, 0%, 55%);
+    --copy-lighter2: hsl(0, 0%, 35%);
 
     --success: hsl(120, 73%, 49%);
     --warning: hsl(60, 73%, 49%);
@@ -93,6 +96,7 @@ li {
 
 .library-nav {
     overflow-y: auto;
+    scrollbar-gutter: stable;
     background-color: var(--foreground);
     position: fixed;
     left: 0;
@@ -133,7 +137,7 @@ li {
 .lib-nav-create-playlist > div,
 .lib-nav-find-playlists > div {
     display: flex;
-    flex-direction: column;;
+    flex-direction: column;
     gap: .5rem;
 }
 
@@ -171,8 +175,75 @@ li {
     transition: transform 0.1s ease;
 }
 
+.lib-nav-new {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 100px;
+    display: grid;
+    place-items: center;
+}
+
+.lib-nav-new:hover {
+    cursor: pointer;
+    background-color: var(--border-translucent2);
+}
+
+.base-playlists-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem
+}
+
+.base-playlist {
+    display: flex;
+    width: 14rem;
+    height: 3.5rem;
+    align-items: center;
+    border-radius: var(--border-radius);
+}
+
+.base-playlist:hover {
+    cursor: pointer;
+    background-color: var(--border-translucent2);
+}
+
+/* make this stay active when detail view is on */
+.base-playlist:active {
+    background-color: var(--border-translucent);
+}
+
+.base-playlist-cover {
+    width: 2.75rem;
+    height: 2.75rem;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(to bottom right, var(--foreground), var(--primary-dark));
+    border-radius: 5px;
+}
+
+.base-playlist-nameuser {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .25rem;
+    padding: .75rem;
+}
+
+.base-playlist-name {
+    font-size: .9rem;
+    font-weight: 400;
+}
+
+.base-playlist-user {
+    font-size: .7rem;
+    font-weight: 200;
+    color: var(--copy-light);
+}
+
 .main-container {
     background-color: var(--foreground);
+    overflow-y: auto;
     position: fixed;
     left: 16.5rem;
     top: 0;
@@ -189,7 +260,51 @@ li {
     gap: 1rem;
     padding-block: .5rem;
     padding-inline: 1.5rem;
-    background-color: var(--background-translucent)
+    background-color: var(--background);
+    top: 0;
+    left: 17rem;
+    width: calc(100vw - 17.5rem);
+    z-index: 9999;
+    position: fixed;
+}
+
+.translucent {
+    background-color: var(--background-translucent);
+}
+
+.top-fixed-left {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.search-bar-div > input {
+    border: none;
+    background-color: var(--border-translucent);
+    border-radius: 50px;
+    height: 2.5rem;
+    width: 20rem;
+    padding-inline: .5rem;
+    font-size: .75rem;
+    color: var(--copy);
+}
+
+.search-bar-div > input:focus {
+    outline: 2px solid white;
+}
+
+.search-bar-div input[type="text"]:-webkit-autofill {
+    box-shadow: 0 0 0 1000px hsl(0, 0%, 13%) inset;
+    color: var(--copy);
+}
+
+.search-bar-div input[type="text"]:-webkit-autofill,
+.search-bar-div input[type="text"]:-webkit-autofill:hover,
+.search-bar-div input[type="text"]:-webkit-autofill:focus,
+.search-bar-div input[type="text"]:-webkit-autofill:active {
+    box-shadow: 0 0 0 1000px hsl(0, 0%, 13%) inset;
+    -webkit-text-fill-color: var(--copy);
+    transition: background-color 5000s ease-in-out 0s;
 }
 
 .avatar {
@@ -200,10 +315,55 @@ li {
     padding: 2px;
     display: grid;
     place-items: center;
+    position: relative;
+}
+
+.avatar:hover {
+    cursor: pointer;
+}
+
+.dropdown {
+    position: absolute;
+    top: 110%; 
+    right: 1.5rem; 
+    display: none;
+    width: 10.25rem;
+    height: 5.25rem;
+    background-color: var(--background-translucent);
+    border-radius: 7px;
+    padding: .5rem;
+    font-size: .85rem;
+    font-weight: 300rem;
+    z-index: 9999;
+}
+
+.logout-btn, 
+.profile-btn {
+    width: 9.25rem;
+    height: 2rem;
+    background-color: transparent;
+    border: none;
+    color: var(--copy);
+    text-align: left;
+    padding-inline: .5rem;
+    padding-block: .25rem;
+}
+
+.logout-btn {
+    margin-top: .25rem;
+}
+
+.logout-btn:hover,
+.profile-btn:hover {
+    border-radius: 5px;
+    background-color: var(--border-translucent);
+}
+
+.active {
+    display: block;
 }
 
 .backforth-buttons {
-    padding-block: ;
     display: flex;
     gap: 1rem;
     color: var(--copy-light);
@@ -253,6 +413,7 @@ li {
 }
 
 .page-container {
+    padding-block: 4rem;
     overflow-y: auto;
     height: 100vh;
     display: flex;
@@ -262,14 +423,22 @@ li {
 }
 
 .page-container-playlist {
+    padding-block: 4rem;
     overflow-y: auto;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: auto;
-    background: linear-gradient(to bottom, var(--border-translucent2), var(--background));
+    background: linear-gradient(to bottom, var(--border-translucent3), var(--background));
     height: 100%;
+}
+
+.page-container-home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 
 .all-playlists-div {
@@ -278,6 +447,22 @@ li {
     gap: 1rem;
     padding: 1rem;
     width: fit-content;
+}
+
+.all-playlists-div-row {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    width: fit-content;
+}
+
+.home-row-scroll {
+    height: 20rem;
+    width: calc(100vw - 17.5rem);
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding: 1rem;
+    margin: .5rem;
 }
 
 .index-playlist {
@@ -301,7 +486,7 @@ li {
 .playlist-cover {
     width: 10.5rem;
     height: 10.5rem;
-    background-color: var(--border-translucent);
+    background: linear-gradient(to bottom right, var(--foreground), var(--primary-dark));
     border-radius: var(--border-radius);
     display: grid;
     place-items: center;
@@ -323,6 +508,136 @@ li {
     color: var(--copy-light);
     padding-inline: .5rem;
 }
+::-webkit-scrollbar {
+    width: .5rem;
+}
 
-/* style scrollbar */
-/* add dropdown for avatar */
+::-webkit-scrollbar-track {
+    background-color: var(--border-translucent3);
+    border-radius: 50px;
+    margin-bottom: .5rem;
+    margin-top: 4rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--border);
+    border: 5px solid transparent;
+    border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--copy-lighter2);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background-color: var(--copy-lighter);
+}
+
+.photo-container {
+    width: 100%;
+    height: 20rem;
+    overflow: hidden;
+    position: relative;
+}
+
+
+.photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.photo-title {
+    position: absolute; 
+    bottom: 20%; 
+    left: 40%; 
+    transform: translate(-50%, -50%); 
+    z-index: 5;
+    font-size: 4rem;
+    font-weight: 900;
+    width: max-content;
+}
+
+.tagline {
+    position: absolute; 
+    bottom: 18%; 
+    left: 27.5%; 
+    transform: translate(-50%, -50%); 
+    z-index: 5;
+    font-size: .85rem;
+    font-weight: 300;
+    width: max-content;
+    color: var(--copy);
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.07);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+}
+
+.back-btn:hover,
+.forward-btn:hover {
+    cursor: pointer;
+}
+
+.user-things {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 20rem;
+    background: linear-gradient(to bottom, var(--secondary-dark), var(--foreground));
+    padding: 2rem;
+}
+
+.user-things-2 {
+    margin-top: 2rem;
+    padding: 2rem;
+}
+
+.user-avatar-photo {
+    border-radius: 100%;
+    background-color: var(--background-translucent);
+    width: 15rem;
+    height: 15rem;
+    display: grid;
+    place-items: center;
+    font-size: 3rem;
+    color: var(--copy-lighter);
+}
+
+.username-user {
+    font-size: 5rem;
+    font-weight: 800;
+    max-width: 35rem; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-tagline {
+    font-size: .85rem;
+    font-weight: 300;
+    width: max-content;
+    color: var(--copy);
+}
+
+
+/* style search page */
+/* style details page */
+/* style forms */
+/* when a library playlist is clicked. have the div stay highlighted */

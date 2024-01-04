@@ -7,7 +7,7 @@
         {% for playlist in playlists %}
             <a href="{% url 'detail' playlist.id %}">
                 <div class="index-playlist">
-                    <div class="playlist-cover">
+                    <div class="playlist-cover" style="background-color: {{ playlist.color }}">
                         <i class="fa-solid fa-icons"></i>
                     </div>
                     <div class="playlist-name">
