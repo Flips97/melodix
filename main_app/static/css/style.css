@@ -340,7 +340,7 @@ li {
     display: none;
     width: 10.25rem;
     height: 5.25rem;
-    background-color: var(--background-translucent);
+    background-color: var(--background);
     border-radius: 7px;
     padding: .5rem;
     font-size: .85rem;
@@ -389,7 +389,7 @@ li {
     display: none;
     width: 10.25rem;
     height: 5.25rem;
-    background-color: var(--background-translucent);
+    background-color: var(--background);
     border-radius: 7px;
     padding: .5rem;
     font-size: .85rem;
@@ -807,18 +807,12 @@ li {
     gap: 1.5rem;
 }
 
-.detail-favorite {
-    font-size: 2rem;
-    transform: scale(1);
-    transition: transform 0.1s ease-in-out;
-}
-
 .detail-ellipsis {
     font-size: 1.5rem;
     color: var(--copy-lighter);
 }
 
-.detail-favorite:hover {
+.detail-favorite > label > i:hover {
     transform: scale(1.05);
     transition: transform 0.1s ease-in-out;
 }
@@ -827,12 +821,80 @@ li {
     color: var(--copy);
 }
 
-.detail-favorite:hover,
+.detail-favorite > label > i:hover,
 .detail-ellipsis:hover {
+    cursor: pointer;
+} 
+
+.detail-favorite {
+    font-size: 2rem;
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    margin-top: -2.35rem;
+    margin-right: 1.5rem;
+}
+
+.detail-favorite > input {
+    display: none;
+}
+
+.detail-favorite > label {
+    position: absolute;
+    top: 0;
+    left: 0;
     cursor: pointer;
 }
 
+.detail-favorite > label > i {
+    font-size: inherit;
+    transition: color 0.3s ease-in-out;
+}
 
+.detail-favorite > input:checked + label .fa-regular {
+    display: none;
+}
+
+.detail-favorite > input:not(:checked) + label .fa-solid {
+    display: none;
+}
+
+.detail-favorite:hover label > i {
+    color: var(--copy);
+}
+
+.dropdown-detail {
+    position: absolute;
+    top: 5%;
+    left: 10.5%;
+    display: none;
+    width: 10.25rem;
+    height: 5.25rem;
+    background-color: var(--background);
+    border-radius: 7px;
+    padding: .5rem;
+    font-size: .85rem;
+    font-weight: 300rem;
+    z-index: 9999;
+    box-shadow: var(--box-shadow);
+}
+
+.dropdown-detail > a > button {
+    width: 9.25rem;
+    height: 2rem;
+    background-color: transparent;
+    border: none;
+    color: var(--copy);
+    text-align: left;
+    padding-inline: .5rem;
+    padding-block: .25rem;
+}
+
+.dropdown-detail > a > button:hover {
+    border-radius: 5px;
+    background-color: var(--border-translucent);
+    cursor: pointer;
+}
 /* style search page */
 /* style details page */
 /* style forms */
