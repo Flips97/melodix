@@ -293,6 +293,20 @@ li {
     outline: 2px solid white;
 }
 
+.search-bar-div input[type="text"]:-webkit-autofill {
+    box-shadow: 0 0 0 1000px hsl(0, 0%, 13%) inset;
+    color: var(--copy);
+}
+
+.search-bar-div input[type="text"]:-webkit-autofill,
+.search-bar-div input[type="text"]:-webkit-autofill:hover,
+.search-bar-div input[type="text"]:-webkit-autofill:focus,
+.search-bar-div input[type="text"]:-webkit-autofill:active {
+    box-shadow: 0 0 0 1000px hsl(0, 0%, 13%) inset;
+    -webkit-text-fill-color: var(--copy);
+    transition: background-color 5000s ease-in-out 0s;
+}
+
 .avatar {
     width: 1.75rem;
     height: 1.75rem;
@@ -626,3 +640,4 @@ li {
 /* style search page */
 /* style details page */
 /* style forms */
+/* when a library playlist is clicked. have the div stay highlighted */
