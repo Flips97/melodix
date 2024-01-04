@@ -9,6 +9,7 @@ from .models import Playlist, Song, User
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 
+
 # Create your views here.
 def home(request):
     playlists = Playlist.objects.all()
@@ -81,6 +82,10 @@ def profile_index(request, user_id):
       'profile_user': user
    })
 
+def fav_playlist(request, user_id, playlist_id):
+    Playlist.objects.get(id=playlist_id).user_favorite.add(user_id)
+    return redirect('detail', playist_id=playlist_id)
+
 def search_view(request):
    query = request.GET.get('q', '')
    playlists = Playlist.objects.filter(
@@ -115,4 +120,3 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context) 
-
