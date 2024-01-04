@@ -16,12 +16,8 @@
                 000 Public Playlists
             </div>
         </div>
-            
-
     </div>
 
-    
-    
     <div class="all-playlists-div">
         {% for playlist in playlists %}
             <a href="{% url 'detail' playlist.id %}">
