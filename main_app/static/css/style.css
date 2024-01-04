@@ -13,6 +13,7 @@
     --background-translucent: hsla(0, 0%, 0%, 0.3);
     --background-translucent2: hsla(0, 0%, 0%, 0.1);
     --foreground: hsl(0, 0%, 8%);
+    --foreground-translucent: hsla(0, 0%, 8%, 0.3);
     --border: hsl(0, 0%, 25%);
     --border-translucent: hsla(0, 0%, 25%, .3);
     --border-translucent2: hsla(0, 0%, 25%, .2);
@@ -270,7 +271,8 @@ li {
     gap: 1rem;
     padding-block: .5rem;
     padding-inline: 1.5rem;
-    background-color: var(--background);
+    padding-top: 1rem;
+    background-color: var(--foreground);
     top: 0;
     left: 17rem;
     width: calc(100vw - 17.5rem);
@@ -280,7 +282,7 @@ li {
 }
 
 .translucent {
-    background-color: var(--background-translucent);
+    background-color: var(--foreground-translucent);
 }
 
 .top-fixed-left {
@@ -426,7 +428,7 @@ li {
     height: 2rem;
     width: 2rem;
     border-radius: 100%;
-    background-color: var(--background);
+    background-color: var(--background-translucent);
 }
 
 .login-buttons {
