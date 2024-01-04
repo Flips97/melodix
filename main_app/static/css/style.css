@@ -30,7 +30,8 @@
     --warning-content: hsl(0, 0%, 0%);
     --error-content: hsl(0, 71%, 99%);
 
-    --border-radius: 9px
+    --border-radius: 9px;
+    --box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -82,12 +83,21 @@ li {
 .nav-logo {
     font-size: 1rem;
     font-weight: 500;
+    
+}
+
+.nav-logo > i {
+    transform: rotate(90);
 }
 
 .nav-logo > i,
 .nav-home > a > i,
 .nav-search > a > i {
     font-size: 1.3rem;
+}
+
+.hidden {
+    display: none;
 }
 
 .nav-search > a {
@@ -266,6 +276,7 @@ li {
     width: calc(100vw - 17.5rem);
     z-index: 9999;
     position: fixed;
+    box-shadow: var(--box-shadow);
 }
 
 .translucent {
@@ -360,7 +371,47 @@ li {
 }
 
 .active {
-    display: block;
+    display: block !important;
+}
+
+.active-inline {
+    display: inline;
+}
+
+.lib-nav-new {
+    position: relative;
+}
+
+.dropdown-add {
+    position: absolute;
+    top: 8.5%;
+    left: 29%;
+    display: none;
+    width: 10.25rem;
+    height: 5.25rem;
+    background-color: var(--background-translucent);
+    border-radius: 7px;
+    padding: .5rem;
+    font-size: .85rem;
+    font-weight: 300rem;
+    z-index: 9999;
+}
+
+.dropdown-add > a > button {
+    width: 9.25rem;
+    height: 2rem;
+    background-color: transparent;
+    border: none;
+    color: var(--copy);
+    text-align: left;
+    padding-inline: .5rem;
+    padding-block: .25rem;
+}
+
+.dropdown-add > a > button:hover {
+    border-radius: 5px;
+    background-color: var(--border-translucent);
+    cursor: pointer;
 }
 
 .backforth-buttons {
@@ -483,16 +534,6 @@ li {
     transition: background-color 0.3s ease;
 }
 
-.playlist-cover {
-    width: 10.5rem;
-    height: 10.5rem;
-    background: linear-gradient(to bottom right, var(--foreground), var(--primary-dark));
-    border-radius: var(--border-radius);
-    display: grid;
-    place-items: center;
-    color: var(--copy-lighter);
-}
-
 .playlist-name {
     font-weight: 600;
     font-size: 1rem;
@@ -562,10 +603,20 @@ li {
     width: max-content;
 }
 
+.photo-title > h1 {
+    display: flex;
+    align-items: center;
+}
+
+.photo-title > h1 > i {
+    font-size: 3rem;
+    padding-left: 1.5rem;
+}
+
 .tagline {
     position: absolute; 
     bottom: 18%; 
-    left: 27.5%; 
+    left: 26%; 
     transform: translate(-50%, -50%); 
     z-index: 5;
     font-size: .85rem;
@@ -634,6 +685,151 @@ li {
     font-weight: 300;
     width: max-content;
     color: var(--copy);
+}
+
+.playlist-cover {
+    border-radius: var(--border-radius);
+    background: linear-gradient(to bottom right, var(--foreground), var(--primary-dark));
+    width: 10rem;
+    height: 10rem;
+    display: grid;
+    place-items: center;
+    font-size: 3rem;
+    color: var(--copy);
+}
+
+.detail-things {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 20rem;
+    background: linear-gradient(to bottom, var(--secondary-dark), var(--foreground));
+    padding: 4rem;
+}
+
+.detail-things-2 {
+    padding: 2rem;
+}
+
+.detail-playlist-name {
+    font-size: 5rem;
+    font-weight: 800;
+    max-width: 35rem; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.detail-tagline {
+    font-size: .85rem;
+    font-weight: 300;
+    width: max-content;
+    color: var(--copy);
+    padding-inline: .5rem;
+}
+
+.detial-main {
+    width: 100%;
+    height: 50rem;
+    margin-top: -4.5rem;
+    background: linear-gradient(to bottom, var(--border-translucent3), var(--background));
+    box-shadow: var(--box-shadow);
+    position: relative;
+    z-index: 2;
+}
+
+.detail-menu {
+    width: 100%;
+    height: 3rem;
+    /* border: 1px solid red; */
+}
+
+.detail-songs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-inline: 4rem;
+    padding-block: 2rem;
+    gap: .5rem
+}
+
+.detail-each-song {
+    display: flex;
+    width: 14rem;
+    height: 3.5rem;
+    align-items: center;
+    border-radius: var(--border-radius);
+    gap: .75rem;
+}
+
+.detail-each-song:hover {
+    cursor: pointer;
+    background-color: var(--border-translucent2);
+}
+
+/* make this stay active when detail view is on */
+.detail-each-song:active {
+    background-color: var(--border-translucent);
+}
+
+.detail-name-artist {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .25rem;
+    padding: .75rem;
+}
+
+.detail-song-name {
+    font-size: .9rem;
+    font-weight: 400;
+}
+
+.detail-song-artist {
+    font-size: .7rem;
+    font-weight: 200;
+    color: var(--copy-light);
+}
+
+.song-cover {
+    width: 2.75rem;
+    height: 2.75rem;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(to bottom right, var(--foreground), var(--primary-dark));
+    border-radius: 5px;
+}
+
+.detail-menu {
+    padding-inline: 3rem;
+    align-items: center;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.detail-favorite {
+    font-size: 2rem;
+    transform: scale(1);
+    transition: transform 0.1s ease-in-out;
+}
+
+.detail-ellipsis {
+    font-size: 1.5rem;
+    color: var(--copy-lighter);
+}
+
+.detail-favorite:hover {
+    transform: scale(1.05);
+    transition: transform 0.1s ease-in-out;
+}
+
+.detail-ellipsis:hover {
+    color: var(--copy);
+}
+
+.detail-favorite:hover,
+.detail-ellipsis:hover {
+    cursor: pointer;
 }
 
 
