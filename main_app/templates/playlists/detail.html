@@ -22,15 +22,16 @@
         <div class="detail-menu">
             <div class="detail-favorite">
 
-                <a href="{% url 'fav_playlist' user.id playlist.id %}" id="heart-toggle">
-                    
-                    {% if is_favorite %}
+                {% if is_favorite %}
+                    <a href="">
                         <i class="fa-solid fa-heart solid-favorite wobble"></i>
-                    {% else %}
+                    </a>
+                {% else %}
+                    <a href="{% url 'fav_playlist' user.id playlist.id %}" id="heart-toggle">
                         <i class="fa-regular fa-heart"></i>
-                    {% endif %}
-                </a>
-
+                    </a>
+                {% endif %}
+                
             </div>
             {% if request.user == playlist.user %}
             <div class="detail-ellipsis">
