@@ -29,14 +29,18 @@
 
         <div class="detail-main">
             <div class="detail-menu">
-
                 <div>
                     <input type="submit" value="Submit!">
                 </div>
-                
             </div>
 
-            <div class="songs-table-div">
+            <div>
+                {{ playlist_form.songs }}
+            </div>
+
+
+
+            <!-- <div class="songs-table-div">
                 <table class="songs-table">
                     
                     <tr>
@@ -79,44 +83,10 @@
                     </tr>
                     {% endfor %}
                 </table>
-            </div>
+            </div> -->
+            
         </div>
     </form>
 </div>
-
-<!-- <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const addButtons = document.querySelectorAll('.add-song-btn');
-
-        addButtons.forEach(function (button) {
-            button.addEventListener('click', function () {
-                const songId = this.getAttribute('data-song-id');
-                const playlistId = '{{ playlist.id }}';
-                addSongToPlaylist(songId, playlistId);
-            });
-        });
-
-        function addSongToPlaylist(songId, playlistId) {
-            console.log('Song ID', songId)
-            console.log('Playlist ID', playlistId)
-            
-            fetch('{% url "assoc_song" playlist_id=0 song_id=0 %}'.replace('0', playlistId).replace('0', songId), {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': '{{ csrf_token }}',
-                },
-            })
-                .then(response => {
-                    if (response.ok) {
-                        console.log('Song added to playlist successfully');
-                    } else {
-                        console.error('Failed to add song to playlist');
-                    }
-                })
-                .catch(error => console.error('Error:', error));
-        }
-    });
-</script> -->
 
 {% endblock %}

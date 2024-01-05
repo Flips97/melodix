@@ -5,8 +5,14 @@
 
     <div class="detail-things">
         <div class="playlist-cover">
+            {% for photo in playlist.photo_set.all %}
+                <img src="{{photo.url}}">
+            {% empty %}
             <i class="fa-solid fa-icons"></i>
+            {% endfor %}
         </div>
+
+
 
         <div class="detail-things-2">
             <div class="user-title-photo">
@@ -20,6 +26,12 @@
 
     <div class="detail-main">
         <div class="detail-menu">
+            <form action="{% url 'add_photo' playlist.id %}" enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                <input type="file" name="photo-file">
+                <button type="submit">Upload Photo</button>
+            </form>
+
             <div class="detail-favorite">
 
                 {% if is_favorite %}
