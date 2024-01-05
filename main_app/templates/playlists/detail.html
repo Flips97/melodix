@@ -47,7 +47,51 @@
             </div>
             {% endif %}
         </div>
-        <div class="detail-songs">
+
+        <div class="songs-table-div">
+            <table class="songs-table">
+                <tr>
+                    <td style="padding-right: 10px; padding-left: 20px;">#</td>
+                    <td>Title</td>
+                    <td style="padding-right: 30px;">Album</td>
+                    <td style="padding-right: 20px;">Date Added</td>
+                    <td><i class="fa-regular fa-clock"></i></td>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                        <hr>
+                    </td>
+                </tr>
+                {% if playlist.songs.count %}
+                {% for song in playlist.songs.all %}
+                <tr class="song-hover">
+                    <td  style="padding-right: 10px; padding-left: 20px;">1</td>
+                    <td>
+                        <div class="detail-each-song">
+                            <div class="song-cover">
+                                <i class="fa-solid fa-icons"></i>
+                            </div>
+                            <div class="detail-nameartist">
+                                <div class="detail-song-name">
+                                    {{ song.name }}
+                                </div>
+                                <div class="detail-song-artist">
+                                    Song Artist
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="padding-right: 30px;">Album Name</td>
+                    <td style="padding-right: 30px;">Date Added</td>
+                    <td>0:00</td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </table>
+        </div>
+
+
+        <!-- <div class="detail-songs">
             {% if playlist.songs.count %}
                 {% for song in playlist.songs.all %}
                 <div class="detail-each-song">
@@ -65,7 +109,7 @@
                 </div>
                 {% endfor %}
             {% endif %}
-        </div>
+        </div> -->
 
         <div>
 

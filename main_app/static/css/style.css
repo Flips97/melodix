@@ -781,7 +781,8 @@ li {
     gap: .75rem;
 }
 
-.detail-each-song:hover {
+
+.song-hover:hover {
     cursor: pointer;
     background-color: var(--border-translucent2);
 }
@@ -956,6 +957,30 @@ li {
         -webkit-transform: translateX(-2px) rotate(-1.2deg);
         transform: translateX(-2px) rotate(-1.2deg);
     }
+}
+
+.songs-table-div {
+    margin-block: 2rem;
+    margin-inline: 4rem;
+}
+
+.songs-table {
+    color: var(--copy-light);
+    font-size: .75rem;
+    font-weight: 300;
+    width: 100%;
+}
+
+.detail-song-name {
+    font-size: .9rem;
+    font-weight: 400;
+    color: var(--copy);
+}
+
+hr {
+    border-color: var(--copy-lighter);
+    padding-left: 1rem;
+    margin-top: 1rem;
 }
 
 
