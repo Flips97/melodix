@@ -49,8 +49,8 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         result = super().form_valid(form)
-        playlist = form.save(commit=False)
-        playlist.save()
+        # playlist = form.save(commit=False)
+        # playlist.save()
         print("This is my newly created instance", self.object.pk)
         return result
     
