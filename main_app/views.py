@@ -46,18 +46,19 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
     model = Playlist
     fields = ['name', 'description', 'songs']
 
+    # def form_valid(self, form):
+    #     form.instance.user = self.request.user
+    #     # playlist = form.save(commit=False)
+    #     # playlist.save()
+    #     return super().form_valid(form)
+
     def form_valid(self, form):
         form.instance.user = self.request.user
-        # playlist = form.save(commit=False)
-        # playlist.save()
-        return super().form_valid(form)
-
-    # def form_valid(self, form):
-    #     result = super().form_valid(form)
-    #     playlist = form.save(commit=False)
-    #     playlist.save()
-    #     print("This is my newly created instance", self.object.pk)
-    #     return result
+        result = super().form_valid(form)
+        playlist = form.save(commit=False)
+        playlist.save()
+        print("This is my newly created instance", self.object.pk)
+        return result
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
