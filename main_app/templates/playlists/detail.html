@@ -2,15 +2,15 @@
 {% block content %}
 
 <div class="page-container-home">
-    <div class="detail-things">
 
+    <div class="detail-things">
         <div class="playlist-cover">
             <i class="fa-solid fa-icons"></i>
         </div>
 
         <div class="detail-things-2">
             <div class="user-title-photo">
-                <h1 class="detail-playlist-name">{{ playlist.name }}</h1>
+                <h1 class="detail-playlist-name" id="detail-playlist-name">{{ playlist.name }}</h1>
             </div>
             <div class="detail-tagline">
                 {{ playlist.description }}
@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    <div class="detial-main">
+    <div class="detail-main">
         <div class="detail-menu">
             <div class="detail-favorite">
 
@@ -50,13 +50,16 @@
 
         <div class="songs-table-div">
             <table class="songs-table">
+                
                 <tr>
-                    <td style="padding-right: 10px; padding-left: 20px;">#</td>
-                    <td>Title</td>
-                    <td style="padding-right: 30px;">Album</td>
-                    <td style="padding-right: 20px;">Date Added</td>
-                    <td><i class="fa-regular fa-clock"></i></td>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Album</th>
+                    <th>Date Added</th>
+                    <th><i class="fa-regular fa-clock"></i></th>
                 </tr>
+                
+                
                 <tr>
                     <td colspan="5">
                         <hr>
@@ -65,7 +68,7 @@
                 {% if playlist.songs.count %}
                 {% for song in playlist.songs.all %}
                 <tr class="song-hover">
-                    <td  style="padding-right: 10px; padding-left: 20px;">1</td>
+                    <td >1</td>
                     <td>
                         <div class="detail-each-song">
                             <div class="song-cover">
@@ -81,10 +84,11 @@
                             </div>
                         </div>
                     </td>
-                    <td style="padding-right: 30px;">Album Name</td>
-                    <td style="padding-right: 30px;">Date Added</td>
+                    <td>Album Name</td>
+                    <td>Date Added</td>
                     <td>0:00</td>
                 </tr>
+                
                 {% endfor %}
                 {% endif %}
             </table>
@@ -102,17 +106,5 @@
         </div>
     </div>
 </div>
-
-<script>
-
-    const dropdownDetail = document.getElementById('dropdown-detail');
-    const ellipsis = document.getElementById('ellipsis');
-    const heartToggle = document.getElementById('heart-toggle');
-
-    ellipsis.addEventListener('click', function() {
-        dropdownDetail.classList.toggle('active');
-    })
-
-</script>
 
 {% endblock %}
