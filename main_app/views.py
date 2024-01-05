@@ -145,7 +145,7 @@ def add_photo(request, playlist_id):
             print(e)
     return redirect('detail', playlist_id=playlist_id)
 
-   
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':
