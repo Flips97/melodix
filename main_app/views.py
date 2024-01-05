@@ -84,11 +84,11 @@ def unassoc_song(request, playlist_id, song_id):
 def profile_index(request, user_id):
    user = get_object_or_404(User, id=user_id)
    playlists = Playlist.objects.filter(user=user)
-   user_playlists = user.playlist_set.all()
+   user_favorites = user.playlist_set.all()
    return render(request, 'profile_index.html', {
       'playlists': playlists,
       'profile_user': user,
-      'user_playlists': user_playlists
+      'user_favorites': user_favorites
    })
 
 def fav_playlist(request, user_id, playlist_id):

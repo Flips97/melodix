@@ -31,21 +31,35 @@
                         <i class="fa-regular fa-heart"></i>
                     </a>
                 {% endif %}
-                
             </div>
-            {% if request.user == playlist.user %}
+
             <div class="detail-ellipsis">
                 <i class="fa-solid fa-ellipsis" id="ellipsis"></i>
                 <div class="dropdown-detail" id="dropdown-detail">
+                    {% if request.user == playlist.user %}
+                    <button id="openModal" type="button">
+                        Who Loves This
+                    </button>
                     <a href="{% url 'playlists_update' playlist.id %}">
                         <button>Edit</button>
                     </a>
                     <a href="{% url 'playlists_delete' playlist.id %}">
                         <button>Delete</button>
                     </a>
+                    {% else %}
+                    {% endif %}
                 </div>
             </div>
-            {% endif %}
+            <dialog class="who-loves-this" id="who-loves-this">
+                <div>
+                    <h1>Users who like this</h1>
+                    {% for user in user_favs %}
+                        {{ user }}
+                    {% endfor %}
+                </div>
+                <button id="closeModal" type="button">Close</button>
+            </dialog>
+            
         </div>
 
         <div class="songs-table-div">
@@ -60,16 +74,16 @@
                 </tr>
                 
                 
-                <tr>
-                    <td colspan="5">
+                <tr class="no-padding">
+                    <td colspan="5" class="no-padding">
                         <hr>
                     </td>
                 </tr>
                 {% if playlist.songs.count %}
                 {% for song in playlist.songs.all %}
                 <tr class="song-hover">
-                    <td >1</td>
-                    <td>
+                    <td  data-cell="#">{{ forloop.counter }}</td>
+                    <td data-cell="Title">
                         <div class="detail-each-song">
                             <div class="song-cover">
                                 <i class="fa-solid fa-icons"></i>
@@ -84,25 +98,14 @@
                             </div>
                         </div>
                     </td>
-                    <td>Album Name</td>
-                    <td>Date Added</td>
-                    <td>0:00</td>
+                    <td data-cell="Album">Album Name</td>
+                    <td data-cell="Date Added">Date Added</td>
+                    <td data-cell="Length">0:00</td>
                 </tr>
                 
                 {% endfor %}
                 {% endif %}
             </table>
-        </div>
-
-        <div>
-
-            <h1>user favorites</h1>
-
-            {% for user in user_favs %}
-
-                {{ user }}
-
-            {% endfor %}
         </div>
     </div>
 </div>

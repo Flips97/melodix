@@ -70,7 +70,7 @@ li {
     top: 0;
     width: 16rem;
     height: 9rem;
-    padding: 2rem;
+    padding: 1.5rem;
     margin: .5rem;
     border-radius: var(--border-radius);
     font-size: .85rem;
@@ -160,6 +160,8 @@ li {
 .lib-nav-your-div {
     display: flex;
     gap: 1rem;
+    padding-left: .65rem;
+    padding-right: .5rem;
 }
 
 .lib-nav-p-bold {
@@ -217,6 +219,8 @@ li {
     height: 3.5rem;
     align-items: center;
     border-radius: var(--border-radius);
+    padding-inline: .5rem;
+
 }
 
 .base-playlist:hover {
@@ -366,7 +370,7 @@ li {
 
 .dropdown {
     position: absolute;
-    top: 110%; 
+    top: 102%; 
     right: 1.5rem; 
     display: none;
     width: 10.25rem;
@@ -415,8 +419,8 @@ li {
 
 .dropdown-add {
     position: absolute;
-    top: 8.5%;
-    left: 29%;
+    top: 9%;
+    left: 28%;
     display: none;
     width: 10.25rem;
     height: 5.25rem;
@@ -531,22 +535,6 @@ li {
     width: fit-content;
 }
 
-.all-playlists-div-row {
-    display: flex;
-    gap: 1rem;
-    padding: 1rem;
-    width: fit-content;
-}
-
-.home-row-scroll {
-    height: 20rem;
-    width: calc(100vw - 17.5rem);
-    overflow-x: scroll;
-    overflow-y: hidden;
-    padding: 1rem;
-    margin: .5rem;
-}
-
 .index-playlist {
     display: flex;
     flex-direction: column;
@@ -606,32 +594,22 @@ li {
 }
 
 .photo-container {
+    background-image: url(../assets/img1.jpg);
+    background-size: cover;
     width: 100%;
     height: 20rem;
     overflow: hidden;
     position: relative;
-}
-
-
-.photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
+    margin-bottom: 2rem;
 }
 
 .photo-title {
-    position: absolute; 
-    bottom: 20%; 
-    left: 40%; 
-    transform: translate(-50%, -50%); 
-    z-index: 5;
     font-size: 4rem;
     font-weight: 900;
     width: max-content;
+    position: absolute;
+    bottom: 35%;
+    left: 10%;
 }
 
 .photo-title > h1 {
@@ -645,32 +623,19 @@ li {
 }
 
 .tagline {
-    position: absolute; 
-    bottom: 18%; 
-    left: 26%; 
-    transform: translate(-50%, -50%); 
-    z-index: 5;
     font-size: .85rem;
     font-weight: 300;
     width: max-content;
     color: var(--copy);
-}
-
-.overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.07);
-    z-index: 0;
-    pointer-events: none;
+    bottom: 30%;
+    left: 11%;
 }
 
-.disabled {
+/* .disabled {
     opacity: 0.2;
     cursor: not-allowed;
-}
+} */
 
 .back-btn:hover,
 .forward-btn:hover {
@@ -800,6 +765,10 @@ li {
     background-color: var(--border-translucent2);
 }
 
+.border-radius {
+    border-radius: var(--border-radius);
+}
+
 .detail-each-song:active {
     background-color: var(--border-translucent);
 }
@@ -876,7 +845,7 @@ li {
     left: 10.5%;
     display: none;
     width: 10.25rem;
-    height: 5.25rem;
+    height: 7.06rem;
     background-color: var(--background);
     border-radius: 7px;
     padding: .5rem;
@@ -886,7 +855,8 @@ li {
     box-shadow: var(--box-shadow);
 }
 
-.dropdown-detail > a > button {
+.dropdown-detail > a > button,
+.dropdown-detail > button {
     width: 9.25rem;
     height: 2rem;
     background-color: transparent;
@@ -897,7 +867,8 @@ li {
     padding-block: .25rem;
 }
 
-.dropdown-detail > a > button:hover {
+.dropdown-detail > a > button:hover,
+.dropdown-detail > button:hover {
     border-radius: 5px;
     background-color: var(--border-translucent);
     cursor: pointer;
@@ -972,15 +943,25 @@ li {
 }
 
 .songs-table-div {
-    margin-block: 2rem;
-    margin-inline: 4rem;
+    width: min(900px, 100% - 5rem);
+    margin-inline: auto;
 }
 
 .songs-table {
     color: var(--copy-light);
     font-size: .75rem;
     font-weight: 300;
+    border-collapse: collapse;
     width: 100%;
+}
+
+th,
+td {
+    padding: 1rem;
+}
+
+th {
+    text-align: left;
 }
 
 .detail-song-name {
@@ -989,11 +970,39 @@ li {
     color: var(--copy);
 }
 
+@media (max-width: 650px) {
+    th {
+        display: none;
+    }
+
+    td {
+        display: grid;
+        grid-template-columns: 15ch auto;
+        gap: .5rem;
+        padding: .5rem 1rem;
+    }
+
+    td:first-child {
+        padding-top: 1rem;
+    }
+
+    td:last-child {
+        padding-bottom: 1rem;
+    }
+
+    td::before {
+        content: attr(data-cell) ":  ";
+        font-weight: 700;
+        text-transform: capitalize;
+    }
+}
+
 hr {
-    border-color: var(--copy-lighter);
-    padding-left: 1rem;
-    margin-top: 1rem;
-    margin-bottom: .5rem;
+    border-color: var(--copy-lighter2);
+}
+
+.no-padding {
+    padding: 0;
 }
 
 .letter-buttons {
@@ -1076,6 +1085,38 @@ hr {
         opacity: 0;
     }
 }
+
+dialog {
+    /* padding: 3rem;
+    background: var(--background-translucent);
+    box-shadow: var(--box-shadow);
+    color: var(--copy);
+    border: none;
+    border-radius: var(--border-radius);
+    width: 30rem;
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto; */
+}
+
+dialog::backdrop {
+    background-color: hsla(0, 0%, 0%, 0.4);
+}
+
+dialog > div > h1 {
+    font-size: 2rem;
+    padding: 1rem;
+}
+
+/* .overlay {
+    background: rgba(0, 0, 0, 0.05);
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9;
+} */
 
 /* style search page */
 /* style details page */

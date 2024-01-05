@@ -63,6 +63,25 @@
                         </a>
                     {% endfor %}
                 </div>
+                <div class="base-playlists-div">
+                    {% for playlist in user.playlist_set.all %}
+                        <a href="{% url 'detail' playlist.id %}">
+                            <div class="base-playlist{% if playlist.id == playlist_id %} active-a{% endif %}">
+                                <div class="base-playlist-cover">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                                <div class="base-playlist-nameuser">
+                                    <div class="base-playlist-name">
+                                        {{ playlist.name }}
+                                    </div>
+                                    <div class="base-playlist-user">
+                                        {{ playlist.user }}
+                                    </div> 
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
             {% else %}
                 <div class="lib-nav-create-playlist">
                     <div>
@@ -166,10 +185,44 @@
         const heartToggle = document.getElementById('heart-toggle');
         const detailPlaylistName = document.getElementById('detail-playlist-name');
         const fixedPlaylistName = document.getElementById('fixed-playlist-name');
+        const whoLovesThisModal = document.getElementById('who-loves-this');
+        const openModal = document.getElementById('openModal');
+        const closeModal = document.getElementById('closeModal');
 
+        openModal.addEventListener('click', () => {
+            whoLovesThisModal.showModal()
+        });
+
+        closeModal.addEventListener('click', () => {
+            whoLovesThisModal.close()
+        });
+
+        whoLovesThisModal.addEventListener('click', e => {
+            const dialogDimensions = whoLovesThisModal.getBoundingClientRect()
+            if (
+                e.clientX < dialogDimensions.left ||
+                e.clientX > dialogDimensions.right ||
+                e.clientY < dialogDimensions.top ||
+                e.clientY > dialogDimensions.bottom
+            ) {
+                whoLovesThisModal.close()
+            }
+        })
+
+        // Add closing logic for click outside dropdown 
         addNewBtn.addEventListener('click', function() {
             dropdownAdd.classList.toggle('active');
         })        
+
+        // Add closing logic for click outside dropdown 
+        ellipsis.addEventListener('click', function() {
+            dropdownDetail.classList.toggle('active');
+        })
+
+        // Add closing logic for click outside dropdown 
+        avatar.addEventListener('click', function() {
+            dropdown.classList.toggle('active');
+        });
 
         forwardBtn.addEventListener('click', () => {
             goForward();
@@ -186,10 +239,6 @@
         function goForward() {
             window.history.forward();
         }
-    
-        avatar.addEventListener('click', function() {
-            dropdown.classList.toggle('active');
-        });
     
         // main.addEventListener('scroll', function() {
         //     console.log('scrolling')
@@ -218,9 +267,6 @@
             }
         });
 
-        ellipsis.addEventListener('click', function() {
-            dropdownDetail.classList.toggle('active');
-        })
     </script>
 </body>
 </html>
