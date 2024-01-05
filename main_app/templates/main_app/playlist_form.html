@@ -97,6 +97,9 @@
         });
 
         function addSongToPlaylist(songId, playlistId) {
+            console.log('Song ID', songId)
+            console.log('Playlist ID', playlistId)
+            
             fetch('{% url "assoc_song" playlist_id=0 song_id=0 %}'.replace('0', playlistId).replace('0', songId), {
                 method: 'POST',
                 headers: {

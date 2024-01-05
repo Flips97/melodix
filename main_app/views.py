@@ -1,5 +1,8 @@
 import os
 import uuid
+
+from django.forms.models import BaseModelForm
+from django.http import HttpResponse
 import boto3
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -20,10 +23,10 @@ def home(request):
 
 def playlist_index(request):
     playlists = Playlist.objects.all()
-    playlist_fav = user.playlist_set.all()
+    # playlist_fav = user.playlist_set.all()
     return render(request, 'playlists/index.html', {
         'playlists': playlists,
-        'playlist_fav': playlist_fav
+        # 'playlist_fav': playlist_fav
     })
 
 def playlists_detail(request, playlist_id):
@@ -45,12 +48,22 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        # playlist = form.save(commit=False)
+        # playlist.save()
         return super().form_valid(form)
+
+    # def form_valid(self, form):
+    #     result = super().form_valid(form)
+    #     playlist = form.save(commit=False)
+    #     playlist.save()
+    #     print("This is my newly created instance", self.object.pk)
+    #     return result
     
     def get_context_data(self, **kwargs):
-       context = super().get_context_data(**kwargs)
-       context['songs'] = Song.objects.all()
-       return context
+        context = super().get_context_data(**kwargs)
+        context['songs'] = Song.objects.all()
+        return context
+
 
 class PlaylistUpdate(LoginRequiredMixin, UpdateView):
     model = Playlist
