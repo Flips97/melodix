@@ -13,6 +13,7 @@
     --background-translucent: hsla(0, 0%, 0%, 0.3);
     --background-translucent2: hsla(0, 0%, 0%, 0.1);
     --foreground: hsl(0, 0%, 8%);
+    --foreground-translucent: hsla(0, 0%, 8%, 0.3);
     --border: hsl(0, 0%, 25%);
     --border-translucent: hsla(0, 0%, 25%, .3);
     --border-translucent2: hsla(0, 0%, 25%, .2);
@@ -218,9 +219,22 @@ li {
     background-color: var(--border-translucent2);
 }
 
-/* make this stay active when detail view is on */
+.active-a {
+    background-color: var(--border-translucent);
+    display: flex;
+    width: 14rem;
+    height: 3.5rem;
+    align-items: center;
+    border-radius: var(--border-radius);
+}
+
 .base-playlist:active {
     background-color: var(--border-translucent);
+    display: flex;
+    width: 14rem;
+    height: 3.5rem;
+    align-items: center;
+    border-radius: var(--border-radius);
 }
 
 .base-playlist-cover {
@@ -270,7 +284,8 @@ li {
     gap: 1rem;
     padding-block: .5rem;
     padding-inline: 1.5rem;
-    background-color: var(--background);
+    padding-top: 1rem;
+    background-color: var(--foreground);
     top: 0;
     left: 17rem;
     width: calc(100vw - 17.5rem);
@@ -280,7 +295,7 @@ li {
 }
 
 .translucent {
-    background-color: var(--background-translucent);
+    background-color: var(--foreground-translucent);
 }
 
 .top-fixed-left {
@@ -426,7 +441,7 @@ li {
     height: 2rem;
     width: 2rem;
     border-radius: 100%;
-    background-color: var(--background);
+    background-color: var(--background-translucent);
 }
 
 .login-buttons {
@@ -812,7 +827,7 @@ li {
     color: var(--copy-lighter);
 }
 
-.detail-favorite > label > i:hover {
+.detail-favorite >  a > i:hover {
     transform: scale(1.05);
     transition: transform 0.1s ease-in-out;
 }
@@ -821,7 +836,7 @@ li {
     color: var(--copy);
 }
 
-.detail-favorite > label > i:hover,
+.detail-favorite >  a > i:hover,
 .detail-ellipsis:hover {
     cursor: pointer;
 } 
@@ -831,36 +846,11 @@ li {
     position: relative;
     width: fit-content;
     height: fit-content;
-    margin-top: -2.35rem;
-    margin-right: 1.5rem;
 }
 
-.detail-favorite > input {
-    display: none;
-}
-
-.detail-favorite > label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    cursor: pointer;
-}
-
-.detail-favorite > label > i {
+.detail-favorite > a > i {
     font-size: inherit;
     transition: color 0.3s ease-in-out;
-}
-
-.detail-favorite > input:checked + label .fa-regular {
-    display: none;
-}
-
-.detail-favorite > input:not(:checked) + label .fa-solid {
-    display: none;
-}
-
-.detail-favorite:hover label > i {
-    color: var(--copy);
 }
 
 .dropdown-detail {
@@ -895,6 +885,76 @@ li {
     background-color: var(--border-translucent);
     cursor: pointer;
 }
+
+.solid-favorite {
+    color: var(--primary);
+}
+
+.wobble {
+	-webkit-animation: wobble 0.8s ease-in-out both;
+	animation: wobble 0.8s ease-in-out both;
+}
+
+@-webkit-keyframes wobble {
+    0%,
+    100% {
+        -webkit-transform: translateX(0%);
+        transform: translateX(0%);
+        -webkit-transform-origin: 15% 15%;
+        transform-origin: 15% 15%;
+    }
+    15% {
+        -webkit-transform: translateX(-10px) rotate(-6deg);
+        transform: translateX(-10px) rotate(-6deg);
+    }
+    10% {
+        -webkit-transform: translateX(8px) rotate(6deg);
+        transform: translateX(8px) rotate(6deg);
+    }
+    45% {
+        -webkit-transform: translateX(-6px) rotate(-3.6deg);
+        transform: translateX(-6px) rotate(-3.6deg);
+    }
+    60% {
+        -webkit-transform: translateX(4px) rotate(2.4deg);
+        transform: translateX(4px) rotate(2.4deg);
+    }
+    75% {
+        -webkit-transform: translateX(-2px) rotate(-1.2deg);
+        transform: translateX(-2px) rotate(-1.2deg);
+    }
+}
+@keyframes wobble {
+    0%,
+    100% {
+        -webkit-transform: translateX(0%);
+        transform: translateX(0%);
+        -webkit-transform-origin: 15% 15%;
+        transform-origin: 15% 15%;
+    }
+    15% {
+        -webkit-transform: translateX(-10px) rotate(-6deg);
+        transform: translateX(-10px) rotate(-6deg);
+    }
+    30% {
+        -webkit-transform: translateX(8px) rotate(6deg);
+        transform: translateX(8px) rotate(6deg);
+    }
+    45% {
+        -webkit-transform: translateX(-6px) rotate(-3.6deg);
+        transform: translateX(-6px) rotate(-3.6deg);
+    }
+    60% {
+        -webkit-transform: translateX(4px) rotate(2.4deg);
+        transform: translateX(4px) rotate(2.4deg);
+    }
+    75% {
+        -webkit-transform: translateX(-2px) rotate(-1.2deg);
+        transform: translateX(-2px) rotate(-1.2deg);
+    }
+}
+
+
 /* style search page */
 /* style details page */
 /* style forms */
