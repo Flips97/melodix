@@ -39,9 +39,12 @@
 
     <h1>user favorites</h1>
 
-    {% for playlist in user.user_favorite %}
-        {{ playlist.name }}
-    {% endfor%}
+    {% for playlist in user_playlists %}
+
+        {{ playlist.name}}
+
+    {% endfor %}
+
 </div>
 
 {% endblock %}

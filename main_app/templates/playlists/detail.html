@@ -23,7 +23,7 @@
             <div class="detail-favorite">
 
                 {% if is_favorite %}
-                    <a href="">
+                    <a href="{% url 'unfav_playlist' user.id playlist.id %}">
                         <i class="fa-solid fa-heart solid-favorite wobble"></i>
                     </a>
                 {% else %}
