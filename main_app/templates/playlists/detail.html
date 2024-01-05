@@ -6,7 +6,7 @@
     <div class="detail-things">
         <div class="playlist-cover">
             {% for photo in playlist.photo_set.all %}
-                <img src="{{photo.url}}">
+                <img src="{{photo.url}}" class="playlist-photo">
             {% empty %}
             <i class="fa-solid fa-icons"></i>
             {% endfor %}
