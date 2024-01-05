@@ -131,9 +131,10 @@ def search_bar(request):
 @login_required
 def add_photo(request, playlist_id):
     photo_file = request.FILES.get('photo-file', None)
+    print(photo_file)
     if photo_file:
         s3 = boto3.client('s3')
-        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.rfind('.'):]
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
         try:
             bucket = os.environ['S3_BUCKET']
             s3.upload_fileobj(photo_file, bucket, key)
