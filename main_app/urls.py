@@ -18,5 +18,6 @@ urlpatterns = [
     path('profile/<int:user_id>/', views.profile_index, name='profile_index'),
     path('search/', views.search_view, name='search_view'),
     path('search_bar/', views.search_bar, name='search_bar_view'),
+    path('playlists/<int:playlist_id>/add_photo/', views.add_photo, name='add_photo'),
     path('accounts/signup/', views.signup, name='signup'),
 ]
