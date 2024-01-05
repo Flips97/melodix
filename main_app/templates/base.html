@@ -26,7 +26,6 @@
                 </a></div>
         </nav>
         <aside class="library-nav">
-
             <div class="lib-nav-header">
                 <div class="lib-nav-your-div">
                     <i class="fa-solid fa-lines-leaning"></i>
@@ -35,7 +34,6 @@
                 <div class="lib-nav-new" id="add-new-btn">
                     <i class="fa-solid fa-plus"></i>
                 </div>
-
                 <div class="dropdown-add" id="dropdown-add">
                     <a href="{% url 'playlists_create' %}">
                         <button class="paylist-btn">Add A Playlist</button>
@@ -44,9 +42,7 @@
                         <button>Add A Song</button>
                     </a>
                 </div>
-                
             </div>
-
             {% if user.is_authenticated %}
                 <div class="base-playlists-div">
                     {% for playlist in user.created_playlist_set.all %}
@@ -54,6 +50,25 @@
                             <div class="base-playlist{% if playlist.id == playlist_id %} active-a{% endif %}">
                                 <div class="base-playlist-cover">
                                     <i class="fa-solid fa-icons"></i>
+                                </div>
+                                <div class="base-playlist-nameuser">
+                                    <div class="base-playlist-name">
+                                        {{ playlist.name }}
+                                    </div>
+                                    <div class="base-playlist-user">
+                                        {{ playlist.user }}
+                                    </div> 
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+                <div class="base-playlists-div">
+                    {% for playlist in user.playlist_set.all %}
+                        <a href="{% url 'detail' playlist.id %}">
+                            <div class="base-playlist{% if playlist.id == playlist_id %} active-a{% endif %}">
+                                <div class="base-playlist-cover">
+                                    <i class="fa-solid fa-heart"></i>
                                 </div>
                                 <div class="base-playlist-nameuser">
                                     <div class="base-playlist-name">
@@ -120,6 +135,10 @@
                         </form>
                     </div>
                 {% endif %}
+
+                <div id="fixed-playlist-name" class="fixed-playlist-name">
+                    {{ playlist.name }}
+                </div>
             </div>
 
             <div class="login-buttons">
@@ -161,10 +180,49 @@
         const main = document.querySelector('main')
         const addNewBtn = document.getElementById('add-new-btn');
         const dropdownAdd = document.getElementById('dropdown-add');
+        const dropdownDetail = document.getElementById('dropdown-detail');
+        const ellipsis = document.getElementById('ellipsis');
+        const heartToggle = document.getElementById('heart-toggle');
+        const detailPlaylistName = document.getElementById('detail-playlist-name');
+        const fixedPlaylistName = document.getElementById('fixed-playlist-name');
+        const whoLovesThisModal = document.getElementById('who-loves-this');
+        const openModal = document.getElementById('openModal');
+        const closeModal = document.getElementById('closeModal');
 
+        openModal.addEventListener('click', () => {
+            whoLovesThisModal.showModal()
+        });
+
+        closeModal.addEventListener('click', () => {
+            whoLovesThisModal.close()
+        });
+
+        whoLovesThisModal.addEventListener('click', e => {
+            const dialogDimensions = whoLovesThisModal.getBoundingClientRect()
+            if (
+                e.clientX < dialogDimensions.left ||
+                e.clientX > dialogDimensions.right ||
+                e.clientY < dialogDimensions.top ||
+                e.clientY > dialogDimensions.bottom
+            ) {
+                whoLovesThisModal.close()
+            }
+        })
+
+        // Add closing logic for click outside dropdown 
         addNewBtn.addEventListener('click', function() {
             dropdownAdd.classList.toggle('active');
         })        
+
+        // Add closing logic for click outside dropdown 
+        ellipsis.addEventListener('click', function() {
+            dropdownDetail.classList.toggle('active');
+        })
+
+        // Add closing logic for click outside dropdown 
+        avatar.addEventListener('click', function() {
+            dropdown.classList.toggle('active');
+        });
 
         forwardBtn.addEventListener('click', () => {
             goForward();
@@ -182,20 +240,33 @@
             window.history.forward();
         }
     
-        avatar.addEventListener('click', function() {
-            dropdown.classList.toggle('active');
+        // main.addEventListener('scroll', function() {
+        //     console.log('scrolling')
+        //     topFixed.classList.add('translucent');
+        // }, true);
+
+        // main.addEventListener('scrollend', function() {
+        //     console.log('stopped')
+        //     topFixed.classList.remove('translucent');
+        // }, true)
+
+        main.addEventListener('scroll', function () {
+            const rect = detailPlaylistName.getBoundingClientRect();
+            
+            if (rect.top < 0) {
+                topFixed.classList.add('dark-from-translucent');
+                topFixed.classList.remove('translucent');
+                fixedPlaylistName.classList.remove('fade-out');
+                fixedPlaylistName.classList.add('active');
+                fixedPlaylistName.classList.add('fade-in');
+            } else {
+                topFixed.classList.remove('dark-from-translucent');
+                topFixed.classList.add('translucent');
+                fixedPlaylistName.classList.add('fade-out');
+                fixedPlaylistName.classList.remove('fade-in');
+            }
         });
-    
 
-        main.addEventListener('scroll', function() {
-            console.log('scrolling')
-            topFixed.classList.add('translucent');
-        }, true);
-
-        main.addEventListener('scrollend', function() {
-            console.log('stopped')
-            topFixed.classList.remove('translucent');
-        }, true)
     </script>
 </body>
 </html>

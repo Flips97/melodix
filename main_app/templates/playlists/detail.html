@@ -2,15 +2,15 @@
 {% block content %}
 
 <div class="page-container-home">
-    <div class="detail-things">
 
+    <div class="detail-things">
         <div class="playlist-cover">
             <i class="fa-solid fa-icons"></i>
         </div>
 
         <div class="detail-things-2">
             <div class="user-title-photo">
-                <h1 class="detail-playlist-name">{{ playlist.name }}</h1>
+                <h1 class="detail-playlist-name" id="detail-playlist-name">{{ playlist.name }}</h1>
             </div>
             <div class="detail-tagline">
                 {{ playlist.description }}
@@ -18,77 +18,96 @@
         </div>
     </div>
 
-    <div class="detial-main">
+    <div class="detail-main">
         <div class="detail-menu">
             <div class="detail-favorite">
 
-                <a href="{% url 'fav_playlist' user.id playlist.id %}" id="heart-toggle">
-                    
-                    {% if is_favorite %}
+                {% if is_favorite %}
+                    <a href="{% url 'unfav_playlist' user.id playlist.id %}">
                         <i class="fa-solid fa-heart solid-favorite wobble"></i>
-                    {% else %}
+                    </a>
+                {% else %}
+                    <a href="{% url 'fav_playlist' user.id playlist.id %}" id="heart-toggle">
                         <i class="fa-regular fa-heart"></i>
-                    {% endif %}
-                </a>
-
+                    </a>
+                {% endif %}
             </div>
-            {% if request.user == playlist.user %}
+
             <div class="detail-ellipsis">
                 <i class="fa-solid fa-ellipsis" id="ellipsis"></i>
                 <div class="dropdown-detail" id="dropdown-detail">
+                    {% if request.user == playlist.user %}
+                    <button id="openModal" type="button">
+                        Who Loves This
+                    </button>
                     <a href="{% url 'playlists_update' playlist.id %}">
                         <button>Edit</button>
                     </a>
                     <a href="{% url 'playlists_delete' playlist.id %}">
                         <button>Delete</button>
                     </a>
+                    {% else %}
+                    {% endif %}
                 </div>
             </div>
-            {% endif %}
-        </div>
-        <div class="detail-songs">
-            {% if playlist.songs.count %}
-                {% for song in playlist.songs.all %}
-                <div class="detail-each-song">
-                    <div class="song-cover">
-                        <i class="fa-solid fa-icons"></i>
-                    </div>
-                    <div class="detail-nameartist">
-                        <div class="detail-song-name">
-                            {{ song.name }}
-                        </div>
-                        <div class="detail-song-artist">
-                            Song Artist
-                        </div>
-                    </div>
+            <dialog class="who-loves-this" id="who-loves-this">
+                <div>
+                    <h1>Users who like this</h1>
+                    {% for user in user_favs %}
+                        {{ user }}
+                    {% endfor %}
                 </div>
-                {% endfor %}
-            {% endif %}
+                <button id="closeModal" type="button">Close</button>
+            </dialog>
+            
         </div>
 
-        <div>
-
-            <h1>user favorites</h1>
-
-            {% for user in user_favs %}
-
-                {{ user }}
-
-            {% endfor %}
+        <div class="songs-table-div">
+            <table class="songs-table">
+                
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Album</th>
+                    <th>Date Added</th>
+                    <th><i class="fa-regular fa-clock"></i></th>
+                </tr>
+                
+                
+                <tr class="no-padding">
+                    <td colspan="5" class="no-padding">
+                        <hr>
+                    </td>
+                </tr>
+                {% if playlist.songs.count %}
+                {% for song in playlist.songs.all %}
+                <tr class="song-hover">
+                    <td  data-cell="#">{{ forloop.counter }}</td>
+                    <td data-cell="Title">
+                        <div class="detail-each-song">
+                            <div class="song-cover">
+                                <i class="fa-solid fa-icons"></i>
+                            </div>
+                            <div class="detail-nameartist">
+                                <div class="detail-song-name">
+                                    {{ song.name }}
+                                </div>
+                                <div class="detail-song-artist">
+                                    Song Artist
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td data-cell="Album">Album Name</td>
+                    <td data-cell="Date Added">Date Added</td>
+                    <td data-cell="Length">0:00</td>
+                </tr>
+                
+                {% endfor %}
+                {% endif %}
+            </table>
         </div>
     </div>
 </div>
-
-<script>
-
-    const dropdownDetail = document.getElementById('dropdown-detail');
-    const ellipsis = document.getElementById('ellipsis');
-    const heartToggle = document.getElementById('heart-toggle');
-
-    ellipsis.addEventListener('click', function() {
-        dropdownDetail.classList.toggle('active');
-    })
-
-</script>
 
 {% endblock %}
