@@ -20,56 +20,19 @@
                 </div>
                 <div class="playlist-form-description">
                     {{ form.description }}
+                    <i class="fa-solid fa-pencil"></i>
                 </div>
-                <div>
-                    <input type="submit" value="Submit!">
-                </div>
+
             </div>
         </div>
 
-        {% if object %}
-        <h1>Edit <span>{{ object.name }}</span></h1>
+
         <div class="detail-main">
             <div class="detail-menu">
-                <div class="detail-favorite">
 
-                    {% if is_favorite %}
-                        <a href="{% url 'unfav_playlist' user.id playlist.id %}">
-                            <i class="fa-solid fa-heart solid-favorite wobble"></i>
-                        </a>
-                    {% else %}
-                        <a href="{% url 'fav_playlist' user.id playlist.id %}" id="heart-toggle">
-                            <i class="fa-regular fa-heart"></i>
-                        </a>
-                    {% endif %}
+                <div>
+                    <input type="submit" value="Submit!">
                 </div>
-
-                <div class="detail-ellipsis">
-                    <i class="fa-solid fa-ellipsis" id="ellipsis"></i>
-                    <div class="dropdown-detail" id="dropdown-detail">
-                        {% if request.user == playlist.user %}
-                        <button id="openModal" type="button">
-                            Who Loves This
-                        </button>
-                        <a href="{% url 'playlists_update' playlist.id %}">
-                            <button>Edit</button>
-                        </a>
-                        <a href="{% url 'playlists_delete' playlist.id %}">
-                            <button>Delete</button>
-                        </a>
-                        {% else %}
-                        {% endif %}
-                    </div>
-                </div>
-                <dialog class="who-loves-this" id="who-loves-this">
-                    <div>
-                        <h1>Users who like this</h1>
-                        {% for user in user_favs %}
-                            {{ user }}
-                        {% endfor %}
-                    </div>
-                    <button id="closeModal" type="button">Close</button>
-                </dialog>
                 
             </div>
 
@@ -77,7 +40,7 @@
                 <table class="songs-table">
                     
                     <tr>
-                        <th>#</th>
+                        <th>+</th>
                         <th>Title</th>
                         <th>Album</th>
                         <th>Date Added</th>
@@ -90,10 +53,11 @@
                             <hr>
                         </td>
                     </tr>
-                    {% if playlist.songs.count %}
-                    {% for song in playlist.songs.all %}
+                    {% for song in songs %}
                     <tr class="song-hover">
-                        <td  data-cell="#">{{ forloop.counter }}</td>
+                        <td data-cell="Add">
+                            <button type="button" class="add-song-btn" data-song-id="{{ song.id }}">+</button>
+                        </td>
                         <td data-cell="Title">
                             <div class="detail-each-song">
                                 <div class="song-cover">
@@ -114,15 +78,42 @@
                         <td data-cell="Length">0:00</td>
                     </tr>
                     {% endfor %}
-                    {% endif %}
                 </table>
             </div>
         </div>
-        {% else %}
-        <h1>Add Songs</h1>
-        {% endif %}
     </form>
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const addButtons = document.querySelectorAll('.add-song-btn');
+
+        addButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                const songId = this.getAttribute('data-song-id');
+                const playlistId = '{{ playlist.id }}';
+                addSongToPlaylist(songId, playlistId);
+            });
+        });
+
+        function addSongToPlaylist(songId, playlistId) {
+            fetch('{% url "assoc_song" playlist_id=0 song_id=0 %}'.replace('0', playlistId).replace('0', songId), {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}',
+                },
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Song added to playlist successfully');
+                    } else {
+                        console.error('Failed to add song to playlist');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    });
+</script>
 
 {% endblock %}

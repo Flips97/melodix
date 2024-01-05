@@ -336,16 +336,16 @@ li {
     outline: 2px solid var(--copy);
 }
 
-.search-bar-div input[type="text"]:-webkit-autofill {
+input[type="text"]:-webkit-autofill {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     box-shadow: 0 0 0 1000px hsl(0, 0%, 13%) inset;
     color: var(--copy);
 }
 
-.search-bar-div input[type="text"]:-webkit-autofill,
-.search-bar-div input[type="text"]:-webkit-autofill:hover,
-.search-bar-div input[type="text"]:-webkit-autofill:focus,
-.search-bar-div input[type="text"]:-webkit-autofill:active {
+input[type="text"]:-webkit-autofill,
+input[type="text"]:-webkit-autofill:hover,
+input[type="text"]:-webkit-autofill:focus,
+input[type="text"]:-webkit-autofill:active {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     box-shadow: 0 0 0 1000px hsl(0, 0%, 13%) inset;
     -webkit-text-fill-color: var(--copy);
@@ -729,8 +729,11 @@ li {
 }
 
 .detail-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 100%;
-    height: 50rem;
+    flex-grow: 1;
     margin-top: -7rem;
     background: linear-gradient(to bottom, var(--border-translucent3), var(--background));
     box-shadow: var(--box-shadow);
@@ -1117,7 +1120,7 @@ dialog > div > h1 {
 }
 
 .playlist-form-name {
-    margin-top: -4rem;
+    margin-top: -2.5rem;
     display: flex;
     align-items: flex-end;
 }
@@ -1126,7 +1129,7 @@ dialog > div > h1 {
     background-color: transparent;
     border: none;
     border-bottom: 1px solid var(--copy-light);
-    font-size: 5rem;
+    font-size: 3.5rem;
     font-weight: 800;
     max-width: 35rem; 
     position: relative;
@@ -1134,7 +1137,8 @@ dialog > div > h1 {
     color: var(--copy);
 }
 
-.playlist-form-name > i {
+.playlist-form-name > i,
+.playlist-form-description > i {
     padding-inline: 1rem;
 }
 

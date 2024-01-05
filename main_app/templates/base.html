@@ -185,32 +185,31 @@
         const dropdownAdd = document.getElementById('dropdown-add');
         const dropdownDetail = document.getElementById('dropdown-detail');
         const ellipsis = document.getElementById('ellipsis');
-        const heartToggle = document.getElementById('heart-toggle');
         const detailPlaylistName = document.getElementById('detail-playlist-name');
         const fixedPlaylistName = document.getElementById('fixed-playlist-name');
-        const whoLovesThisModal = document.getElementById('who-loves-this');
-        const openModal = document.getElementById('openModal');
-        const closeModal = document.getElementById('closeModal');
+        // const whoLovesThisModal = document.getElementById('who-loves-this');
+        // const openModal = document.getElementById('openModal');
+        // const closeModal = document.getElementById('closeModal');
 
-        openModal.addEventListener('click', () => {
-            whoLovesThisModal.showModal()
-        });
+        // openModal.addEventListener('click', () => {
+        //     whoLovesThisModal.showModal()
+        // });
 
-        closeModal.addEventListener('click', () => {
-            whoLovesThisModal.close()
-        });
+        // closeModal.addEventListener('click', () => {
+        //     whoLovesThisModal.close()
+        // });
 
-        whoLovesThisModal.addEventListener('click', e => {
-            const dialogDimensions = whoLovesThisModal.getBoundingClientRect()
-            if (
-                e.clientX < dialogDimensions.left ||
-                e.clientX > dialogDimensions.right ||
-                e.clientY < dialogDimensions.top ||
-                e.clientY > dialogDimensions.bottom
-            ) {
-                whoLovesThisModal.close()
-            }
-        })
+        // whoLovesThisModal.addEventListener('click', e => {
+        //     const dialogDimensions = whoLovesThisModal.getBoundingClientRect()
+        //     if (
+        //         e.clientX < dialogDimensions.left ||
+        //         e.clientX > dialogDimensions.right ||
+        //         e.clientY < dialogDimensions.top ||
+        //         e.clientY > dialogDimensions.bottom
+        //     ) {
+        //         whoLovesThisModal.close()
+        //     }
+        // })
 
         // Add closing logic for click outside dropdown 
         addNewBtn.addEventListener('click', function() {
@@ -270,6 +269,6 @@
             }
         });
 
-    </script>
+    </script> 
 </body>
 </html>

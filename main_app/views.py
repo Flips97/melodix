@@ -42,7 +42,6 @@ def playlists_detail(request, playlist_id):
 class PlaylistCreate(LoginRequiredMixin, CreateView):
     model = Playlist
     fields = ['name', 'description', 'songs']
-    
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -52,7 +51,7 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
        context = super().get_context_data(**kwargs)
        context['songs'] = Song.objects.all()
        return context
-# 
+
 class PlaylistUpdate(LoginRequiredMixin, UpdateView):
     model = Playlist
     fields = ['name', 'description', 'songs']
