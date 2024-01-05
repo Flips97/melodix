@@ -21,11 +21,16 @@
     <div class="detial-main">
         <div class="detail-menu">
             <div class="detail-favorite">
-                <input type="checkbox" id="heartToggle">
-                <label for="heartToggle">
-                    <i class="fa-regular fa-heart"></i>
-                    <i class="fa-solid fa-heart solid-favorite wobble"></i>
-                </label>
+
+                <a href="{% url 'fav_playlist' user.id playlist.id %}" id="heart-toggle">
+                    
+                    {% if is_favorite %}
+                        <i class="fa-solid fa-heart solid-favorite wobble"></i>
+                    {% else %}
+                        <i class="fa-regular fa-heart"></i>
+                    {% endif %}
+                </a>
+
             </div>
             {% if request.user == playlist.user %}
             <div class="detail-ellipsis">
@@ -60,6 +65,17 @@
                 {% endfor %}
             {% endif %}
         </div>
+
+        <div>
+
+            <h1>user favorites</h1>
+
+            {% for user in user_favs %}
+
+                {{ user }}
+
+            {% endfor %}
+        </div>
     </div>
 </div>
 
@@ -67,6 +83,7 @@
 
     const dropdownDetail = document.getElementById('dropdown-detail');
     const ellipsis = document.getElementById('ellipsis');
+    const heartToggle = document.getElementById('heart-toggle');
 
     ellipsis.addEventListener('click', function() {
         dropdownDetail.classList.toggle('active');

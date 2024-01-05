@@ -30,11 +30,18 @@
                     </div>
                     <div class="playlist-description">
                         Playlist Description
-                    </div>                 
+                    </div>                
                 </div>
             </a>
         {% endfor %}
     </div>
+
+
+    <h1>user favorites</h1>
+
+    {% for playlist in user.user_favorite %}
+        {{ playlist.name }}
+    {% endfor%}
 </div>
 
 {% endblock %}

@@ -17,16 +17,23 @@ def home(request):
 
 def playlist_index(request):
     playlists = Playlist.objects.all()
+    playlist_fav = user.playlist_set.all()
     return render(request, 'playlists/index.html', {
-        'playlists': playlists
+        'playlists': playlists,
+        'playlist_fav': playlist_fav
     })
 
 def playlists_detail(request, playlist_id):
     playlist = Playlist.objects.get(id=playlist_id)
+    is_favorite = playlist.user_favorite.filter(id=request.user.id).exists()
+    user_favs = playlist.user_favorite.all()
     # create list of songs
     # id_list = playlist.songs.all().values_list('id')
     return render(request, 'playlists/detail.html', {
-        'playlist': playlist
+        'playlist': playlist,
+        'playlist_id': int(playlist_id),
+        'is_favorite': is_favorite,
+        'user_favs' : user_favs
     })
 
 class PlaylistCreate(LoginRequiredMixin, CreateView):
@@ -84,7 +91,7 @@ def profile_index(request, user_id):
 
 def fav_playlist(request, user_id, playlist_id):
     Playlist.objects.get(id=playlist_id).user_favorite.add(user_id)
-    return redirect('detail', playist_id=playlist_id)
+    return redirect('detail', playlist_id=playlist_id)
 
 def search_view(request):
    query = request.GET.get('q', '')

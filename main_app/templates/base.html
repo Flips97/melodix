@@ -51,7 +51,7 @@
                 <div class="base-playlists-div">
                     {% for playlist in user.created_playlist_set.all %}
                         <a href="{% url 'detail' playlist.id %}">
-                            <div class="base-playlist{% if playlist.id == active_playlist_id %} active{% endif %}">
+                            <div class="base-playlist{% if playlist.id == playlist_id %} active-a{% endif %}">
                                 <div class="base-playlist-cover">
                                     <i class="fa-solid fa-icons"></i>
                                 </div>

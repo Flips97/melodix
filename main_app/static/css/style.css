@@ -219,9 +219,22 @@ li {
     background-color: var(--border-translucent2);
 }
 
-/* make this stay active when detail view is on */
+.active-a {
+    background-color: var(--border-translucent);
+    display: flex;
+    width: 14rem;
+    height: 3.5rem;
+    align-items: center;
+    border-radius: var(--border-radius);
+}
+
 .base-playlist:active {
     background-color: var(--border-translucent);
+    display: flex;
+    width: 14rem;
+    height: 3.5rem;
+    align-items: center;
+    border-radius: var(--border-radius);
 }
 
 .base-playlist-cover {
@@ -814,7 +827,7 @@ li {
     color: var(--copy-lighter);
 }
 
-.detail-favorite > label > i:hover {
+.detail-favorite >  a > i:hover {
     transform: scale(1.05);
     transition: transform 0.1s ease-in-out;
 }
@@ -823,7 +836,7 @@ li {
     color: var(--copy);
 }
 
-.detail-favorite > label > i:hover,
+.detail-favorite >  a > i:hover,
 .detail-ellipsis:hover {
     cursor: pointer;
 } 
@@ -833,32 +846,11 @@ li {
     position: relative;
     width: fit-content;
     height: fit-content;
-    margin-top: -2.35rem;
-    margin-right: 1.5rem;
 }
 
-.detail-favorite > input {
-    display: none;
-}
-
-.detail-favorite > label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    cursor: pointer;
-}
-
-.detail-favorite > label > i {
+.detail-favorite > a > i {
     font-size: inherit;
     transition: color 0.3s ease-in-out;
-}
-
-.detail-favorite > input:checked + label .fa-regular {
-    display: none;
-}
-
-.detail-favorite > input:not(:checked) + label .fa-solid {
-    display: none;
 }
 
 .dropdown-detail {
