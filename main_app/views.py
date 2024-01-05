@@ -1,6 +1,5 @@
 import os
 import uuid
-
 from django.forms.models import BaseModelForm
 from django.http import HttpResponse
 import boto3
@@ -14,6 +13,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Playlist, Song, User, Photo
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
+from .forms import PlaylistForm
 
 
 # Create your views here.
@@ -46,12 +46,6 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
     model = Playlist
     fields = ['name', 'description', 'songs']
 
-    # def form_valid(self, form):
-    #     form.instance.user = self.request.user
-    #     # playlist = form.save(commit=False)
-    #     # playlist.save()
-    #     return super().form_valid(form)
-
     def form_valid(self, form):
         form.instance.user = self.request.user
         result = super().form_valid(form)
@@ -63,6 +57,7 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['songs'] = Song.objects.all()
+        context['playlist_form'] = PlaylistForm()
         return context
 
 
