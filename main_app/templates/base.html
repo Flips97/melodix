@@ -42,6 +42,9 @@
                         <button>Add A Song</button>
                     </a>
                 </div>
+
+
+                <div></div>
             </div>
             {% if user.is_authenticated %}
                 <div class="base-playlists-div">
@@ -172,54 +175,25 @@
     </footer>
 
     <script>
-        const topFixed = document.getElementById('top-fixed');
+        
         const avatar = document.getElementById('avatar');
         const dropdown = document.getElementById('dropdown');
         const forwardBtn = document.getElementById('forward-btn');
         const backBtn = document.getElementById('back-btn');
-        const main = document.querySelector('main')
+        
         const addNewBtn = document.getElementById('add-new-btn');
         const dropdownAdd = document.getElementById('dropdown-add');
-        const dropdownDetail = document.getElementById('dropdown-detail');
-        const ellipsis = document.getElementById('ellipsis');
-        const heartToggle = document.getElementById('heart-toggle');
-        const detailPlaylistName = document.getElementById('detail-playlist-name');
-        const fixedPlaylistName = document.getElementById('fixed-playlist-name');
-        const whoLovesThisModal = document.getElementById('who-loves-this');
-        const openModal = document.getElementById('openModal');
-        const closeModal = document.getElementById('closeModal');
 
-        openModal.addEventListener('click', () => {
-            whoLovesThisModal.showModal()
-        });
 
-        closeModal.addEventListener('click', () => {
-            whoLovesThisModal.close()
-        });
-
-        whoLovesThisModal.addEventListener('click', e => {
-            const dialogDimensions = whoLovesThisModal.getBoundingClientRect()
-            if (
-                e.clientX < dialogDimensions.left ||
-                e.clientX > dialogDimensions.right ||
-                e.clientY < dialogDimensions.top ||
-                e.clientY > dialogDimensions.bottom
-            ) {
-                whoLovesThisModal.close()
-            }
-        })
 
         // Add closing logic for click outside dropdown 
         addNewBtn.addEventListener('click', function() {
             dropdownAdd.classList.toggle('active');
         })        
 
-        // Add closing logic for click outside dropdown 
-        ellipsis.addEventListener('click', function() {
-            dropdownDetail.classList.toggle('active');
-        })
 
-        // Add closing logic for click outside dropdown 
+
+        // // Add closing logic for click outside dropdown 
         avatar.addEventListener('click', function() {
             dropdown.classList.toggle('active');
         });
@@ -239,34 +213,9 @@
         function goForward() {
             window.history.forward();
         }
-    
-        // main.addEventListener('scroll', function() {
-        //     console.log('scrolling')
-        //     topFixed.classList.add('translucent');
-        // }, true);
 
-        // main.addEventListener('scrollend', function() {
-        //     console.log('stopped')
-        //     topFixed.classList.remove('translucent');
-        // }, true)
 
-        main.addEventListener('scroll', function () {
-            const rect = detailPlaylistName.getBoundingClientRect();
-            
-            if (rect.top < 0) {
-                topFixed.classList.add('dark-from-translucent');
-                topFixed.classList.remove('translucent');
-                fixedPlaylistName.classList.remove('fade-out');
-                fixedPlaylistName.classList.add('active');
-                fixedPlaylistName.classList.add('fade-in');
-            } else {
-                topFixed.classList.remove('dark-from-translucent');
-                topFixed.classList.add('translucent');
-                fixedPlaylistName.classList.add('fade-out');
-                fixedPlaylistName.classList.remove('fade-in');
-            }
-        });
 
-    </script>
+    </script> 
 </body>
 </html>

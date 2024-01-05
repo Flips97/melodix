@@ -110,4 +110,66 @@
     </div>
 </div>
 
+<script>
+
+        const topFixed = document.getElementById('top-fixed');
+        const main = document.querySelector('main')
+        const detailPlaylistName = document.getElementById('detail-playlist-name');
+        const fixedPlaylistName = document.getElementById('fixed-playlist-name');
+
+        const dropdownDetail = document.getElementById('dropdown-detail');
+        const ellipsis = document.getElementById('ellipsis');
+
+        const whoLovesThisModal = document.getElementById('who-loves-this');
+        const openModal = document.getElementById('openModal');
+        const closeModal = document.getElementById('closeModal');
+
+        main.addEventListener('scroll', function () {
+            const rect = detailPlaylistName.getBoundingClientRect();
+            
+            if (rect.top < 0) {
+                topFixed.classList.add('dark-from-translucent');
+                topFixed.classList.remove('translucent');
+                fixedPlaylistName.classList.remove('fade-out');
+                fixedPlaylistName.classList.add('active');
+                fixedPlaylistName.classList.add('fade-in');
+            } else {
+                topFixed.classList.remove('dark-from-translucent');
+                topFixed.classList.add('translucent');
+                fixedPlaylistName.classList.add('fade-out');
+                fixedPlaylistName.classList.remove('fade-in');
+            }
+        });
+
+
+
+        openModal.addEventListener('click', () => {
+            whoLovesThisModal.showModal()
+        });
+
+        closeModal.addEventListener('click', () => {
+            whoLovesThisModal.close()
+        });
+
+        whoLovesThisModal.addEventListener('click', e => {
+            const dialogDimensions = whoLovesThisModal.getBoundingClientRect()
+            if (
+                e.clientX < dialogDimensions.left ||
+                e.clientX > dialogDimensions.right ||
+                e.clientY < dialogDimensions.top ||
+                e.clientY > dialogDimensions.bottom
+            ) {
+                whoLovesThisModal.close()
+            }
+        })
+
+        // // Add closing logic for click outside dropdown 
+        ellipsis.addEventListener('click', function() {
+            dropdownDetail.classList.toggle('active');
+        })
+
+
+
+</script>
+
 {% endblock %}
