@@ -9,6 +9,11 @@
     --secondary-dark: hsl(231, 74%, 39%);
     --secondary-light: hsl(231, 73%, 59%);
 
+    --tertiary: hsl(328, 89%, 30%);
+    --tertiary-content: hsl(328, 89%, 79%);
+    --tertiary-dark: hsl(329, 90%, 20%);
+    --tertiary-light: hsl(328, 89%, 40%);
+
     --background: hsl(0, 0%, 0%);
     --background-translucent: hsla(0, 0%, 0%, 0.3);
     --background-translucent2: hsla(0, 0%, 0%, 0.1);
@@ -348,6 +353,8 @@ li {
 
 .avatar:hover {
     cursor: pointer;
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
 }
 
 .dropdown {
@@ -722,7 +729,7 @@ li {
     flex-direction: row;
     width: 100%;
     height: 20rem;
-    background: linear-gradient(to bottom, var(--secondary-dark), var(--foreground));
+    background: linear-gradient(to bottom, var(--tertiary-dark), var(--foreground));
     padding: 4rem;
 }
 
@@ -816,7 +823,7 @@ li {
     height: 2.75rem;
     display: grid;
     place-items: center;
-    background: linear-gradient(to bottom right, var(--foreground), var(--primary-dark));
+    background: linear-gradient(to bottom right, var(--secondary-light), var(--secondary-dark));
     border-radius: 5px;
 }
 
@@ -983,7 +990,36 @@ hr {
     margin-top: 1rem;
 }
 
+.letter-buttons {
+    margin-block: 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+    width: fit-content;
+}
 
+.letter-buttons > a {
+    display: flex;
+    font-size: 3rem;
+    width: 10rem;
+    height: 10rem;
+    background-color: var(--background-translucent);
+    transition: background-color 0.3s ease;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    color: var(--copy-lighter);
+}
+
+.letter-buttons > a:hover {
+    cursor: pointer;
+    background-color: var(--border-translucent);
+    transition: background-color 0.3s ease;
+}
+
+.basic {
+    margin-top: 2rem;
+}
 /* style search page */
 /* style details page */
 /* style forms */
