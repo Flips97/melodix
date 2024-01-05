@@ -5,7 +5,7 @@
 
 
 <div class="page-container-home">
-    <form action="" method="POST">
+    <form action="" method="POST" class="playlist-form">
         {% csrf_token %}
         <div class="detail-things">
             <div class="playlist-cover">
@@ -13,9 +13,12 @@
             </div>
             <div class="detail-things-2">
                 <div class="user-title-photo">
-                    <h1 class="detail-playlist-name" id="detail-playlist-name">{{ form.name }}</h1>
+                    <div class="playlist-form-name">
+                        {{ form.name }}
+                        <i class="fa-solid fa-pencil"></i>
+                    </div>
                 </div>
-                <div class="detail-tagline">
+                <div class="playlist-form-description">
                     {{ form.description }}
                 </div>
                 <div>
