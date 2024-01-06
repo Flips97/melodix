@@ -699,12 +699,15 @@ input[type="text"]:-webkit-autofill:active {
 
 .playlist-cover > img {
     width: 100%;
+    height: 100%;
     object-fit: cover;
+    border-radius: var(--border-radius);
 }
 
 .detail-things {
     display: flex;
     flex-direction: row;
+    flex-grow: 1;
     width: 100%;
     height: 22.5rem;
     background: linear-gradient(to bottom, var(--tertiary-dark), var(--foreground));
@@ -1160,18 +1163,58 @@ dialog > div > h1 {
     resize: none;
 }
 
+.custom-checkbox > div {
+    width: 4rem;
+    height: 2rem;
+    border-radius: 100px;
+    background-color: transparent;
+    display: grid;
+    place-items: center;
+    font-size: .75rem;
+    cursor: pointer;
+    border: 1px solid var(--copy-light);
+}
 
-/* .detail-main {
+.custom-checkbox > div:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+    border: 2px solid var(--copy-light);
+}
+
+.custom-checkbox > div:active {
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+input[type='checkbox']:checked + .custom-checkbox > div {
+    background-color: var(--copy-light);
+    color: var(--foreground);
+    border: 2px solid var(--background);
+}
+
+.one-song-playlist {
+    display: flex;
+    gap: 10rem;
+    align-items: center;
+    padding-inline: 2rem;
+    padding-block: .5rem;
+}
+
+.one-song-playlist:hover {
+    cursor: pointer;
+    background-color: var(--border-translucent2);
+}
+
+.playlist-songs-div {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
     width: 100%;
-    height: 50rem;
-    margin-top: -7rem;
-    background: linear-gradient(to bottom, var(--border-translucent3), var(--background));
-    box-shadow: var(--box-shadow);
-    position: relative;
-    z-index: 2;
-}  */
+    align-items: center;
+}
+
 /* style modal */
 /* style search page */
 /* style details page */
 /* style forms */
-/* when a library playlist is clicked. have the div stay highlighted */
+/* add tooltip to name and description fields for playlist */
