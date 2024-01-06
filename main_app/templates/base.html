@@ -13,17 +13,17 @@
 <body>
     <header>
         <nav class="top-nav">
-                <div>
-                    <a href="/" title="Home" class="nav-logo">
-                    <i class="fa-solid fa-circle-play"></i>
-                    Melodix
-                </a></div>
-                <div class="nav-home"><a href="/" title="Home">
-                    <i class="fa-solid fa-house"></i> Home
-                </a></div>
-                <div class="nav-search"><a href="/search_bar">
-                    <i class="fa-solid fa-magnifying-glass"></i> Search
-                </a></div>
+            <div>
+                <a href="/" title="Home" class="nav-logo">
+                <i class="fa-solid fa-circle-play"></i>
+                Melodix
+            </a></div>
+            <div class="nav-home"><a href="/" title="Home">
+                <i class="fa-solid fa-house"></i> Home
+            </a></div>
+            <div class="nav-search"><a href="/search_bar">
+                <i class="fa-solid fa-magnifying-glass"></i> Search
+            </a></div>
         </nav>
         <aside class="library-nav">
             <div class="lib-nav-header">
@@ -34,20 +34,19 @@
                 <div class="lib-nav-new" id="add-new-btn">
                     <i class="fa-solid fa-plus"></i>
                 </div>
-                <div class="dropdown-add" id="dropdown-add">
-                    <a href="{% url 'playlists_create' %}">
-                        <button class="paylist-btn">Add A Playlist</button>
-                    </a>
-                    <a href="{% url 'songs_create' %}">
-                        <button>Add A Song</button>
-                    </a>
-                </div>
-
-
-                <div></div>
             </div>
+
+            <div class="dropdown-add" id="dropdown-add">
+                <a href="{% url 'playlists_create' %}">
+                    <button class="paylist-btn">Add A Playlist</button>
+                </a>
+                <a href="{% url 'songs_create' %}">
+                    <button>Add A Song</button>
+                </a>
+            </div>
+
             {% if user.is_authenticated %}
-                <div class="base-playlists-div">
+                <div class="base-playlists-div one">
                     {% for playlist in user.created_playlist_set.all %}
                         <a href="{% url 'detail' playlist.id %}">
                             <div class="base-playlist{% if playlist.id == playlist_id %} active-a{% endif %}">
@@ -66,7 +65,7 @@
                         </a>
                     {% endfor %}
                 </div>
-                <div class="base-playlists-div">
+                <div class="base-playlists-div two">
                     {% for playlist in user.playlist_set.all %}
                         <a href="{% url 'detail' playlist.id %}">
                             <div class="base-playlist{% if playlist.id == playlist_id %} active-a{% endif %}">
@@ -170,51 +169,43 @@
         
         {% endblock %}
     </main>
-    <footer class="page-footer">
 
-    </footer>
+    <footer class="page-footer"></footer>
 
     <script>
-        
-        const avatar = document.getElementById('avatar');
-        const dropdown = document.getElementById('dropdown');
-        const forwardBtn = document.getElementById('forward-btn');
-        const backBtn = document.getElementById('back-btn');
-        
-        const addNewBtn = document.getElementById('add-new-btn');
-        const dropdownAdd = document.getElementById('dropdown-add');
 
-
+        const avatar = document.getElementById('avatar')
+        const dropdown = document.getElementById('dropdown')
+        const forwardBtn = document.getElementById('forward-btn')
+        const backBtn = document.getElementById('back-btn')
+        const addNewBtn = document.getElementById('add-new-btn')
+        const dropdownAdd = document.getElementById('dropdown-add')
 
         // Add closing logic for click outside dropdown 
         addNewBtn.addEventListener('click', function() {
-            dropdownAdd.classList.toggle('active');
+            dropdownAdd.classList.toggle('active')
         })        
 
-
-
-        // // Add closing logic for click outside dropdown 
+        // Add closing logic for click outside dropdown 
         avatar.addEventListener('click', function() {
-            dropdown.classList.toggle('active');
-        });
+            dropdown.classList.toggle('active')
+        })
 
         forwardBtn.addEventListener('click', () => {
-            goForward();
-        });
+            goForward()
+        })
 
         backBtn.addEventListener('click', () => {
-            goBack();
-        });
+            goBack()
+        })
 
         function goBack() {
-            window.history.back();
+            window.history.back()
         }
 
         function goForward() {
-            window.history.forward();
+            window.history.forward()
         }
-
-
 
     </script> 
 </body>

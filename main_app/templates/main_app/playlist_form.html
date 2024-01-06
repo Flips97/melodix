@@ -34,59 +34,44 @@
                 </div>
             </div>
 
-            <div>
-                {{ playlist_form.songs }}
-            </div>
 
-
-
-            <!-- <div class="songs-table-div">
-                <table class="songs-table">
-                    
-                    <tr>
-                        <th>+</th>
-                        <th>Title</th>
-                        <th>Album</th>
-                        <th>Date Added</th>
-                        <th><i class="fa-regular fa-clock"></i></th>
-                    </tr>
-                    
-                    
-                    <tr class="no-padding">
-                        <td colspan="5" class="no-padding">
-                            <hr>
-                        </td>
-                    </tr>
-                    {% for song in songs %}
-                    <tr class="song-hover">
-                        <td data-cell="Add">
-                            <button type="button" class="add-song-btn" data-song-id="{{ song.id }}">+</button>
-                        </td>
-                        <td data-cell="Title">
-                            <div class="detail-each-song">
-                                <div class="song-cover">
-                                    <i class="fa-solid fa-icons"></i>
-                                </div>
-                                <div class="detail-nameartist">
-                                    <div class="detail-song-name">
-                                        {{ song.name }}
-                                    </div>
-                                    <div class="detail-song-artist">
-                                        Song Artist
-                                    </div>
-                                </div>
+            <div class="playlist-songs-div">
+                {% for song in songs %}
+                <div class="one-song-playlist">
+                    <div class="detail-each-song">
+                        <div class="song-cover">
+                            <i class="fa-solid fa-icons"></i>
+                        </div>
+                        <div class="detail-nameartist">
+                            <div class="detail-song-name">
+                                {{ song.name }}
                             </div>
-                        </td>
-                        <td data-cell="Album">Album Name</td>
-                        <td data-cell="Date Added">Date Added</td>
-                        <td data-cell="Length">0:00</td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            </div> -->
+                            <div class="detail-song-artist">
+                                Song Artist
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="songs" value="{{ song.id }}" id="id_songs_{{ song.id }}" class="custom-input hidden">
+                        <label for="id_songs_{{ song.id }}" class="custom-checkbox">
+                            <div>
+                                <!-- <i class="fas fa-plus"></i> -->
+                                Add
+                            </div>  
+                        </label>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
             
         </div>
     </form>
 </div>
+
+<script>
+    function toggleCheckbox(checkbox) {
+        checkbox.classList.toggle('checked');
+    }
+</script>
 
 {% endblock %}
