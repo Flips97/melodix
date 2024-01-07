@@ -20,7 +20,11 @@
             <a href="{% url 'detail' playlist.id %}">
                 <div class="index-playlist">
                     <div class="playlist-cover">
-                        <i class="fa-solid fa-icons"></i>
+                        {% if playlist.photo_set.all %}
+                            <img src="{{ playlist.photo_set.last.url }}">
+                        {% else %}
+                            <i class="fa-solid fa-compact-disc"></i>
+                        {% endif %}
                     </div>
                     <div class="playlist-name">
                         {{ playlist.name }}
