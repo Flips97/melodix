@@ -24,12 +24,6 @@
 
     <div class="detail-main">
         <div class="detail-menu">
-            <!-- <form action="{% url 'add_photo' playlist.id %}" enctype="multipart/form-data" method="POST">
-                {% csrf_token %}
-                <input type="file" name="photo-file">
-                <button type="submit">Upload Photo</button>
-            </form> -->
-
             <form id="upload-form" action="{% url 'add_photo' playlist.id %}" enctype="multipart/form-data" method="POST">
                 {% csrf_token %}
                 <label for="photo-file" class="custom-file-input">
@@ -41,7 +35,6 @@
             </form>
 
             <div class="detail-favorite">
-
                 {% if is_favorite %}
                     <a href="{% url 'unfav_playlist' user.id playlist.id %}">
                         <i class="fa-solid fa-heart solid-favorite wobble"></i>
@@ -52,7 +45,6 @@
                     </a>
                 {% endif %}
             </div>
-
             <div class="detail-ellipsis">
                 <i class="fa-solid fa-ellipsis" id="ellipsis"></i>
                 <div class="dropdown-detail" id="dropdown-detail">
@@ -84,7 +76,6 @@
 
         <div class="songs-table-div">
             <table class="songs-table">
-                
                 <tr>
                     <th>#</th>
                     <th>Title</th>
@@ -92,8 +83,6 @@
                     <th>Date Added</th>
                     <th><i class="fa-regular fa-clock"></i></th>
                 </tr>
-                
-                
                 <tr class="no-padding">
                     <td colspan="5" class="no-padding">
                         <hr>

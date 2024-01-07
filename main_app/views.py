@@ -69,6 +69,13 @@ class PlaylistUpdate(LoginRequiredMixin, UpdateView):
     model = Playlist
     fields = ['name', 'description', 'songs']
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['songs'] = Song.objects.all()
+        context['playlist_form'] = PlaylistForm()
+        return context
+
+
 class PlaylistDelete(LoginRequiredMixin, DeleteView):
     model = Playlist
     success_url = '/playlists'
