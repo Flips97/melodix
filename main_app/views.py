@@ -33,13 +33,15 @@ def playlists_detail(request, playlist_id):
     playlist = Playlist.objects.get(id=playlist_id)
     is_favorite = playlist.user_favorite.filter(id=request.user.id).exists()
     user_favs = playlist.user_favorite.all()
+    last_photo = playlist.photo_set.last()
     # create list of songs
     # id_list = playlist.songs.all().values_list('id')
     return render(request, 'playlists/detail.html', {
         'playlist': playlist,
         'playlist_id': int(playlist_id),
         'is_favorite': is_favorite,
-        'user_favs' : user_favs
+        'user_favs' : user_favs,
+        'last_photo' : last_photo
     })
 
 class PlaylistCreate(LoginRequiredMixin, CreateView):
