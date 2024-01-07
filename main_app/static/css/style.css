@@ -14,12 +14,15 @@
     --tertiary-dark: hsla(329, 90%, 20%, 0.9);
     --tertiary-light: hsl(328, 89%, 40%);
 
-    --background: #000000;
-    --background-translucent: hsla(0, 0%, 0%, 0.3);
+    --background: #121212;
+    --background-translucent: #1a1a1a;
     --background-translucent2: hsla(0, 0%, 0%, 0.1);
-    --foreground: #121212;
+    --foreground: #1a1a1a;
     --foreground-translucent: hsla(0, 0%, 8%, 0.3);
     --foreground-translucent2: hsla(0, 0%, 8%, 0.2);
+    --playlist-base: #242424;
+    --playlist-highlight: #2a2a2a;
+    --playlist-press: #000;
     --border: hsl(0, 0%, 25%);
     --border-translucent: hsla(0, 0%, 25%, .3);
     --border-translucent2: hsla(0, 0%, 25%, .2);
@@ -551,7 +554,6 @@ input[type="text"]:-webkit-autofill:active {
     flex-direction: column;
     align-items: center;
     overflow: auto;
-    /* background: linear-gradient(to bottom, var(--border-translucent3), var(--background)); */
     height: 100%;
 }
 
@@ -576,7 +578,7 @@ input[type="text"]:-webkit-autofill:active {
     flex-direction: column;
     width: 12rem;
     height: 16rem;
-    background-color: var(--background-translucent);
+    background-color: var(--playlist-base);
     transition: background-color 0.3s ease;
     border-radius: var(--border-radius);
     align-items: center;
@@ -585,7 +587,12 @@ input[type="text"]:-webkit-autofill:active {
 
 .index-playlist:hover {
     cursor: pointer;
-    background-color: var(--border-translucent);
+    background-color: var(--playlist-highlight);
+    transition: background-color 0.3s ease;
+}
+
+.index-playlist:active {
+    background-color: var(--playlist-press);
     transition: background-color 0.3s ease;
 }
 
@@ -734,8 +741,6 @@ input[type="text"]:-webkit-autofill:active {
     color: var(--copy);
     overflow: none;
 }
-
-
 
 .playlist-cover > img {
     width: 100%;
@@ -1269,6 +1274,14 @@ input[type='checkbox']:checked + .custom-checkbox > div {
 
 #file-name-display {
     margin-left: 10px;
+}
+
+.left-title {
+    width: 100%;
+    padding-inline: 5rem;
+    margin-top: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
 /* add photo upload for user */

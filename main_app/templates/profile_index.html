@@ -2,7 +2,6 @@
 {% load static %}
 {% block content %}
 
-
 <div class="page-container-home">
     <div class="user-things">
         <div class="user-avatar-photo">
@@ -13,11 +12,12 @@
                 <h1 class="username-user" id="profile-username">{{ profile_user.username }}</h1>
             </div>
             <div class="user-tagline">
-                000 Public Playlists
+                {{ playlists|length }} Public Playlists
             </div>
         </div>
     </div>
 
+    <h1 class="left-title">Public Playlists</h1>
     <div class="all-playlists-div">
         {% for playlist in playlists %}
             <a href="{% url 'detail' playlist.id %}">
@@ -41,7 +41,7 @@
     </div>
 
 
-    <h1>user favorites</h1>
+    <h1 class="left-title">Favorited</h1>
     <div class="all-playlists-div">
         {% for playlist in user_favorites %}
             <a href="{% url 'detail' playlist.id %}">
@@ -50,7 +50,7 @@
                         {% if playlist.photo_set.all %}
                             <img src="{{ playlist.photo_set.last.url }}">
                         {% else %}
-                            <i class="fa-solid fa-compact-disc"></i>
+                            <i class="fa-solid fa-heart"></i>
                         {% endif %}
                     </div>
                     <div class="playlist-name">
