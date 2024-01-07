@@ -1,29 +1,61 @@
 {% extends 'base.html' %}
-
 {% block content %}
-
 
 <div class="page-container">
     {% if query %}
         <div class="showing-results">
             <p>Showing results for "{{ query }}"</p>
         </div>
-
         {% if playlists %}
-            {% for playlist in playlists %}
-
-                <a href="{% url 'detail' playlist.id %}">{{ playlist.name }}</a>
-
-                <a href="{% url 'index' %}">{{ playlist.name }}</a>
-            {% endfor %}
+            <h1 class="left-title">Public Playlists</h1>
+            <div class="all-playlists-div">
+                {% for playlist in playlists %}
+                    <a href="{% url 'detail' playlist.id %}">
+                        <div class="index-playlist">
+                            <div class="playlist-cover">
+                                {% if playlist.photo_set.all %}
+                                    <img src="{{ playlist.photo_set.last.url }}">
+                                {% else %}
+                                    <i class="fa-solid fa-compact-disc"></i>
+                                {% endif %}
+                            </div>
+                            <div class="playlist-name">
+                                {{ playlist.name }}
+                            </div>
+                            <div class="playlist-description">
+                                {{ playlist.description}}
+                            </div>                
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
         {% endif %}
-        
+
+
         {% if users %}
-            {% for user in users %}
-                <a href="{% url 'profile_index' user.id %}">{{ user.username }}</a>
-            {% endfor %}
+            <h1 class="left-title">Public Profiles</h1>
+            <div class="all-playlists-div">
+                {% for user in users %}
+                    <a href="{% url 'profile_index' user.id %}">
+                        <div class="index-playlist">
+                            <div class="playlist-cover">
+                                {% if user.photo_set.all %}
+                                    <img src="{{ user.photo_set.last.url }}">
+                                {% else %}
+                                <i class="fa-solid fa-user"></i>
+                                {% endif %}
+                            </div>
+                            <div class="playlist-name">
+                                {{ user.username }}
+                            </div>  
+                            <div class="playlist-description">
+                                {{ user.created_playlist_set.all|length }} Public Playlist{% if user.created_playlist_set.all|length != 1 %}s{% endif %}
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
         {% endif %}
-
     {% else %}
         <div class="basic">
             <span>Enter a search term above.</span>
@@ -55,10 +87,8 @@
             <a href="{% url 'search_view' %}?q=x">X</a>
             <a href="{% url 'search_view' %}?q=y">Y</a>
             <a href="{% url 'search_view' %}?q=z">Z</a>
-
         </div>
     {% endif %}
 </div>
-
 
 {% endblock %}

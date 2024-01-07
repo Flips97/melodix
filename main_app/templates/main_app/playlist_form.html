@@ -2,12 +2,19 @@
 {% block content %}
 
 <div class="page-container-home">
-    <form action="" method="POST" class="playlist-form">
+    <form action="" method="POST" class="playlist-form" id="playlist-form">
         {% csrf_token %}
         <div class="detail-things">
-            <div class="playlist-cover">
-                <i class="fa-solid fa-icons"></i>
+            <div class="playlist-cover one">
+                <div class="form-playlist-cover">
+                    {% if playlist.photo_set.all %}
+                        <img src="{{ playlist.photo_set.last.url }}">
+                    {% else %}
+                        <i class="fa-solid fa-compact-disc"></i>
+                    {% endif %}
+                </div>
             </div>
+
             <div class="detail-things-2">
                 <div class="user-title-photo">
                     <div class="playlist-form-name">
@@ -102,10 +109,8 @@
 </div>
 
 <script>
-    // Assuming playlistSongs is a list of song IDs already in the playlist
     const playlistSongs = [{% for song in playlist.songs.all %}{{ song.id }},{% endfor %}];
 
-    // Loop through checkboxes and check those corresponding to playlist songs
     document.addEventListener('DOMContentLoaded', function() {
         var checkboxes = document.querySelectorAll('.playlist-songs-div input[type="checkbox"]');
         checkboxes.forEach(function(checkbox) {
@@ -115,6 +120,8 @@
             }
         });
     });
+
 </script>
+
 
 {% endblock %}

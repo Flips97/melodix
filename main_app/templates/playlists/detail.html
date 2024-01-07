@@ -5,11 +5,25 @@
 
     <div class="detail-things">
         <div class="playlist-cover">
-            {% if last_photo %}
-                <img src="{{ last_photo.url }}" class="playlist-photo">
-            {% else %}
-                <i class="fa-solid fa-compact-disc"></i>
-            {% endif %}
+            <div class="form-playlist-cover">
+                {% if playlist.photo_set.all %}
+                    <img src="{{ playlist.photo_set.last.url }}">
+                    
+                {% else %}
+                    <i class="fa-solid fa-compact-disc"></i>
+                {% endif %}
+            </div>
+            <div class="photo-div-load loading" id="photo-load"></div>
+            <form id="upload-form" action="{% url 'add_photo' playlist.id %}" enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                <label for="photo-file" class="custom-file-input label-photo" id="photo-upload">
+                    <i class="fa-solid fa-pencil"></i>
+                    <p>Choose Photo</p>
+                </label>
+                <input type="file" id="photo-file" name="photo-file" style="display: none;" onchange="uploadPhoto()">
+                <span id="file-name-display"></span>
+                <button type="submit" id="upload-button" class="hidden">Upload Photo</button>
+            </form>
         </div> 
 
         <div class="detail-things-2">
@@ -24,16 +38,6 @@
 
     <div class="detail-main">
         <div class="detail-menu">
-            <form id="upload-form" action="{% url 'add_photo' playlist.id %}" enctype="multipart/form-data" method="POST">
-                {% csrf_token %}
-                <label for="photo-file" class="custom-file-input">
-                    Choose File
-                </label>
-                <input type="file" id="photo-file" name="photo-file" style="display: none;" onchange="uploadPhoto()">
-                <span id="file-name-display"></span>
-                <button type="submit" id="upload-button" class="hidden">Upload Photo</button>
-            </form>
-
             <div class="detail-favorite">
                 {% if is_favorite %}
                     <a href="{% url 'unfav_playlist' user.id playlist.id %}">
@@ -129,6 +133,8 @@
         const whoLovesThisModal = document.getElementById('who-loves-this');
         const openModal = document.getElementById('openModal');
         const closeModal = document.getElementById('closeModal');
+        const photoBtn = document.querySelector('.label-photo')
+        const loadingDiv = document.getElementById('photo-load')
 
         main.addEventListener('scroll', function () {
             const rect = detailPlaylistName.getBoundingClientRect();
@@ -146,8 +152,6 @@
                 fixedPlaylistName.classList.remove('fade-in');
             }
         });
-
-
 
         openModal.addEventListener('click', () => {
             whoLovesThisModal.showModal()
@@ -169,24 +173,26 @@
             }
         })
 
-        // // Add closing logic for click outside dropdown 
         ellipsis.addEventListener('click', function() {
             dropdownDetail.classList.toggle('active');
         })
 
         function uploadPhoto() {
-        var fileNameDisplay = document.getElementById("file-name-display");
-        var fileInput = document.getElementById("photo-file");
+            var fileNameDisplay = document.getElementById("file-name-display");
+            var fileInput = document.getElementById("photo-file");
 
-        if (fileInput.files.length > 0) {
-            fileNameDisplay.textContent = fileInput.files[0].name;
-        } else {
-            fileNameDisplay.textContent = "";
+            if (fileInput.files.length > 0) {
+                loadingDiv.classList.add('active')
+                photoBtn.style.display = 'none'
+                fileNameDisplay.textContent = fileInput.files[0].name;
+                var uploadForm = document.getElementById("upload-form");
+                uploadForm.submit();
+            } else {
+                fileNameDisplay.textContent = "";
+                loadingDiv.classList.remove('active');
+                photoBtn.style.display = 'flex'
+            }
         }
-
-        var uploadForm = document.getElementById("upload-form");
-        uploadForm.submit();
-    }
 
 </script>
 
