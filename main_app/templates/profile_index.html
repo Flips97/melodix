@@ -23,13 +23,17 @@
             <a href="{% url 'detail' playlist.id %}">
                 <div class="index-playlist">
                     <div class="playlist-cover">
-                        <i class="fa-solid fa-icons"></i>
+                        {% if playlist.photo_set.all %}
+                            <img src="{{ playlist.photo_set.last.url }}">
+                        {% else %}
+                            <i class="fa-solid fa-compact-disc"></i>
+                        {% endif %}
                     </div>
                     <div class="playlist-name">
                         {{ playlist.name }}
                     </div>
                     <div class="playlist-description">
-                        Playlist Description
+                        {{ playlist.description}}
                     </div>                
                 </div>
             </a>
@@ -38,13 +42,27 @@
 
 
     <h1>user favorites</h1>
-
-    {% for playlist in user_favorites %}
-
-        {{ playlist.name}}
-
-    {% endfor %}
-
+    <div class="all-playlists-div">
+        {% for playlist in user_favorites %}
+            <a href="{% url 'detail' playlist.id %}">
+                <div class="index-playlist">
+                    <div class="playlist-cover">
+                        {% if playlist.photo_set.all %}
+                            <img src="{{ playlist.photo_set.last.url }}">
+                        {% else %}
+                            <i class="fa-solid fa-compact-disc"></i>
+                        {% endif %}
+                    </div>
+                    <div class="playlist-name">
+                        {{ playlist.name }}
+                    </div>
+                    <div class="playlist-description">
+                        {{ playlist.description}}
+                    </div>                
+                </div>
+            </a>
+        {% endfor %}
+    </div>
 </div>
 
 <script>
