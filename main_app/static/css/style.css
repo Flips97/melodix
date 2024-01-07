@@ -1334,25 +1334,6 @@ dialog > div > h1 {
     align-items: flex-end;
 }
 
-/* .song-form-name {
-    margin-top: -2.5rem;
-    display: flex;
-    align-items: flex-end;
-}
-
-.song-form-name > input {
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid var(--copy-light);
-    font-size: 3.5rem;
-    font-weight: 800;
-    max-width: 35rem; 
-    position: relative;
-    padding: 1rem;
-    color: var(--copy);
-    margin-top: 2rem;
-} */
-
 .song-form-name,
 .song-form-artist,
 .song-form-album {
