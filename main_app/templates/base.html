@@ -51,7 +51,11 @@
                         <a href="{% url 'detail' playlist.id %}">
                             <div class="base-playlist{% if playlist.id == playlist_id %} active-a{% endif %}">
                                 <div class="base-playlist-cover">
-                                    <i class="fa-solid fa-icons"></i>
+                                    {% if playlist.photo_set.all %}
+                                        <img src="{{ playlist.photo_set.last.url }}">
+                                    {% else %}
+                                        <i class="fa-solid fa-compact-disc"></i>
+                                    {% endif %}
                                 </div>
                                 <div class="base-playlist-nameuser">
                                     <div class="base-playlist-name">
@@ -65,21 +69,30 @@
                         </a>
                     {% endfor %}
                 </div>
+            
                 <div class="base-playlists-div two">
                     {% for playlist in user.playlist_set.all %}
                         <a href="{% url 'detail' playlist.id %}">
-                            <div class="base-playlist{% if playlist.id == playlist_id %} active-a{% endif %}">
-                                <div class="base-playlist-cover">
-                                    
-                                    <i class="fa-solid fa-heart"></i>
-                                </div>
-                                <div class="base-playlist-nameuser">
-                                    <div class="base-playlist-name">
-                                        {{ playlist.name }}
+                            <div class="base-playlist{% if playlist.id == playlist_id %} active-a{% endif %} two-a">
+                                <div class="base-playlist-left">
+                                    <div class="base-playlist-cover">
+                                        {% if playlist.photo_set.all %}
+                                            <img src="{{ playlist.photo_set.last.url }}">
+                                        {% else %}
+                                            <i class="fa-solid fa-heart"></i>
+                                        {% endif %}
                                     </div>
-                                    <div class="base-playlist-user">
-                                        {{ playlist.user }}
-                                    </div> 
+                                    <div class="base-playlist-nameuser">
+                                        <div class="base-playlist-name">
+                                            {{ playlist.name }}
+                                        </div>
+                                        <div class="base-playlist-user">
+                                            {{ playlist.user }}
+                                        </div> 
+                                    </div>
+                                </div>
+                                <div class="base-playlist-heart">
+                                    <i class="fa-solid fa-heart"></i>
                                 </div>
                             </div>
                         </a>
