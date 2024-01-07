@@ -151,6 +151,9 @@
                         </form>
                     </div>
                 {% endif %}
+                <div id="fixed-username" class="fixed-playlist-name">
+                    {{ user.username }}
+                </div>
 
                 <div id="fixed-playlist-name" class="fixed-playlist-name">
                     {{ playlist.name }}
@@ -187,6 +190,9 @@
     <footer class="page-footer"></footer>
 
     <script>
+        
+        // const topFixed = document.getElementById('top-fixed');
+        // const main = document.querySelector('main')
 
         const avatar = document.getElementById('avatar')
         const dropdown = document.getElementById('dropdown')

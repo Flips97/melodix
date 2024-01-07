@@ -102,12 +102,12 @@
                                     {{ song.name }}
                                 </div>
                                 <div class="detail-song-artist">
-                                    Song Artist
+                                    {{ song.artist }}
                                 </div>
                             </div>
                         </div>
                     </td>
-                    <td data-cell="Album">Album Name</td>
+                    <td data-cell="Album"> {{ song.album }}</td>
                     <td data-cell="Date Added">Date Added</td>
                     <td data-cell="Length">0:00</td>
                 </tr>
@@ -120,15 +120,12 @@
 </div>
 
 <script>
-
         const topFixed = document.getElementById('top-fixed');
         const main = document.querySelector('main')
         const detailPlaylistName = document.getElementById('detail-playlist-name');
         const fixedPlaylistName = document.getElementById('fixed-playlist-name');
-
         const dropdownDetail = document.getElementById('dropdown-detail');
         const ellipsis = document.getElementById('ellipsis');
-
         const whoLovesThisModal = document.getElementById('who-loves-this');
         const openModal = document.getElementById('openModal');
         const closeModal = document.getElementById('closeModal');

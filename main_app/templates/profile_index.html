@@ -10,7 +10,7 @@
         </div>
         <div class="user-things-2">
             <div class="user-title-photo">
-                <h1 class="username-user">{{ profile_user.username }}</h1>
+                <h1 class="username-user" id="profile-username">{{ profile_user.username }}</h1>
             </div>
             <div class="user-tagline">
                 000 Public Playlists
@@ -46,5 +46,30 @@
     {% endfor %}
 
 </div>
+
+<script>
+    const topFixed2 = document.getElementById('top-fixed');
+    const main2 = document.querySelector('main')
+    const profileUsername = document.getElementById('profile-username')
+    const fixedUsername = document.getElementById('fixed-username')
+
+    main2.addEventListener('scroll', function () {
+        const rect2 = profileUsername.getBoundingClientRect();
+        
+        if (rect2.top < 0) {
+            console.log('passing!')
+            topFixed2.classList.add('dark-from-translucent');
+            topFixed2.classList.remove('translucent');
+            fixedUsername.classList.remove('fade-out');
+            fixedUsername.classList.add('active');
+            fixedUsername.classList.add('fade-in');
+        } else {
+            topFixed2.classList.remove('dark-from-translucent');
+            topFixed2.classList.add('translucent');
+            fixedUsername.classList.add('fade-out');
+            fixedUsername.classList.remove('fade-in');
+        }
+    });
+</script>
 
 {% endblock %}
