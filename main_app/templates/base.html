@@ -190,10 +190,6 @@
     <footer class="page-footer"></footer>
 
     <script>
-        
-        // const topFixed = document.getElementById('top-fixed');
-        // const main = document.querySelector('main')
-
         const avatar = document.getElementById('avatar')
         const dropdown = document.getElementById('dropdown')
         const forwardBtn = document.getElementById('forward-btn')
@@ -201,15 +197,27 @@
         const addNewBtn = document.getElementById('add-new-btn')
         const dropdownAdd = document.getElementById('dropdown-add')
 
-        // Add closing logic for click outside dropdown 
-        addNewBtn.addEventListener('click', function() {
+        addNewBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
             dropdownAdd.classList.toggle('active')
         })        
 
-        // Add closing logic for click outside dropdown 
-        avatar.addEventListener('click', function() {
+        document.addEventListener('click', function (e) {
+            if (!dropdownAdd.contains(e.target) && dropdownAdd.classList.contains('active')) {
+                dropdownAdd.classList.remove('active');
+            }
+        });
+
+        avatar.addEventListener('click', function(e) {
+            e.stopPropagation();
             dropdown.classList.toggle('active')
         })
+
+        document.addEventListener('click', function (e) {
+            if (!dropdown.contains(e.target) && dropdown.classList.contains('active')) {
+                dropdown.classList.remove('active');
+            }
+        });
 
         forwardBtn.addEventListener('click', () => {
             goForward()

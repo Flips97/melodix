@@ -302,12 +302,14 @@ li {
 .base-playlist-name {
     font-size: .9rem;
     font-weight: 400;
+    text-transform: capitalize;
 }
 
 .base-playlist-user {
     font-size: .7rem;
     font-weight: 200;
     color: var(--copy-light);
+    text-transform: capitalize;
 }
 
 .base-playlist-heart {
@@ -610,7 +612,29 @@ input[type="text"]:-webkit-autofill:active {
     font-size: .75rem;
     color: var(--copy-light);
     padding-inline: .5rem;
+    height: 1.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
 }
+
+.playlist-username {
+    width: 100%;
+    font-size: .65rem;
+    color: var(--copy-lighter2);
+    padding-inline: .5rem;
+    height: 1.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-transform: capitalize;
+}
+
 ::-webkit-scrollbar {
     width: .5rem;
 }
@@ -719,6 +743,7 @@ input[type="text"]:-webkit-autofill:active {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    text-transform: capitalize;
 }
 
 .user-tagline {
@@ -879,6 +904,7 @@ input[type="text"]:-webkit-autofill:active {
     text-overflow: ellipsis;
     white-space: nowrap;
     position: relative;
+    text-transform: capitalize;
 }
 
 .detail-tagline {
@@ -1206,6 +1232,7 @@ hr {
     display: none;
     font-size: 1.5rem;
     font-weight: 600;
+    text-transform: capitalize;
 }
 
 .fade-in {
@@ -1369,8 +1396,6 @@ input[type='checkbox']:checked + .custom-checkbox > div {
     align-items: center;
 }
 
-
-
 #file-name-display {
     margin-left: 10px;
 }
@@ -1383,10 +1408,7 @@ input[type='checkbox']:checked + .custom-checkbox > div {
     font-weight: 600;
 }
 
-/* add photo upload for user */
 /* style modal */
 /* style details page */
 /* style forms */
-/* move playlist photo upload to edit template */
 /* add tooltip to name and description fields for playlist */
-/* need to add scroll animation to profile index */
