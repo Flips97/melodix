@@ -2,7 +2,6 @@
 {% load static %}
 {% block content %}
 
-
 <div class="page-container-home">
     <div class="user-things">
         <div class="user-avatar-photo">
@@ -10,41 +9,91 @@
         </div>
         <div class="user-things-2">
             <div class="user-title-photo">
-                <h1 class="username-user">{{ profile_user.username }}</h1>
+                <h1 class="username-user" id="profile-username">{{ profile_user.username }}</h1>
             </div>
             <div class="user-tagline">
-                000 Public Playlists
+                {{ playlists|length }} Public Playlists
             </div>
         </div>
     </div>
 
+    <h1 class="left-title">Public Playlists</h1>
     <div class="all-playlists-div">
         {% for playlist in playlists %}
             <a href="{% url 'detail' playlist.id %}">
                 <div class="index-playlist">
                     <div class="playlist-cover">
-                        <i class="fa-solid fa-icons"></i>
+                        {% if playlist.photo_set.all %}
+                            <img src="{{ playlist.photo_set.last.url }}">
+                        {% else %}
+                            <i class="fa-solid fa-compact-disc"></i>
+                        {% endif %}
                     </div>
                     <div class="playlist-name">
                         {{ playlist.name }}
                     </div>
                     <div class="playlist-description">
-                        Playlist Description
-                    </div>                
+                        {{ playlist.description}}
+                    </div>       
+                    <div class="playlist-username">
+                        {{ playlist.user }}
+                    </div>          
                 </div>
             </a>
         {% endfor %}
     </div>
 
 
-    <h1>user favorites</h1>
-
-    {% for playlist in user_favorites %}
-
-        {{ playlist.name}}
-
-    {% endfor %}
-
+    <h1 class="left-title">Favorited</h1>
+    <div class="all-playlists-div">
+        {% for playlist in user_favorites %}
+            <a href="{% url 'detail' playlist.id %}">
+                <div class="index-playlist">
+                    <div class="playlist-cover">
+                        {% if playlist.photo_set.all %}
+                            <img src="{{ playlist.photo_set.last.url }}">
+                        {% else %}
+                            <i class="fa-solid fa-heart"></i>
+                        {% endif %}
+                    </div>
+                    <div class="playlist-name">
+                        {{ playlist.name }}
+                    </div>
+                    <div class="playlist-description">
+                        {{ playlist.description}}
+                    </div>        
+                    <div class="playlist-username">
+                        {{ playlist.user }}
+                    </div>         
+                </div>
+            </a>
+        {% endfor %}
+    </div>
 </div>
+
+<script>
+    const topFixed2 = document.getElementById('top-fixed');
+    const main2 = document.querySelector('main')
+    const profileUsername = document.getElementById('profile-username')
+    const fixedUsername = document.getElementById('fixed-username')
+
+    main2.addEventListener('scroll', function () {
+        const rect2 = profileUsername.getBoundingClientRect();
+        
+        if (rect2.top < 0) {
+            console.log('passing!')
+            topFixed2.classList.add('dark-from-translucent');
+            topFixed2.classList.remove('translucent');
+            fixedUsername.classList.remove('fade-out');
+            fixedUsername.classList.add('active');
+            fixedUsername.classList.add('fade-in');
+        } else {
+            topFixed2.classList.remove('dark-from-translucent');
+            topFixed2.classList.add('translucent');
+            fixedUsername.classList.add('fade-out');
+            fixedUsername.classList.remove('fade-in');
+        }
+    });
+</script>
 
 {% endblock %}

@@ -20,14 +20,21 @@
             <a href="{% url 'detail' playlist.id %}">
                 <div class="index-playlist">
                     <div class="playlist-cover">
-                        <i class="fa-solid fa-icons"></i>
+                        {% if playlist.photo_set.all %}
+                            <img src="{{ playlist.photo_set.last.url }}">
+                        {% else %}
+                            <i class="fa-solid fa-compact-disc"></i>
+                        {% endif %}
                     </div>
                     <div class="playlist-name">
                         {{ playlist.name }}
                     </div>
                     <div class="playlist-description">
-                        Playlist Description
-                    </div>                 
+                        {{ playlist.description }}
+                    </div>   
+                    <div class="playlist-username">
+                        {{ playlist.user }}
+                    </div>              
                 </div>
             </a>
         {% endfor %}

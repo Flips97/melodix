@@ -19,7 +19,9 @@ from .forms import PlaylistForm
 # Create your views here.
 def home(request):
     playlists = Playlist.objects.all()
-    return render(request, 'home.html', {'playlists': playlists})
+    return render(request, 'home.html', {
+       'playlists': playlists, 
+       })
 
 def playlist_index(request):
     playlists = Playlist.objects.all()
@@ -33,13 +35,15 @@ def playlists_detail(request, playlist_id):
     playlist = Playlist.objects.get(id=playlist_id)
     is_favorite = playlist.user_favorite.filter(id=request.user.id).exists()
     user_favs = playlist.user_favorite.all()
+    last_photo = playlist.photo_set.last()
     # create list of songs
     # id_list = playlist.songs.all().values_list('id')
     return render(request, 'playlists/detail.html', {
         'playlist': playlist,
         'playlist_id': int(playlist_id),
         'is_favorite': is_favorite,
-        'user_favs' : user_favs
+        'user_favs' : user_favs,
+        'last_photo' : last_photo
     })
 
 class PlaylistCreate(LoginRequiredMixin, CreateView):
@@ -64,6 +68,13 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
 class PlaylistUpdate(LoginRequiredMixin, UpdateView):
     model = Playlist
     fields = ['name', 'description', 'songs']
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['songs'] = Song.objects.all()
+        context['playlist_form'] = PlaylistForm()
+        return context
+
 
 class PlaylistDelete(LoginRequiredMixin, DeleteView):
     model = Playlist
