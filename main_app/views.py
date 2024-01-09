@@ -1,7 +1,5 @@
 import os
 import uuid
-from django.forms.models import BaseModelForm
-from django.http import HttpResponse
 import boto3
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -14,7 +12,6 @@ from .models import Playlist, Song, User, Photo
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from .forms import PlaylistForm
-from django.http import HttpResponseRedirect
 
 
 # Create your views here.
@@ -93,9 +90,6 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
         context['playlist_form'] = PlaylistForm()
         return context
 
-       
-
-
 class PlaylistUpdate(LoginRequiredMixin, UpdateView):
     model = Playlist
     fields = ['name', 'description', 'songs']
@@ -171,23 +165,23 @@ def unfav_playlist(request, user_id, playlist_id):
     return redirect('detail', playlist_id=playlist_id)
 
 def search_view(request):
-   query = request.GET.get('q', '')
-   songs = Song.objects.filter(
-       Q(name__icontains=query)
-   )
-   playlists = Playlist.objects.filter(
-      Q(name__icontains=query)
-   )
-   users = User.objects.filter(
-      Q(username__icontains=query)
-   )
+    query = request.GET.get('q', '')
+    songs = Song.objects.filter(
+        Q(name__istartswith=query)
+    )
+    playlists = Playlist.objects.filter(
+        Q(name__icontains=query)
+    )
+    users = User.objects.filter(
+        Q(username__icontains=query)
+    )
 
-   return render(request, 'search_bar.html', {
-       'songs': songs,
-      'playlists': playlists,
-      'users': users,
-       'query': query  
-   })
+    return render(request, 'search_bar.html', {
+        'songs': songs,
+        'playlists': playlists,
+        'users': users,
+        'query': query  
+    })
 
 def songs_search(request):
     query = request.GET.get('q', '')
@@ -234,7 +228,7 @@ def signup(request):
       user = form.save()
       # Automatically log in the new user
       login(request, user)
-      return redirect('index')
+      return redirect('home')
     else:
       error_message = 'Invalid sign up - try again'
   # A bad POST or a GET request, so render signup template

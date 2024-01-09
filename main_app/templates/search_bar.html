@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div>
-                    <button class="add-song-btn" data-song-id="{{ song.id }}">Add</button>
+                    <!-- <button class="add-song-btn" data-song-id="{{ song.id }}">Add</button> -->
                     <div class="playlist-dropdown" id="playlist-dropdown-{{ song.id }}">
                         <form method="post" action="{% url 'assoc_song' song.id %}">
                             {% csrf_token %}
