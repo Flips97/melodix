@@ -46,7 +46,7 @@
             </div>
 
             {% if user.is_authenticated %}
-                <div class="base-playlists-div one">
+                <div class="base-playlists-div-one">
                     {% for playlist in user.created_playlist_set.all %}
                         <a href="{% url 'detail' playlist.id %}">
                             <div class="base-playlist{% if playlist.id == playlist_id %} active-a{% endif %}">
@@ -62,7 +62,7 @@
                                         {{ playlist.name }}
                                     </div>
                                     <div class="base-playlist-user">
-                                        {{ playlist.user }}
+                                        {{ playlist.user.username }}
                                     </div> 
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
                     {% endfor %}
                 </div>
             
-                <div class="base-playlists-div two">
+                <div class="base-playlists-div-two">
                     {% for playlist in user.playlist_set.all %}
                         <a href="{% url 'detail' playlist.id %}">
                             <div class="base-playlist{% if playlist.id == playlist_id %} active-a{% endif %} two-a">
@@ -87,7 +87,7 @@
                                             {{ playlist.name }}
                                         </div>
                                         <div class="base-playlist-user">
-                                            {{ playlist.user }}
+                                            {{ playlist.user.username }}
                                         </div> 
                                     </div>
                                 </div>
