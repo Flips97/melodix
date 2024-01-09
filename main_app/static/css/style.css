@@ -1515,14 +1515,17 @@ input[type='checkbox']:checked + .custom-checkbox > div {
 }
 
 .playlist-songs-div {
-    margin-top: 2rem;
     border-top: 1px solid var(--border);
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    padding: 1rem;
-    padding-top: 3rem;
-    width: fit-content;
+    margin: 0 auto;
+    margin-top: 2rem;
+    gap: .5rem;
+    padding: 2rem;
+    min-width: max-content;
+    min-height: max-content;
+}
+
+.playlist-songs-div:first-child {
+    display: contents;
 }
 
 #file-name-display {
@@ -1708,6 +1711,10 @@ input[type='checkbox']:checked + .custom-checkbox > div {
 .filter-button-active {
     background-color: var(--copy);
     color: var(--background);
+}
+
+.alphabet-links {
+    margin-top: 2rem;
 }
 
 
