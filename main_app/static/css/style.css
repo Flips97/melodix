@@ -548,6 +548,12 @@ input[type="text"]:-webkit-autofill:active {
     overflow: auto;
 }
 
+.categories {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
 .page-container-playlist {
     padding-block: 4rem;
     overflow-y: auto;
@@ -912,14 +918,20 @@ input[type="text"]:-webkit-autofill:active {
     white-space: nowrap;
     position: relative;
     text-transform: capitalize;
+    padding-inline: .25rem;
 }
 
 .detail-tagline {
     font-size: .85rem;
     font-weight: 300;
-    width: max-content;
     color: var(--copy);
     padding-inline: .5rem;
+    max-width: 35rem; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: relative;
+    text-transform: capitalize;
 }
 
 .detail-main {
@@ -952,6 +964,7 @@ input[type="text"]:-webkit-autofill:active {
 .detail-menu {
     width: 100%;
     height: 3rem;
+    margin-top: 2rem;
 }
 
 .detail-songs {
@@ -1334,6 +1347,12 @@ dialog > div > h1 {
     align-items: flex-end;
 }
 
+.playlist-form-tagline {
+    /* margin-top: -2.5rem; */
+    display: flex;
+    align-items: flex-end;
+}
+
 .song-form-name,
 .song-form-artist,
 .song-form-album {
@@ -1395,11 +1414,11 @@ dialog > div > h1 {
 }
 
 .playlist-form-name > i,
-.playlist-form-description > i {
+.playlist-form-tagline > i {
     padding-inline: 1rem;
 }
 
-.playlist-form-description > textarea {
+.playlist-form-tagline > textarea {
     font-size: .85rem;
     font-weight: 300;
     width: 35rem;
@@ -1471,17 +1490,186 @@ input[type='checkbox']:checked + .custom-checkbox > div {
 
 .left-title {
     width: 100%;
-    padding-inline: 5rem;
+    padding-inline: 1.25rem;
     margin-top: 1.5rem;
     font-size: 1.5rem;
     font-weight: 600;
 }
 
+.sign-up {
+    margin-top: 1rem;
+    padding-block: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25rem;
+}
+
+.sign-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    width: 18rem;
+}
+
+.sign-up-form-fields {
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .35rem;
+}
+
+.sign-up-form-fields > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.sign-up-form-fields > div > label {
+    font-size: .75rem;
+    font-weight: 600;
+    padding-bottom: .5rem;
+}
+
+.sign-up-form-fields > div > input {
+    margin-bottom: 1rem;
+    border: 1px solid var(--copy-lighter);
+    background-color: transparent;
+    border-radius: 2.5px;
+    height: 2.5rem;
+    width: 18rem;
+    padding-inline: .5rem;
+    font-size: .75rem;
+    color: var(--copy);
+}
+
+.sign-up-form-fields > div > input:focus {
+    outline: 2px solid var(--copy);
+}
+
+.sign-up-form-fields > div > input[type="text"]:-webkit-autofill {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    box-shadow: 0 0 0 1000px hsl(0, 0%, 13%) inset;
+    color: var(--copy);
+}
+
+.sign-up-form-fields > div > input[type="text"]:-webkit-autofill,
+.sign-up-form-fields > div > input[type="text"]:-webkit-autofill:hover,
+.sign-up-form-fields > div > input[type="text"]:-webkit-autofill:focus,
+.sign-up-form-fields > div > input[type="text"]:-webkit-autofill:active {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    box-shadow: 0 0 0 1000px hsl(0, 0%, 13%) inset;
+    -webkit-text-fill-color: var(--copy);
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.sign-up-form-fields > div:first-child {
+    margin-top: 2.5rem;
+}
+
+.sign-up-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.sign-up-submit {
+    border-radius: 100px;
+    background-color: var(--primary);
+    color: var(--background);
+    border: none;
+    width: 18rem;
+    height: 2.5rem;
+    margin: 0 auto;
+    font-size: .95rem;
+    font-weight: 600;
+}
+
+.log-in-here {
+    padding-block: 1rem;
+    color: var(--copy-lighter);
+}
+
+.log-in-here > a,
+.sign-up-here > a {
+    text-decoration: underline;
+}
+
+.sign-up-here{
+    padding-block: 2.5rem;
+    color: var(--copy-lighter);
+}
+
+.category-container-div {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.all-songs-div-a {
+    width: 40rem;
+}
+
+.left-title-a {
+    padding-bottom: 1rem;
+    width: 100%;
+    padding-inline: 2rem;
+    margin-top: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.filter-buttons {
+    display: flex;
+    width: 100%;
+    gap: .5rem;
+    padding-inline: 2rem;
+    margin-top: -1rem;
+}
+
+
+
+.filter-buttons > button {
+    width: 4rem;
+    height: 1.5rem;
+    border-radius: 100px;
+    background-color: transparent;
+    display: grid;
+    place-items: center;
+    font-size: .75rem;
+    cursor: pointer;
+    border: 1px solid var(--copy-light);
+    color: var(--copy);
+}
+
+.filter-buttons > button:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+    border: 2px solid var(--copy-light);
+}
+
+.filter-buttons > button:active {
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+#home-songs,
+#home-playlists {
+    display: none;
+}
+
+.filter-button-active {
+    background-color: var(--copy);
+    color: var(--background);
+}
+
+
 /* style modal */
 /* style details page */
-/* style song form */
 /* add tooltip to name and description fields for playlist */
 /*  style confirm delete song and playlist templates */
-/* style all songs */
-/* add link for all songs */
-/* style sign in template */
+/* style songs search dropdown assoc song stuff */

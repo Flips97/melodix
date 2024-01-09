@@ -15,31 +15,99 @@
             Discover, Create, Share: Melodix - Your Ultimate Music Hub.
         </div>
     </div>
-    <div class="all-playlists-div">
-        {% for playlist in playlists %}
-            <a href="{% url 'detail' playlist.id %}">
-                <div class="index-playlist">
-                    <div class="playlist-cover">
-                        {% if playlist.photo_set.all %}
-                            <img src="{{ playlist.photo_set.last.url }}">
-                        {% else %}
-                            <i class="fa-solid fa-compact-disc"></i>
-                        {% endif %}
+    <div class="filter-buttons">
+        <button id="show-playlists">Playlists</button>
+        <button id="show-songs">Songs</button>
+    </div>
+    <div class="category-container-div active" id="home-playlists">
+        <div class="all-playlists-div">
+            {% for playlist in playlists %}
+                <a href="{% url 'detail' playlist.id %}">
+                    <div class="index-playlist">
+                        <div class="playlist-cover">
+                            {% if playlist.photo_set.all %}
+                                <img src="{{ playlist.photo_set.last.url }}">
+                            {% else %}
+                                <i class="fa-solid fa-compact-disc"></i>
+                            {% endif %}
+                        </div>
+                        <div class="playlist-name">
+                            {{ playlist.name }}
+                        </div>
+                        <div class="playlist-description">
+                            {{ playlist.description }}
+                        </div>   
+                        <div class="playlist-username">
+                            {{ playlist.user }}
+                        </div>              
                     </div>
-                    <div class="playlist-name">
-                        {{ playlist.name }}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="category-container-div" id="home-songs">
+        <div class="all-songs-div-a">
+            <h1 class="left-title-a">All Songs</h1>
+            {% for song in songs %}
+                <div class="one-song-playlist">
+                    <div class="detail-each-song">
+                        <div class="song-cover">
+                            <i class="fa-solid fa-icons"></i>
+                        </div>
+                        <div class="detail-nameartist">
+                            <div class="detail-song-name">
+                                {{ song.name }}
+                            </div>
+                            <div class="detail-song-artist">
+                                {{ song.artist }}
+                            </div>
+                        </div>
                     </div>
-                    <div class="playlist-description">
-                        {{ playlist.description }}
-                    </div>   
-                    <div class="playlist-username">
-                        {{ playlist.user }}
-                    </div>              
+                {% if request.user == song.user %}
+                <div>
+                    <a href="{% url 'songs_delete' song.id %}"><button>Delete</button></a>
                 </div>
-            </a>
-        {% endfor %}
+                {% endif %}
+                </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
+
+<script>
+
+    const homePlaylists = document.getElementById('home-playlists')
+    const homeSongs = document.getElementById('home-songs')
+    const showPlaylists = document.getElementById('show-playlists')
+    const showSongs = document.getElementById('show-songs')
+
+
+
+    showSongs.addEventListener('click', () => {
+        homePlaylists.classList.remove('active');
+        homeSongs.classList.add('active');
+        showSongs.style.backgroundColor = 'hsl(0, 0%, 75%)';
+        showSongs.style.color = '#121212';
+        showPlaylists.style.backgroundColor = 'transparent';
+        showPlaylists.style.color = 'hsl(0, 0%, 95%)';
+    });
+
+
+
+    showPlaylists.addEventListener('click', () => {
+        homePlaylists.classList.add('active');
+        homeSongs.classList.remove('active');
+        showSongs.style.backgroundColor = 'transparent'
+        showSongs.style.color = 'hsl(0, 0%, 95%)';
+        showPlaylists.style.backgroundColor = 'hsl(0, 0%, 75%)'
+        showPlaylists.style.color = '#121212';
+    })
+
+
+
+
+</script>
 
 {% endblock %}
 
