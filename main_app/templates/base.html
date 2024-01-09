@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +34,6 @@
                     <i class="fa-solid fa-plus"></i>
                 </div>
             </div>
-
             <div class="dropdown-add" id="dropdown-add">
                 <a href="{% url 'playlists_create' %}">
                     <button class="paylist-btn">Add A Playlist</button>
@@ -44,7 +42,6 @@
                     <button>Add A Song</button>
                 </a>
             </div>
-
             {% if user.is_authenticated %}
                 <div class="base-playlists-div-one">
                     {% for playlist in user.created_playlist_set.all %}
@@ -68,8 +65,7 @@
                             </div>
                         </a>
                     {% endfor %}
-                </div>
-            
+                </div>            
                 <div class="base-playlists-div-two">
                     {% for playlist in user.playlist_set.all %}
                         <a href="{% url 'detail' playlist.id %}">
@@ -142,8 +138,7 @@
                 <div class="backforth-buttons">
                     <div class="back-btn" id="back-btn" title="Go back"><i class="fa-solid fa-chevron-left"></i></div>
                     <div class="forward-btn" id="forward-btn" title="Go forward"><i class="fa-solid fa-chevron-right"></i></div>
-                </div>
-    
+                </div>    
                 {% if '/search_bar/' in request.path or '/search/' in request.path %}
                     <div>
                         <form action="{% url 'search_view' %}" method="GET" class="search-bar-div">
@@ -168,7 +163,6 @@
                     {{ playlist.name }}
                 </div>
             </div>
-
             <div class="login-buttons">
                 {% if user.is_authenticated %}
                     <div class="avatar" id="avatar">

@@ -14,7 +14,6 @@ from django.shortcuts import get_object_or_404
 from .forms import PlaylistForm
 
 
-# Create your views here.
 def home(request):
     playlists = Playlist.objects.all()
     songs = Song.objects.all()
@@ -49,8 +48,6 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         result = super().form_valid(form)
-        # playlist = form.save(commit=False)
-        # playlist.save()
         print("This is my newly created instance", self.object.pk)
         return result
     
@@ -69,7 +66,6 @@ class PlaylistUpdate(LoginRequiredMixin, UpdateView):
         context['songs'] = Song.objects.all()
         context['playlist_form'] = PlaylistForm()
         return context
-
 
 class PlaylistDelete(LoginRequiredMixin, DeleteView):
     model = Playlist
@@ -183,20 +179,16 @@ def add_photo(request, playlist_id):
             print(e)
     return redirect('detail', playlist_id=playlist_id)
 
-
 def signup(request):
   error_message = ''
   if request.method == 'POST':
     form = UserCreationForm(request.POST)
     if form.is_valid():
-      # Save the user to the db
       user = form.save()
-      # Automatically log in the new user
       login(request, user)
       return redirect('home')
     else:
       error_message = 'Invalid sign up - try again'
-  # A bad POST or a GET request, so render signup template
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context) 
