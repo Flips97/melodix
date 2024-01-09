@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-
 <div class="page-container">
     {% if query %}
         <div class="showing-results">
@@ -26,8 +25,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div>
-                                    <!-- <button class="add-song-btn" data-song-id="{{ song.id }}">Add</button> -->
+                                <div>                                    
                                     <div class="playlist-dropdown" id="playlist-dropdown-{{ song.id }}">
                                         <form method="post" action="{% url 'assoc_song' song.id %}">
                                             {% csrf_token %}
@@ -47,7 +45,6 @@
                     </div>
                 </div>
             {% endif %}
-
             {% if playlists %}
                 <div class="category-container-div">
                     <h1 class="left-title">Public Playlists</h1>
@@ -77,8 +74,6 @@
                     </div>
                 </div>
             {% endif %}
-
-
             {% if users %}
                 <div class="category-container-div">
                     <h1 class="left-title">Public Profiles</h1>
@@ -140,7 +135,6 @@
         </div>
     {% endif %}
 </div>
-
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var addButtons = document.querySelectorAll('.add-song-btn');
@@ -153,6 +147,5 @@
             });
         });
     });
-
 </script>
 {% endblock %}

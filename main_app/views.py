@@ -14,7 +14,6 @@ from django.shortcuts import get_object_or_404
 from .forms import PlaylistForm
 
 
-# Create your views here.
 def home(request):
     playlists = Playlist.objects.all()
     songs = Song.objects.all()
@@ -25,10 +24,8 @@ def home(request):
 
 def playlist_index(request):
     playlists = Playlist.objects.all()
-    # playlist_fav = user.playlist_set.all()
     return render(request, 'playlists/index.html', {
         'playlists': playlists,
-        # 'playlist_fav': playlist_fav
     })
 
 def playlists_detail(request, playlist_id):
@@ -36,8 +33,6 @@ def playlists_detail(request, playlist_id):
     is_favorite = playlist.user_favorite.filter(id=request.user.id).exists()
     user_favs = playlist.user_favorite.all()
     last_photo = playlist.photo_set.last()
-    # create list of songs
-    # id_list = playlist.songs.all().values_list('id')
     return render(request, 'playlists/detail.html', {
         'playlist': playlist,
         'playlist_id': int(playlist_id),
@@ -46,34 +41,6 @@ def playlists_detail(request, playlist_id):
         'last_photo' : last_photo
     })
 
-# class PlaylistCreate(LoginRequiredMixin, CreateView):
-#     model = Playlist
-#     fields = ['name', 'description', 'songs']
-
-#     def form_valid(self, form):
-#         form.instance.user = self.request.user
-#         result = super().form_valid(form)
-#         # playlist = form.save(commit=False)
-#         # playlist.save()
-#         print("This is my newly created instance", self.object.pk)
-#         return result
-    
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['songs'] = Song.objects.all()
-#         context['playlist_form'] = PlaylistForm()
-#         return context
-
-# class PlaylistUpdate(LoginRequiredMixin, UpdateView):
-#     model = Playlist
-#     fields = ['name', 'description', 'songs']
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['songs'] = Song.objects.all()
-#         context['playlist_form'] = PlaylistForm()
-#         return context
-
 class PlaylistCreate(LoginRequiredMixin, CreateView):
     model = Playlist
     fields = ['name', 'description', 'songs']
@@ -81,8 +48,6 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         result = super().form_valid(form)
-        # playlist = form.save(commit=False)
-        # playlist.save()
         print("This is my newly created instance", self.object.pk)
         return result
     
@@ -102,7 +67,6 @@ class PlaylistUpdate(LoginRequiredMixin, UpdateView):
         context['playlist_form'] = PlaylistForm()
         return context
 
-
 class PlaylistDelete(LoginRequiredMixin, DeleteView):
     model = Playlist
     success_url = '/playlists'
@@ -118,11 +82,6 @@ class SongCreate(LoginRequiredMixin, CreateView):
 class SongDelete(LoginRequiredMixin, DeleteView):
     model = Song
     success_url = '/songs'
-
-# @login_required
-# def assoc_song(request, playlist_id, song_id):
-#     Playlist.objects.get(id=playlist_id).songs.add(song_id)
-#     return redirect('detail', playlist_id=playlist_id)
     
 def assoc_song(request, song_id):
     playlists = Playlist.objects.filter(user=request.user)
@@ -220,20 +179,16 @@ def add_photo(request, playlist_id):
             print(e)
     return redirect('detail', playlist_id=playlist_id)
 
-
 def signup(request):
   error_message = ''
   if request.method == 'POST':
     form = UserCreationForm(request.POST)
     if form.is_valid():
-      # Save the user to the db
       user = form.save()
-      # Automatically log in the new user
       login(request, user)
       return redirect('home')
     else:
       error_message = 'Invalid sign up - try again'
-  # A bad POST or a GET request, so render signup template
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context) 
