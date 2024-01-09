@@ -941,7 +941,7 @@ input[type="text"]:-webkit-autofill:active {
     justify-content: center;
     width: 100%;
     flex-grow: 1;
-    margin-top: -7rem;
+    margin-top: -5rem;
     background: linear-gradient(to bottom, var(--foreground-translucent2), var(--foreground-translucent));
     box-shadow: var(--box-shadow);
     position: relative;
@@ -954,7 +954,7 @@ input[type="text"]:-webkit-autofill:active {
     justify-content: center;
     width: 100%;
     flex-grow: 1;
-    margin-top: -4rem;
+    margin-top: -2rem;
     padding-inline: 4rem;
     background: linear-gradient(to bottom, var(--foreground-translucent2), var(--foreground-translucent));
     box-shadow: var(--box-shadow);
@@ -965,7 +965,7 @@ input[type="text"]:-webkit-autofill:active {
 .detail-menu {
     width: 100%;
     height: 3rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .detail-songs {
@@ -985,7 +985,6 @@ input[type="text"]:-webkit-autofill:active {
     border-radius: var(--border-radius);
     gap: .75rem;
 }
-
 
 .song-hover:hover {
     cursor: pointer;
@@ -1326,7 +1325,7 @@ dialog {
     border-radius: var(--border-radius);
     width: 30rem;
     height: 20rem;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     align-items: center;
     justify-content: center; /* Center vertically */
