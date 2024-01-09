@@ -90,7 +90,7 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context['songs'] = Song.objects.all()
         context['playlist_form'] = PlaylistForm()
-        return context
+        return context     
 
 class PlaylistUpdate(LoginRequiredMixin, UpdateView):
     model = Playlist
