@@ -17,8 +17,10 @@ from .forms import PlaylistForm
 # Create your views here.
 def home(request):
     playlists = Playlist.objects.all()
+    songs = Song.objects.all()
     return render(request, 'home.html', {
        'playlists': playlists, 
+       'songs': songs,
        })
 
 def playlist_index(request):

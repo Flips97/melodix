@@ -548,6 +548,12 @@ input[type="text"]:-webkit-autofill:active {
     overflow: auto;
 }
 
+.categories {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
 .page-container-playlist {
     padding-block: 4rem;
     overflow-y: auto;
@@ -1484,7 +1490,7 @@ input[type='checkbox']:checked + .custom-checkbox > div {
 
 .left-title {
     width: 100%;
-    padding-inline: 5rem;
+    padding-inline: 1.25rem;
     margin-top: 1.5rem;
     font-size: 1.5rem;
     font-weight: 600;
@@ -1597,13 +1603,74 @@ input[type='checkbox']:checked + .custom-checkbox > div {
     color: var(--copy-lighter);
 }
 
+.category-container-div {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.all-songs-div-a {
+    width: 40rem;
+}
+
+.left-title-a {
+    padding-bottom: 1rem;
+    width: 100%;
+    padding-inline: 2rem;
+    margin-top: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.filter-buttons {
+    display: flex;
+    width: 100%;
+    gap: .5rem;
+    padding-inline: 2rem;
+    margin-top: -1rem;
+}
+
+
+
+.filter-buttons > button {
+    width: 4rem;
+    height: 1.5rem;
+    border-radius: 100px;
+    background-color: transparent;
+    display: grid;
+    place-items: center;
+    font-size: .75rem;
+    cursor: pointer;
+    border: 1px solid var(--copy-light);
+    color: var(--copy);
+}
+
+.filter-buttons > button:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+    border: 2px solid var(--copy-light);
+}
+
+.filter-buttons > button:active {
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+#home-songs,
+#home-playlists {
+    display: none;
+}
+
+.filter-button-active {
+    background-color: var(--copy);
+    color: var(--background);
+}
 
 
 /* style modal */
 /* style details page */
-/* style song form */
 /* add tooltip to name and description fields for playlist */
 /*  style confirm delete song and playlist templates */
-/* style all songs */
 /* add link for all songs */
 /* style sign in template */

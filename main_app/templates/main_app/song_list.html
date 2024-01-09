@@ -1,22 +1,33 @@
 {% extends 'base.html' %}
 {% block content %}
-
-
 <div class="page-container">
-    <h1>All Songs</h1>
-
-    {% for song in song_list %}
-        <div>
-            <span>{{ song.name }}</span>
-    
-            {% if request.user == song.user %}
-            <div>
-                <a href="{% url 'songs_delete' song.id %}"><button>Delete</button></a>
-            </div>
-            {% endif %}
+    <div class="category-container-div">
+        <div class="all-songs-div-a">
+            <h1 class="left-title-a">All Songs</h1>
+            {% for song in song_list %}
+                <div class="one-song-playlist">
+                    <div class="detail-each-song">
+                        <div class="song-cover">
+                            <i class="fa-solid fa-icons"></i>
+                        </div>
+                        <div class="detail-nameartist">
+                            <div class="detail-song-name">
+                                {{ song.name }}
+                            </div>
+                            <div class="detail-song-artist">
+                                {{ song.artist }}
+                            </div>
+                        </div>
+                    </div>
+                {% if request.user == song.user %}
+                <div>
+                    <a href="{% url 'songs_delete' song.id %}"><button>Delete</button></a>
+                </div>
+                {% endif %}
+                </div>
+            {% endfor %}
         </div>
-    {% endfor %}
+    </div>
 </div>
-
 
 {% endblock %}

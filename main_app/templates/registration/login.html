@@ -13,24 +13,22 @@
             <div class="sign-up-form-fields">
                 <div>
                     <label for="id_username">Username</label>
-                    <input type="text" id="id_username">
+                    <input type="text" id="id_username"  name="username">
                 </div>
 
                 <div>
                     <label for="id_password">Password</label>
-                    <input type="text" id="id_password">
+                    <input type="text" id="id_password" name="password">
                 </div>
             </div>
             
             <input type="hidden" name="next" value="{{ next }}">
             <button type="submit" class="sign-up-submit">Log In</button>
 
-            
         </form>
 
-        <hr class="sign-up-hr">
         <div class="sign-up-here">
-            Dont have an account? <a href="{% url 'signup' %}">Sign up for Melodix</a>.
+            Don't have an account? <a href="{% url 'signup' %}">Sign up for Melodix</a>.
         </div>
     </div>
 

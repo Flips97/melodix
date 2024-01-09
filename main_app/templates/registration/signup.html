@@ -10,20 +10,21 @@
         
         <form method="POST" action="{% url 'signup' %}" class="sign-up-form">
             {% csrf_token %}
+
             <div class="sign-up-form-fields">
                 <div>
                     <label for="id_username">Username</label>
-                    <input type="text" id="id_username">
+                    <input type="text" id="id_username" name="username">
                 </div>
 
                 <div>
                     <label for="id_password1">Password</label>
-                    <input type="text" id="id_password1">
+                    <input type="text" id="id_password1" name="password1">
                 </div>
 
                 <div>
-                    <label for="id_passwords">Confirm password</label>
-                    <input type="text" id="id_passwords">
+                    <label for="id_password2">Confirm password</label>
+                    <input type="text" id="id_password2" name="password2">
                 </div>
             </div>
             
