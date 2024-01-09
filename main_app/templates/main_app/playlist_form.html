@@ -86,8 +86,11 @@
                 </div>
             {% endif %}
 
+
             <div class="playlist-songs-div">
-                {% for song in songs %}
+                {% regroup songs by name.0 as songs_by_letter %}
+                {% for group in songs_by_letter|dictsort:"grouper" %}
+                {% for song in group.list %}
                 <div class="one-song-playlist">
                     <div class="detail-each-song">
                         <div class="song-cover">
@@ -112,7 +115,9 @@
                     </div>
                 </div>
                 {% endfor %}
+                {% endfor %}
             </div>
+            
         </div>
     </form>
 </div>

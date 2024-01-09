@@ -72,13 +72,17 @@
                 </div>
             </div>
             <dialog class="who-loves-this" id="who-loves-this">
-                <div>
-                    <h1>Users who like this</h1>
-                    {% for user in user_favs %}
-                        {{ user }}
-                    {% endfor %}
+                <div class="modal-detail">
+                    <h1>Users who love this</h1>
+                    {% if user_favs %}
+                        {% for user in user_favs %}
+                            <p><a href="{% url 'profile_index' user.id %}">{{ user }}</a></p>
+                        {% endfor %}
+                    {% else %}
+                        <p>No users have favorited this playlist 😞</p>
+                    {% endif %}
+                    <button id="closeModal" type="button">Close</button>
                 </div>
-                <button id="closeModal" type="button">Close</button>
             </dialog>
             
         </div>

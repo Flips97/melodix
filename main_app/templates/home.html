@@ -48,8 +48,9 @@
 
     <div class="category-container-div" id="home-songs">
         <div class="all-songs-div-a">
-            <h1 class="left-title-a">All Songs</h1>
-            {% for song in songs %}
+            {% regroup songs by name.0 as songs_by_letter %}
+            {% for group in songs_by_letter|dictsort:"grouper" %}
+            {% for song in group.list %}
                 <div class="one-song-playlist">
                     <div class="detail-each-song">
                         <div class="song-cover">
@@ -71,6 +72,7 @@
                 {% endif %}
                 </div>
             {% endfor %}
+            {% endfor %}
         </div>
     </div>
 </div>
@@ -82,8 +84,6 @@
     const showPlaylists = document.getElementById('show-playlists')
     const showSongs = document.getElementById('show-songs')
 
-
-
     showSongs.addEventListener('click', () => {
         homePlaylists.classList.remove('active');
         homeSongs.classList.add('active');
@@ -93,8 +93,6 @@
         showPlaylists.style.color = 'hsl(0, 0%, 95%)';
     });
 
-
-
     showPlaylists.addEventListener('click', () => {
         homePlaylists.classList.add('active');
         homeSongs.classList.remove('active');
@@ -103,9 +101,6 @@
         showPlaylists.style.backgroundColor = 'hsl(0, 0%, 75%)'
         showPlaylists.style.color = '#121212';
     })
-
-
-
 
 </script>
 
