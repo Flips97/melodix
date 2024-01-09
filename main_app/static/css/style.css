@@ -410,7 +410,8 @@ input[type="text"]:-webkit-autofill:active {
 
 .dropdown {
     position: absolute;
-    top: 102%; 
+    top: calc(100% + 5px);
+    right: 0;
     right: 1.5rem; 
     display: none;
     width: 10.25rem;
@@ -940,7 +941,7 @@ input[type="text"]:-webkit-autofill:active {
     justify-content: center;
     width: 100%;
     flex-grow: 1;
-    margin-top: -7rem;
+    margin-top: -5rem;
     background: linear-gradient(to bottom, var(--foreground-translucent2), var(--foreground-translucent));
     box-shadow: var(--box-shadow);
     position: relative;
@@ -953,7 +954,7 @@ input[type="text"]:-webkit-autofill:active {
     justify-content: center;
     width: 100%;
     flex-grow: 1;
-    margin-top: -4rem;
+    margin-top: -2rem;
     padding-inline: 4rem;
     background: linear-gradient(to bottom, var(--foreground-translucent2), var(--foreground-translucent));
     box-shadow: var(--box-shadow);
@@ -964,7 +965,7 @@ input[type="text"]:-webkit-autofill:active {
 .detail-menu {
     width: 100%;
     height: 3rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .detail-songs {
@@ -984,7 +985,6 @@ input[type="text"]:-webkit-autofill:active {
     border-radius: var(--border-radius);
     gap: .75rem;
 }
-
 
 .song-hover:hover {
     cursor: pointer;
@@ -1034,10 +1034,7 @@ input[type="text"]:-webkit-autofill:active {
     gap: 1.5rem;
 }
 
-.detail-ellipsis {
-    font-size: 1.5rem;
-    color: var(--copy-lighter);
-}
+
 
 .detail-favorite >  a > i:hover {
     transform: scale(1.05);
@@ -1065,10 +1062,16 @@ input[type="text"]:-webkit-autofill:active {
     transition: color 0.3s ease-in-out;
 }
 
+.detail-ellipsis {
+    font-size: 1.5rem;
+    color: var(--copy-lighter);
+    position: relative;
+}
+
 .dropdown-detail {
     position: absolute;
-    top: 5%;
-    left: 10.5%;
+    top: calc(100% + 5px);
+    left: 0;
     display: none;
     width: 10.25rem;
     height: 7.06rem;
@@ -1314,7 +1317,7 @@ hr {
 }
 
 dialog {
-    /* padding: 3rem;
+    padding: 3rem;
     background: var(--background-translucent);
     box-shadow: var(--box-shadow);
     color: var(--copy);
@@ -1322,10 +1325,15 @@ dialog {
     border-radius: var(--border-radius);
     width: 30rem;
     height: 20rem;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     align-items: center;
-    overflow-y: auto; */
+    justify-content: center; /* Center vertically */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow-y: auto;
 }
 
 dialog::backdrop {
@@ -1336,6 +1344,7 @@ dialog > div > h1 {
     font-size: 2rem;
     padding: 1rem;
 }
+
 
 .playlist-form {
     width: 100%;
@@ -1673,3 +1682,8 @@ input[type='checkbox']:checked + .custom-checkbox > div {
 /* add tooltip to name and description fields for playlist */
 /*  style confirm delete song and playlist templates */
 /* style songs search dropdown assoc song stuff */
+
+/* readme.md */
+/* clean up code */
+/* demo playlists */
+/* clean up playlists */
