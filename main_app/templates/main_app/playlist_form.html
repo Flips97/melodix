@@ -33,6 +33,53 @@
                 <div>
                     <input type="submit" value="Submit!">
                 </div>
+                <div>
+
+                    <div>
+                        <form action="{% url 'search_song' %}" method="GET" class="search-bar-div">
+                            <input type="text" name="q" id="search-song" placeholder="Search Songs">
+                        </form>
+                    </div>
+
+                    {% if query %}
+                        <div class="showing-results">
+                            <p>Showing results for "{{ query }}"</p>
+                        </div>
+                        {% if songs %}
+                            <h1 class="left-title">Songs</h1>
+                            <div class="all-playlists-div">
+                                <div class="playlist-songs-div">
+                                    {% for song in songs %}
+                                    <div class="one-song-playlist">
+                                        <div class="detail-each-song">
+                                            <div class="song-cover">
+                                                <i class="fa-solid fa-icons"></i>
+                                            </div>
+                                            <div class="detail-nameartist">
+                                                <div class="detail-song-name">
+                                                    {{ song.name }}
+                                                </div>
+                                                <div class="detail-song-artist">
+                                                    {{ song.artist}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="songs" value="{{ song.id }}" id="id_songs_{{ song.id }}" class="custom-input hidden">
+                                            <label for="id_songs_{{ song.id }}" class="custom-checkbox">
+                                                <div>
+                                                    Add
+                                                </div>  
+                                            </label>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                    {% endif %}
+                </div>
             </div>
             {% if object %}
                 <div class="songs-table-div">
@@ -77,7 +124,7 @@
                     </table>
                 </div>
             {% endif %}
-            <div class="playlist-songs-div">
+            <!-- <div class="playlist-songs-div">
                 {% for song in songs %}
                 <div class="one-song-playlist">
                     <div class="detail-each-song">
@@ -103,7 +150,7 @@
                     </div>
                 </div>
                 {% endfor %}
-            </div>
+            </div> -->
         </div>
     </form>
 </div>
