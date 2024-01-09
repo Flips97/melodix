@@ -2,16 +2,35 @@
 {% block content %}
 
 
-<div class="page-container">
-    <h1>Log In</h1>
+<div class="page-container-home">
+    <div class="sign-up">
+        <h1 class="sign-title">Log in to Melodix</h1>
 
-    <!-- Add the login form -->
-    <form method="POST" action="{% url 'login' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="hidden" name="next" value="{{ next }}">
-        <button type="submit" class="btn">Log In</button>
-    </form>
+        <p class="red-text">{{ error_message }}</p>
+        
+        <form method="POST" action="{% url 'login' %}" class="sign-up-form">
+            {% csrf_token %}
+            <div class="sign-up-form-fields">
+                <div>
+                    <label for="id_username">Username</label>
+                    <input type="text" id="id_username"  name="username">
+                </div>
+
+                <div>
+                    <label for="id_password">Password</label>
+                    <input type="text" id="id_password" name="password">
+                </div>
+            </div>
+            
+            <input type="hidden" name="next" value="{{ next }}">
+            <button type="submit" class="sign-up-submit">Log In</button>
+
+        </form>
+
+        <div class="sign-up-here">
+            Don't have an account? <a href="{% url 'signup' %}">Sign up for Melodix</a>.
+        </div>
+    </div>
 
 </div>
 

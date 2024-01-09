@@ -1,24 +1,33 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="page-container-playlist">
-    
-    <div class="all-playlists-div">
-        {% for playlist in playlists %}
-            <a href="{% url 'detail' playlist.id %}">
-                <div class="index-playlist">
-                    <div class="playlist-cover" style="background-color: {{ playlist.color }}">
-                        <i class="fa-solid fa-icons"></i>
+<div class="page-container">
+    <div class="category-container-div">
+        <h1 class="left-title">All Public Playlists</h1>
+        <div class="all-playlists-div">
+            {% for playlist in playlists %} 
+                <a href="{% url 'detail' playlist.id %}">
+                    <div class="index-playlist">
+                        <div class="playlist-cover">
+                            {% if playlist.photo_set.all %}
+                                <img src="{{ playlist.photo_set.last.url }}">
+                            {% else %}
+                                <i class="fa-solid fa-compact-disc"></i>
+                            {% endif %}
+                        </div>
+                        <div class="playlist-name">
+                            {{ playlist.name }}
+                        </div>
+                        <div class="playlist-description">
+                            {{ playlist.description }}
+                        </div>   
+                        <div class="playlist-username">
+                            {{ playlist.user }}
+                        </div>              
                     </div>
-                    <div class="playlist-name">
-                        {{ playlist.name }}
-                    </div>
-                    <div class="playlist-description">
-                        Playlist Description
-                    </div>                 
-                </div>
-            </a>
-        {% endfor %}
+                </a>
+            {% endfor %}
+        </div>
     </div>
 </div>
 

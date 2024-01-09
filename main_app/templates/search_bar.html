@@ -6,59 +6,106 @@
         <div class="showing-results">
             <p>Showing results for "{{ query }}"</p>
         </div>
-        {% if playlists %}
-            <h1 class="left-title">Public Playlists</h1>
-            <div class="all-playlists-div">
-                {% for playlist in playlists %}
-                    <a href="{% url 'detail' playlist.id %}">
-                        <div class="index-playlist">
-                            <div class="playlist-cover">
-                                {% if playlist.photo_set.all %}
-                                    <img src="{{ playlist.photo_set.last.url }}">
-                                {% else %}
-                                    <i class="fa-solid fa-compact-disc"></i>
-                                {% endif %}
+        <div class="categories">
+            {% if songs %}
+                <div class="category-container-div">
+                    <div class="all-songs-div">
+                        <h1 class="left-title">Songs</h1>
+                        {% for song in songs %}
+                            <div class="one-song-playlist">
+                                <div class="detail-each-song">
+                                    <div class="song-cover">
+                                        <i class="fa-solid fa-icons"></i>
+                                    </div>
+                                    <div class="detail-nameartist">
+                                        <div class="detail-song-name">
+                                            {{ song.name }}
+                                        </div>
+                                        <div class="detail-song-artist">
+                                            {{ song.artist }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <!-- <button class="add-song-btn" data-song-id="{{ song.id }}">Add</button> -->
+                                    <div class="playlist-dropdown" id="playlist-dropdown-{{ song.id }}">
+                                        <form method="post" action="{% url 'assoc_song' song.id %}">
+                                            {% csrf_token %}
+                                            <label for="playlist">Select Playlist:</label>
+                                            <select name="playlist" required>
+                                                <option value="" disabled selected>Select a playlist</option>
+                                                {% for playlist in user.created_playlist_set.all %}
+                                                    <option value="{{ playlist.id }}">{{ playlist.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                            <button type="submit">Associate Song</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="playlist-name">
-                                {{ playlist.name }}
-                            </div>
-                            <div class="playlist-description">
-                                {{ playlist.description}}
-                            </div>            
-                            <div class="playlist-username">
-                                {{ playlist.user }}
-                            </div>       
-                        </div>
-                    </a>
-                {% endfor %}
-            </div>
-        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if playlists %}
+                <div class="category-container-div">
+                    <h1 class="left-title">Public Playlists</h1>
+                    <div class="all-playlists-div">
+                        {% for playlist in playlists %}
+                            <a href="{% url 'detail' playlist.id %}">
+                                <div class="index-playlist">
+                                    <div class="playlist-cover">
+                                        {% if playlist.photo_set.all %}
+                                            <img src="{{ playlist.photo_set.last.url }}">
+                                        {% else %}
+                                            <i class="fa-solid fa-compact-disc"></i>
+                                        {% endif %}
+                                    </div>
+                                    <div class="playlist-name">
+                                        {{ playlist.name }}
+                                    </div>
+                                    <div class="playlist-description">
+                                        {{ playlist.description}}
+                                    </div>            
+                                    <div class="playlist-username">
+                                        {{ playlist.user }}
+                                    </div>       
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
 
 
-        {% if users %}
-            <h1 class="left-title">Public Profiles</h1>
-            <div class="all-playlists-div">
-                {% for user in users %}
-                    <a href="{% url 'profile_index' user.id %}">
-                        <div class="index-playlist">
-                            <div class="playlist-cover">
-                                {% if user.photo_set.all %}
-                                    <img src="{{ user.photo_set.last.url }}">
-                                {% else %}
-                                <i class="fa-solid fa-user"></i>
-                                {% endif %}
-                            </div>
-                            <div class="playlist-name">
-                                {{ user.username }}
-                            </div>  
-                            <div class="playlist-description">
-                                {{ user.created_playlist_set.all|length }} Public Playlist{% if user.created_playlist_set.all|length != 1 %}s{% endif %}
-                            </div>
-                        </div>
-                    </a>
-                {% endfor %}
-            </div>
-        {% endif %}
+            {% if users %}
+                <div class="category-container-div">
+                    <h1 class="left-title">Public Profiles</h1>
+                    <div class="all-playlists-div">
+                        {% for user in users %}
+                            <a href="{% url 'profile_index' user.id %}">
+                                <div class="index-playlist">
+                                    <div class="playlist-cover">
+                                        {% if user.photo_set.all %}
+                                            <img src="{{ user.photo_set.last.url }}">
+                                        {% else %}
+                                        <i class="fa-solid fa-user"></i>
+                                        {% endif %}
+                                    </div>
+                                    <div class="playlist-name">
+                                        {{ user.username }}
+                                    </div>  
+                                    <div class="playlist-description">
+                                        {{ user.created_playlist_set.all|length }} Public Playlist{% if user.created_playlist_set.all|length != 1 %}s{% endif %}
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
     {% else %}
         <div class="basic">
             <span>Enter a search term above.</span>
@@ -94,4 +141,18 @@
     {% endif %}
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var addButtons = document.querySelectorAll('.add-song-btn');
+
+        addButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var songId = this.getAttribute('data-song-id');
+                var dropdown = document.getElementById('playlist-dropdown-' + songId);
+                dropdown.style.display = (dropdown.style.display === 'none' || dropdown.style.display === '') ? 'block' : 'none';
+            });
+        });
+    });
+
+</script>
 {% endblock %}
