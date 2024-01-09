@@ -14,6 +14,7 @@ from .models import Playlist, Song, User, Photo
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from .forms import PlaylistForm
+from django.http import HttpResponseRedirect
 
 
 # Create your views here.
@@ -45,6 +46,34 @@ def playlists_detail(request, playlist_id):
         'user_favs' : user_favs,
         'last_photo' : last_photo
     })
+
+# class PlaylistCreate(LoginRequiredMixin, CreateView):
+#     model = Playlist
+#     fields = ['name', 'description', 'songs']
+
+#     def form_valid(self, form):
+#         form.instance.user = self.request.user
+#         result = super().form_valid(form)
+#         # playlist = form.save(commit=False)
+#         # playlist.save()
+#         print("This is my newly created instance", self.object.pk)
+#         return result
+    
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['songs'] = Song.objects.all()
+#         context['playlist_form'] = PlaylistForm()
+#         return context
+
+# class PlaylistUpdate(LoginRequiredMixin, UpdateView):
+#     model = Playlist
+#     fields = ['name', 'description', 'songs']
+
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['songs'] = Song.objects.all()
+#         context['playlist_form'] = PlaylistForm()
+#         return context
 
 class PlaylistCreate(LoginRequiredMixin, CreateView):
     model = Playlist
@@ -94,10 +123,28 @@ class SongDelete(LoginRequiredMixin, DeleteView):
     model = Song
     success_url = '/songs'
 
-@login_required
-def assoc_song(request, playlist_id, song_id):
-  Playlist.objects.get(id=playlist_id).songs.add(song_id)
-  return redirect('detail', playlist_id=playlist_id)
+# @login_required
+# def assoc_song(request, playlist_id, song_id):
+#     Playlist.objects.get(id=playlist_id).songs.add(song_id)
+#     return redirect('detail', playlist_id=playlist_id)
+    
+def assoc_song(request, song_id):
+    playlists = Playlist.objects.filter(user=request.user)
+    
+    if request.method == 'POST':
+        playlist_id = request.POST.get('playlist')
+        if playlist_id:
+            playlist = Playlist.objects.get(id=playlist_id)
+            song = Song.objects.get(id=song_id)
+            playlist.songs.add(song)
+            return redirect('detail', playlist_id=playlist_id)
+
+    context = {
+        'playlists': playlists,
+        'song_id': song_id,
+    }
+
+    return render(request, 'associate_song.html', context)
 
 @login_required
 def unassoc_song(request, playlist_id, song_id):
@@ -125,6 +172,9 @@ def unfav_playlist(request, user_id, playlist_id):
 
 def search_view(request):
    query = request.GET.get('q', '')
+   songs = Song.objects.filter(
+       Q(name__icontains=query)
+   )
    playlists = Playlist.objects.filter(
       Q(name__icontains=query)
    )
@@ -133,22 +183,26 @@ def search_view(request):
    )
 
    return render(request, 'search_bar.html', {
+       'songs': songs,
       'playlists': playlists,
       'users': users,
        'query': query  
    })
 
-
 def songs_search(request):
-   query = request.GET.get('q', '')
-   songs = Song.objects.filter(
-      Q(name__icontains=query)
-   )
+    query = request.GET.get('q', '')
+    songs = Song.objects.filter(
+        Q(name__icontains=query)
+    )
+    playlists = Playlist.objects.filter(user=request.user)
 
-   return render(request, 'playlist_form.html', {
-      'songs': songs,
-       'query': query  
-})
+    context = {
+        'query': query,
+        'songs': songs,
+        'playlists': playlists,
+    }
+
+    return render(request, 'main_app/playlist_form.html', context)
 
 def search_bar(request):
     return render(request, 'search_bar.html')

@@ -2,8 +2,6 @@
 {% block content %}
 
 <div class="page-container-home">
-
-
     <form action="" method="POST" class="playlist-form" id="playlist-form">
         {% csrf_token %}
         <div class="detail-things">
@@ -35,12 +33,12 @@
                 <div>
                     <input type="submit" value="Submit!">
                 </div>
-                <div>
-
-                    <div>
-        
+                {% if query %}
+                    <div class="showing-results">
+                        <p>Showing results for "{{ query }}"</p>
                     </div>
-
+                {% endif %}
+                <div>
                     
                 </div>
             </div>
@@ -87,7 +85,8 @@
                     </table>
                 </div>
             {% endif %}
-            <!-- <div class="playlist-songs-div">
+
+            <div class="playlist-songs-div">
                 {% for song in songs %}
                 <div class="one-song-playlist">
                     <div class="detail-each-song">
@@ -113,22 +112,9 @@
                     </div>
                 </div>
                 {% endfor %}
-            </div> -->
+            </div>
         </div>
     </form>
-
-    <form action="{% url 'songs_search' %}" method="GET" class="search-bar-div">
-        {% csrf_token %}
-        <input type="text" name="q" id="search-song" placeholder="Search Songs">
-        <button type="submit">search</button>
-    </form>
-
-  
-    <p style="color: white;">Showing results for "{{ query }}"</p>
-        
-
-
-
 </div>
 
 <script>
