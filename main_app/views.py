@@ -63,6 +63,18 @@ class PlaylistCreate(LoginRequiredMixin, CreateView):
         context['songs'] = Song.objects.all()
         context['playlist_form'] = PlaylistForm()
         return context
+    
+    def search_song(request):
+        query = request.GET.get('q', '')
+        song = Song.objects.filter(
+            Q(name__icontains=query)
+        )
+        return render(request, 'playlists_create', {
+           'song': song
+        }
+    )
+
+       
 
 
 class PlaylistUpdate(LoginRequiredMixin, UpdateView):
