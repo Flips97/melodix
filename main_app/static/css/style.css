@@ -100,31 +100,6 @@ li {
     color: var(--copy-light);
 }
 
-
-/* .lib-nav-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    color: var(--copy-light);
-    background-color: var(--foreground);
-    width: 15rem;
-    border-top-right-radius: var(--border-radius);
-    border-top-left-radius: var(--border-radius);
-} */
-
-/* .lib-nav-create-playlist,
-.lib-nav-find-playlists {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 1rem;
-    background-color: var(--border-translucent);
-    border-radius: var(--border-radius);
-    margin: .5rem;
-    height: 7.5rem;
-} */
-
 .lib-nav-create-playlist {
     margin-top: 4rem;
 }
@@ -284,10 +259,7 @@ li {
     padding-inline: 1.5rem;
     padding-top: 1rem;
     background-color: var(--foreground);
-    /* top: 0;
-    left: 17rem; */
     width: 100%;
-    /* width: calc(100vw - 17.5rem); */
     z-index: 9999;
     position: fixed;
     box-shadow: var(--box-shadow);
@@ -519,7 +491,6 @@ input[type="text"]:-webkit-autofill:active {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    /* height: calc(100vh - 1rem); */
     background: linear-gradient(to bottom, var(--foreground-translucent2), var(--foreground));
     flex-grow: auto;
 }
@@ -1302,7 +1273,6 @@ dialog > div > h1 {
 }
 
 .playlist-form-tagline {
-    /* margin-top: -2.5rem; */
     display: flex;
     align-items: flex-end;
 }
@@ -1610,8 +1580,6 @@ input[type='checkbox']:checked + .custom-checkbox > div {
     width: fit-content;
 }
 
-
-
 .left-title-a {
     padding-bottom: 1rem;
     width: 100%;
@@ -1798,14 +1766,6 @@ input[type='checkbox']:checked + .custom-checkbox > div {
     background-color: var(--copy-lighter);
 }
 
-
-
-
-/* put all this in a media query for small screen sizes */
-/* then bottom navbar for phones */
-
-
-
 .navbar {
     position: fixed;
     background-color: var(--foreground);
@@ -1952,6 +1912,9 @@ input[type='checkbox']:checked + .custom-checkbox > div {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .letter-buttons {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 /* medium screens */
@@ -1997,6 +1960,10 @@ input[type='checkbox']:checked + .custom-checkbox > div {
 
     .all-playlists-div {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .letter-buttons {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
