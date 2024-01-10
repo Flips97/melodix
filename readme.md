@@ -30,6 +30,10 @@ All Songs
 - **HTML, CSS, JavaScript:** Frontend technologies for a responsive user interface.
 - **Heroku:** Cloud platform for deploying the app online.
 
+## Ice box features
+- **Spotify API:** Implement Spotify's library and playback functions to our app.
+- **Song Recommendations** Recommend songs to other users.
+
 ## Team Roles
 - **Front end:** [Melanie Winters]
 - **GitHub Manager:** [Josh Remington]
