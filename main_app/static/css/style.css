@@ -1908,6 +1908,10 @@ input[type='checkbox']:checked + .custom-checkbox > div {
         grid-template-columns: 1fr; 
     }
 
+    .all-songs-div-a {
+        grid-template-columns: 1fr;
+    }
+
     .all-playlists-div {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1956,6 +1960,10 @@ input[type='checkbox']:checked + .custom-checkbox > div {
 
     .all-songs-div-b {
         grid-template-columns: 1fr; 
+    }
+
+    .all-songs-div-a {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .all-playlists-div {
