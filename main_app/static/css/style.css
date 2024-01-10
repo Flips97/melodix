@@ -155,6 +155,10 @@ li {
     height: 7.5rem;
 }
 
+.lib-nav-create-playlist {
+    margin-top: 4rem;
+}
+
 .lib-nav-find-playlists {
     height: 8.35rem;
 }
@@ -901,7 +905,7 @@ input[type="text"]:-webkit-autofill:active {
 .detail-playlist-name {
     font-size: 5rem;
     font-weight: 800;
-    max-width: 35rem; 
+    max-width: 40rem; 
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
