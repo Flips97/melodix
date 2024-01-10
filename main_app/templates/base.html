@@ -11,71 +11,97 @@
 </head>
 <body>
     <header>
-        <nav class="top-nav">
-            <div>
-                <a href="/" title="Home" class="nav-logo">
-                <i class="fa-solid fa-circle-play"></i>
-                Melodix
-            </a></div>
-            <div class="nav-home"><a href="/" title="Home">
-                <i class="fa-solid fa-house"></i> Home
-            </a></div>
-            <div class="nav-search"><a href="/search_bar">
-                <i class="fa-solid fa-magnifying-glass"></i> Search
-            </a></div>
+
+
+        <nav class="navbar">
+            <ul class="navbar-nav">
+                <li class="logo">
+                    <a href="/" title="Melodix" class="nav-link">
+                        <i class="fa-solid fa-circle-play"></i>
+                        <span class="link-text">Melodix</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/search_bar" title="Search" class="nav-link">
+                        <i class="fa-solid fa-magnifying-glass"></i> 
+                        <span class="link-text">Search</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'index' %}" class="nav-link">
+                        <i class="fa-solid fa-compact-disc"></i>
+                        <span class="link-text">Browse playlists</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'songs_index' %}" class="nav-link">
+                        <i class="fa-solid fa-music"></i>
+                        <span class="link-text">Browse songs</span>
+                    </a>
+                </li>                
+                <li class="nav-item">
+                    <a href="{% url 'playlists_create' %}" title="Add a playlist" class="nav-link">
+                        <i class="fa-solid fa-icons"></i>
+                        <span class="link-text">Add a playlist</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'songs_create' %}" title="Add a song" class="nav-link">
+                        <i class="fa-solid fa-file-audio"></i>
+                        <span class="link-text">Add a song</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/" title="Home" class="nav-link">
+                        <i class="fa-solid fa-house"></i>
+                        <span class="link-text">Home</span>
+                    </a>
+                </li>
+            </ul>
         </nav>
-        <aside class="library-nav">
-            <div class="lib-nav-header">
-                <div class="lib-nav-your-div">
-                    <i class="fa-solid fa-lines-leaning"></i>
-                    Your Library
+
+        <div class="nav-wrapper">
+            <nav class="top-nav">
+                <div>
+                    <a href="/" title="Home" class="nav-logo">
+                    <i class="fa-solid fa-circle-play"></i>
+                    Melodix
+                </a></div>
+                <div class="nav-home"><a href="/" title="Home">
+                    <i class="fa-solid fa-house"></i> Home
+                </a></div>
+                <div class="nav-search"><a href="/search_bar">
+                    <i class="fa-solid fa-magnifying-glass"></i> Search
+                </a></div>
+            </nav>
+            <aside class="library-nav">
+                <div class="lib-nav-header">
+                    <div class="lib-nav-your-div">
+                        <i class="fa-solid fa-lines-leaning"></i>
+                        Your Library
+                    </div>
+                    <div class="lib-nav-new" id="add-new-btn">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
                 </div>
-                <div class="lib-nav-new" id="add-new-btn">
-                    <i class="fa-solid fa-plus"></i>
+                <div class="dropdown-add" id="dropdown-add">
+                    <a href="{% url 'playlists_create' %}">
+                        <button class="paylist-btn">Add A Playlist</button>
+                    </a>
+                    <a href="{% url 'songs_create' %}">
+                        <button>Add A Song</button>
+                    </a>
                 </div>
-            </div>
-            <div class="dropdown-add" id="dropdown-add">
-                <a href="{% url 'playlists_create' %}">
-                    <button class="paylist-btn">Add A Playlist</button>
-                </a>
-                <a href="{% url 'songs_create' %}">
-                    <button>Add A Song</button>
-                </a>
-            </div>
-            {% if user.is_authenticated %}
-                <div class="base-playlists-div-one">
-                    {% for playlist in user.created_playlist_set.all %}
-                        <a href="{% url 'detail' playlist.id %}">
-                            <div class="base-playlist{% if playlist.id == playlist_id %} active-a{% endif %}">
-                                <div class="base-playlist-cover">
-                                    {% if playlist.photo_set.all %}
-                                        <img src="{{ playlist.photo_set.last.url }}">
-                                    {% else %}
-                                        <i class="fa-solid fa-compact-disc"></i>
-                                    {% endif %}
-                                </div>
-                                <div class="base-playlist-nameuser">
-                                    <div class="base-playlist-name">
-                                        {{ playlist.name }}
-                                    </div>
-                                    <div class="base-playlist-user">
-                                        {{ playlist.user.username }}
-                                    </div> 
-                                </div>
-                            </div>
-                        </a>
-                    {% endfor %}
-                </div>            
-                <div class="base-playlists-div-two">
-                    {% for playlist in user.playlist_set.all %}
-                        <a href="{% url 'detail' playlist.id %}">
-                            <div class="base-playlist{% if playlist.id == playlist_id %} active-a{% endif %} two-a">
-                                <div class="base-playlist-left">
+                {% if user.is_authenticated %}
+                    <div class="base-playlists-div-one">
+                        {% for playlist in user.created_playlist_set.all %}
+                            <a href="{% url 'detail' playlist.id %}">
+                                <div class="base-playlist{% if playlist.id == playlist_id %} active-a{% endif %}">
                                     <div class="base-playlist-cover">
                                         {% if playlist.photo_set.all %}
                                             <img src="{{ playlist.photo_set.last.url }}">
                                         {% else %}
-                                            <i class="fa-solid fa-heart"></i>
+                                            <i class="fa-solid fa-compact-disc"></i>
                                         {% endif %}
                                     </div>
                                     <div class="base-playlist-nameuser">
@@ -87,52 +113,77 @@
                                         </div> 
                                     </div>
                                 </div>
-                                <div class="base-playlist-heart">
-                                    <i class="fa-solid fa-heart"></i>
+                            </a>
+                        {% endfor %}
+                    </div>            
+                    <div class="base-playlists-div-two">
+                        {% for playlist in user.playlist_set.all %}
+                            <a href="{% url 'detail' playlist.id %}">
+                                <div class="base-playlist{% if playlist.id == playlist_id %} active-a{% endif %} two-a">
+                                    <div class="base-playlist-left">
+                                        <div class="base-playlist-cover">
+                                            {% if playlist.photo_set.all %}
+                                                <img src="{{ playlist.photo_set.last.url }}">
+                                            {% else %}
+                                                <i class="fa-solid fa-heart"></i>
+                                            {% endif %}
+                                        </div>
+                                        <div class="base-playlist-nameuser">
+                                            <div class="base-playlist-name">
+                                                {{ playlist.name }}
+                                            </div>
+                                            <div class="base-playlist-user">
+                                                {{ playlist.user.username }}
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div class="base-playlist-heart">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="lib-nav-create-playlist">
+                        <div>
+                            <p class="lib-nav-p-bold">Create your first playlist</p>
+                            <p class="lib-nav-p-light">It's easy, we'll help you</p>
+                        </div>
+                        <a href="{% url 'playlists_create' %}">
+                            <button>Create Playlist</button>
                         </a>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <div class="lib-nav-create-playlist">
-                    <div>
-                        <p class="lib-nav-p-bold">Create your first playlist</p>
-                        <p class="lib-nav-p-light">It's easy, we'll help you</p>
                     </div>
-                    <a href="{% url 'playlists_create' %}">
-                        <button>Create Playlist</button>
-                    </a>
-                </div>
-                <div class="lib-nav-find-playlists">
-                    <div>
-                        <p class="lib-nav-p-bold">Let's find some playlists to like</p>
-                        <p class="lib-nav-p-light">We'll keep you updated when new songs are added</p>
+                    <div class="lib-nav-find-playlists">
+                        <div>
+                            <p class="lib-nav-p-bold">Let's find some playlists to like</p>
+                            <p class="lib-nav-p-light">We'll keep you updated when new songs are added</p>
+                        </div>
+                        <a href="{% url 'index' %}"><button>Browse Playlists</button></a>
                     </div>
-                    <a href="{% url 'index' %}"><button>Browse Playlists</button></a>
-                </div>
-                <div class="lib-nav-find-playlists">
-                    <div>
-                        <p class="lib-nav-p-bold">Add some songs to the database</p>
-                        <p class="lib-nav-p-light">It's fast and easy</p>
+                    <div class="lib-nav-find-playlists">
+                        <div>
+                            <p class="lib-nav-p-bold">Add some songs to the database</p>
+                            <p class="lib-nav-p-light">It's fast and easy</p>
+                        </div>
+                        <a href="{% url 'songs_create' %}">
+                            <button>Add A Song</button>
+                        </a>
                     </div>
-                    <a href="{% url 'songs_create' %}">
-                        <button>Add A Song</button>
-                    </a>
-                </div>
-                <div class="lib-nav-find-playlists">
-                    <div>
-                        <p class="lib-nav-p-bold">Let's find some songs you like</p>
-                        <p class="lib-nav-p-light">Check out a full list of songs</p>
+                    <div class="lib-nav-find-playlists">
+                        <div>
+                            <p class="lib-nav-p-bold">Let's find some songs you like</p>
+                            <p class="lib-nav-p-light">Check out a full list of songs</p>
+                        </div>
+                        <a href="{% url 'songs_index' %}">
+                            <button>Browse Songs</button>
+                        </a>
                     </div>
-                    <a href="{% url 'songs_index' %}">
-                        <button>Browse Songs</button>
-                    </a>
-                </div>
-            {% endif %}
-        </aside>
+                {% endif %}
+            </aside>
+        </div>
     </header>
-    <main class="main-container">
+    <main>
         <div class="top-fixed translucent" id="top-fixed">
             <div class="top-fixed-left">
                 <div class="backforth-buttons">
