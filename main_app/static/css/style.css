@@ -577,7 +577,6 @@ input[type="text"]:-webkit-autofill:active {
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex-grow: 1 1;
     width: 100%;
     background: linear-gradient(to bottom, var(--foreground-translucent2), var(--foreground));
     flex-grow: 1;
@@ -587,8 +586,9 @@ input[type="text"]:-webkit-autofill:active {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
-    padding: 1rem;
-    width: fit-content;
+    padding-block: 1rem;
+    padding-inline: 12rem;
+    width: 100%;
 }
 
 .index-playlist {
@@ -714,11 +714,6 @@ input[type="text"]:-webkit-autofill:active {
     bottom: 30%;
     left: 11%;
 }
-
-/* .disabled {
-    opacity: 0.2;
-    cursor: not-allowed;
-} */
 
 .back-btn:hover,
 .forward-btn:hover {
@@ -921,7 +916,7 @@ input[type="text"]:-webkit-autofill:active {
     color: var(--copy-light);
     padding-inline: .5rem;
     max-width: 35rem; 
-    max-height: 2rem;
+    max-height: 3rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: wrap;
@@ -1167,6 +1162,7 @@ input[type="text"]:-webkit-autofill:active {
 .songs-table-div {
     width: min(900px, 100% - 5rem);
     margin-inline: auto;
+    margin-top: 1rem;
 }
 
 .songs-table {
@@ -1447,10 +1443,22 @@ dialog > div > h1 {
     border-bottom: 1px solid var(--copy-light);
     font-size: 3.5rem;
     font-weight: 800;
-    max-width: 35rem; 
+    width: 35rem; 
     position: relative;
     padding: 1rem;
     color: var(--copy);
+}
+
+.playlist-form-tagline > input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--copy-light);
+    font-size: .85rem;
+    font-weight: 300;
+    width: 35rem; 
+    position: relative;
+    padding: 1rem;
+    color: var(--copy-lighter);
 }
 
 .playlist-form-name > i,
@@ -1534,8 +1542,9 @@ input[type='checkbox']:checked + .custom-checkbox > div {
 
 .left-title {
     width: 100%;
-    padding-inline: 1.25rem;
-    margin-top: 1.5rem;
+    padding-inline: 2rem;
+    margin-left: 1rem;
+    margin-top: 2rem;
     font-size: 1.5rem;
     font-weight: 600;
 }
@@ -1553,6 +1562,12 @@ input[type='checkbox']:checked + .custom-checkbox > div {
     font-size: 2.5rem;
     font-weight: 700;
     width: 18rem;
+}
+
+.delete-playlist {
+    font-size: 2.5rem;
+    font-weight: 700;
+    width: fit-content;
 }
 
 .sign-up-form-fields {
@@ -1622,7 +1637,7 @@ input[type='checkbox']:checked + .custom-checkbox > div {
 
 .sign-up-submit {
     border-radius: 100px;
-    background-color: var(--primary);
+    background-color: var(--primary-dark);
     color: var(--background);
     border: none;
     width: 18rem;
@@ -1630,6 +1645,13 @@ input[type='checkbox']:checked + .custom-checkbox > div {
     margin: 0 auto;
     font-size: .95rem;
     font-weight: 600;
+}
+
+.sign-up-submit:hover,
+.cancel-button:hover {
+    cursor: pointer;
+    background-color: var(--primary-light);
+    color: var(--background);
 }
 
 .log-in-here {
@@ -1657,6 +1679,14 @@ input[type='checkbox']:checked + .custom-checkbox > div {
 .all-songs-div-a {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+    width: fit-content;
+}
+
+.all-songs-div-b {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
     padding: 1rem;
     width: fit-content;
@@ -1701,6 +1731,7 @@ input[type='checkbox']:checked + .custom-checkbox > div {
 .filter-buttons > button:active {
     transform: scale(0.9);
     transition: transform 0.3s ease;
+    color: var(--background);
 }
 
 #home-songs,
@@ -1717,13 +1748,107 @@ input[type='checkbox']:checked + .custom-checkbox > div {
     margin-top: 2rem;
 }
 
+.detail-submit {
+    margin-block: 1rem;
+    width: 4rem;
+    height: 2rem;
+    border-radius: 100px;
+    background-color: transparent;
+    display: grid;
+    place-items: center;
+    font-size: .75rem;
+    cursor: pointer;
+    border: 1px solid var(--copy-light);
+    color: var(--copy);
+}
 
-/* style details page */
-/* add tooltip to name and description fields for playlist */
-/*  style confirm delete song and playlist templates */
-/* style songs search dropdown assoc song stuff */
+.detail-submit:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+    border: 2px solid var(--copy-light);
+}
 
-/* readme.md */
-/* clean up code */
-/* demo playlists */
-/* clean up playlists */
+.detail-submit:active {
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+    color: var(--background);
+}
+
+.delete {
+    margin-top: 3rem;
+    padding-block: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 25rem;
+}
+
+.are-you-sure {
+    padding-block: 1rem;
+    color: var(--copy-lighter);
+    width: 15rem;
+}
+
+.cancel-button {
+    display: grid;
+    place-items: center;
+    margin-top: 1rem;
+    border-radius: 100px;
+    background-color: var(--primary-dark);
+    color: var(--background);
+    border: none;
+    width: 18rem;
+    height: 2.5rem;
+    font-size: .95rem;
+    font-weight: 600;
+    padding: .5rem 2rem;
+}
+
+.playlist-select {
+    border: none;
+    background-color: var(--border-translucent);
+    height: 2.5rem;
+    width: 10rem;
+    padding-inline: .5rem;
+    font-size: .75rem;
+    color: var(--copy-light);
+}
+
+.playlist-select-btn {
+    border: none;
+    background-color: var(--border-translucent);
+    height: 2.5rem;
+    width: 2.5rem;
+    padding-inline: .5rem;
+    font-size: 1rem;
+    color: var(--copy-light);
+    display: grid;
+    place-items: center;
+}
+
+.playlist-select-btn:hover,
+.playlist-select:hover {
+    background-color: var(--border);
+    cursor: pointer;
+    color: var(--copy);
+    transform: scale(1.03);
+    transition: transform 0.1s ease;
+}
+
+.playlist-select-btn:focus,
+.playlist-select:focus {
+    outline: 2px solid var(--copy);
+}
+
+.playlist-select-btn:active,
+.playlist-select:active {
+    transform: scale(.9);
+    transition: transform 0.1s ease;
+}
+
+.formsicle {
+    display: flex;
+    gap: .5rem;
+}
