@@ -11,7 +11,60 @@
 </head>
 <body>
     <header>
-        <nav class="top-nav">
+
+
+        <nav class="navbar">
+            <ul class="navbar-nav">
+                <li class="logo">
+                    <a href="/" title="Melodix" class="nav-link">
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512">
+                        <path d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z"/>
+                        </svg> -->
+                        <i class="fa-solid fa-circle-play"></i>
+                        <span class="link-text">Melodix</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/" title="Home" class="nav-link">
+                        <i class="fa-solid fa-house"></i>
+                        <span class="link-text">Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/search_bar" title="Search" class="nav-link">
+                        <i class="fa-solid fa-magnifying-glass"></i> 
+                        <span class="link-text">Search</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'index' %}" class="nav-link">
+                        <i class="fa-solid fa-compact-disc"></i>
+                        <span class="link-text">Browse playlists</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'songs_index' %}" class="nav-link">
+                        <i class="fa-solid fa-music"></i>
+                        <span class="link-text">Browse songs</span>
+                    </a>
+                </li>                
+                <li class="nav-item">
+                    <a href="{% url 'playlists_create' %}" title="Add a playlist" class="nav-link">
+                        <i class="fa-solid fa-icons"></i>
+                        <span class="link-text">Add a playlist</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'songs_create' %}" title="Add a song" class="nav-link">
+                        <i class="fa-solid fa-file-audio"></i>
+                        <span class="link-text">Add a song</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+ 
+        <!-- <nav class="top-nav">
             <div>
                 <a href="/" title="Home" class="nav-logo">
                 <i class="fa-solid fa-circle-play"></i>
@@ -23,8 +76,8 @@
             <div class="nav-search"><a href="/search_bar">
                 <i class="fa-solid fa-magnifying-glass"></i> Search
             </a></div>
-        </nav>
-        <aside class="library-nav">
+        </nav> -->
+        <!-- <aside class="library-nav">
             <div class="lib-nav-header">
                 <div class="lib-nav-your-div">
                     <i class="fa-solid fa-lines-leaning"></i>
@@ -130,9 +183,10 @@
                     </a>
                 </div>
             {% endif %}
-        </aside>
+        </aside> -->
     </header>
-    <main class="main-container">
+    <main>
+    <!-- <main class="main-container"> -->
         <div class="top-fixed translucent" id="top-fixed">
             <div class="top-fixed-left">
                 <div class="backforth-buttons">
