@@ -35,7 +35,7 @@ All Songs
 - **Song Recommendations** Recommend songs to other users.
 
 ## Team Roles
-- **Front end:** [Melanie Winters]
+- **Front end:** [Melanie Winter]
 - **GitHub Manager:** [Josh Remington]
 - **Back end:** [Josh Remington, Felipe Turen]
 - **Designer:** [Melanie Winter/Spotify design team]
