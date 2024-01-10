@@ -18,12 +18,12 @@
             <div class="detail-things-2">
                 <div class="user-title-photo">
                     <div class="playlist-form-name">
-                        {{ form.name }}
+                        <input type="text" name="name" id="id_name" placeholder="Playlist title">
                         <i class="fa-solid fa-pencil"></i>
                     </div>
                 </div>
                 <div class="playlist-form-tagline">
-                    {{ form.description }}
+                    <input type="text" name="description" id="id_description" placeholder="Playlist description">
                     <i class="fa-solid fa-pencil"></i>
                 </div>
             </div>
@@ -31,7 +31,7 @@
         <div class="detail-main">
             <div class="detail-menu">
                 <div>
-                    <input type="submit" value="Submit!">
+                    <input type="submit" value="Submit!" class="detail-submit">
                 </div>
                 {% if query %}
                     <div class="showing-results">

@@ -9,8 +9,8 @@
         <div class="categories">
             {% if songs %}
                 <div class="category-container-div">
-                    <div class="all-songs-div">
-                        <h1 class="left-title">Songs</h1>
+                    <h1 class="left-title">Songs</h1>
+                    <div class="all-songs-div-b">
                         {% for song in songs %}
                             <div class="one-song-playlist">
                                 <div class="detail-each-song">
@@ -27,18 +27,19 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <!-- <button class="add-song-btn" data-song-id="{{ song.id }}">Add</button> -->
                                     <div class="playlist-dropdown" id="playlist-dropdown-{{ song.id }}">
-                                        <form method="post" action="{% url 'assoc_song' song.id %}">
+                                        <form method="post" action="{% url 'assoc_song' song.id %}" class="formsicle">
                                             {% csrf_token %}
-                                            <label for="playlist">Select Playlist:</label>
-                                            <select name="playlist" required>
+                                            <!-- <label for="playlist">Select Playlist:</label> -->
+                                            <select name="playlist" required class="playlist-select">
                                                 <option value="" disabled selected>Select a playlist</option>
                                                 {% for playlist in user.created_playlist_set.all %}
                                                     <option value="{{ playlist.id }}">{{ playlist.name }}</option>
                                                 {% endfor %}
                                             </select>
-                                            <button type="submit">Associate Song</button>
+                                            <button type="submit" class="playlist-select-btn">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </button>
                                         </form>
                                     </div>
                                 </div>
