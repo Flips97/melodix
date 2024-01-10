@@ -100,9 +100,7 @@ li {
     color: var(--copy-light);
 }
 
-.lib-nav-create-playlist {
-    margin-top: 4rem;
-}
+
 
 .lib-nav-find-playlists {
     height: 8.35rem;
@@ -1875,6 +1873,18 @@ input[type='checkbox']:checked + .custom-checkbox > div {
     flex-grow: 1;
 }
 
+.lib-nav-create-playlist,
+.lib-nav-find-playlists {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: var(--border-translucent);
+    border-radius: var(--border-radius);
+    margin: .5rem;
+    height: 7.5rem;
+}
+
 
 /* small screens */
 @media only screen and (max-width: 600px) {
@@ -2057,6 +2067,10 @@ input[type='checkbox']:checked + .custom-checkbox > div {
         border-radius: var(--border-radius);
         margin: .5rem;
         height: 7.5rem;
+    }
+
+    .lib-nav-create-playlist {
+        margin-top: 4rem;
     }
 
     .base-playlists-div-one {
