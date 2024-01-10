@@ -56,7 +56,9 @@ body {
     background-color: var(--background);
     color: var(--copy);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    /* overflow: hidden; */
+    width: 100vw;
+    height: 100dvh;
+    overflow-x: hidden;
 }
 
 a {
@@ -66,23 +68,6 @@ a {
 
 li {
     list-style: none;
-}
-
-.top-nav {
-    background-color: var(--foreground);
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 16rem;
-    height: 9rem;
-    padding: 1.5rem;
-    margin: .5rem;
-    border-radius: var(--border-radius);
-    font-size: .85rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1.2rem;
 }
 
 .nav-home > a,
@@ -115,24 +100,8 @@ li {
     color: var(--copy-light);
 }
 
-.library-nav {
-    overflow-y: auto;
-    scrollbar-gutter: stable;
-    background-color: var(--foreground);
-    position: fixed;
-    left: 0;
-    top: 9.5rem;
-    width: 16rem;
-    height: calc(100vh - 10.5rem);
-    margin: .5rem;
-    border-radius: var(--border-radius);
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-}
 
-.lib-nav-header {
-    position: fixed;
+/* .lib-nav-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -142,9 +111,9 @@ li {
     width: 15rem;
     border-top-right-radius: var(--border-radius);
     border-top-left-radius: var(--border-radius);
-}
+} */
 
-.lib-nav-create-playlist,
+/* .lib-nav-create-playlist,
 .lib-nav-find-playlists {
     display: flex;
     flex-direction: column;
@@ -154,7 +123,7 @@ li {
     border-radius: var(--border-radius);
     margin: .5rem;
     height: 7.5rem;
-}
+} */
 
 .lib-nav-create-playlist {
     margin-top: 4rem;
@@ -172,7 +141,7 @@ li {
 }
 
 .lib-nav-your-div {
-    display: flex;
+    display: none;
     gap: 1rem;
     padding-left: .65rem;
     padding-right: .5rem;
@@ -211,36 +180,13 @@ li {
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 100px;
-    display: grid;
+    display: none;
     place-items: center;
 }
 
 .lib-nav-new:hover {
     cursor: pointer;
     background-color: var(--border-translucent2);
-}
-
-/* .base-playlists-div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: .5rem;
-} */
-
-.base-playlists-div-one {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: .5rem;
-    padding-top: 4rem;
-}
-
-.base-playlists-div-two {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: .5rem;
-    padding-bottom: 4rem;
 }
 
 .base-playlist {
@@ -327,20 +273,6 @@ li {
 
 .base-playlist-heart {
     color: var(--primary);
-}
-
-.main-container {
-    background-color: var(--foreground);
-
-    /* position: fixed;
-    left: 16.5rem;
-    top: 0; */
-    width: 100%;
-    /* width: calc(100vw - 17.5rem); */
-    /* height: calc(100vh - 1rem); */
-    margin: .5rem;
-    border-radius: var(--border-radius);
-    overflow-y: auto;
 }
 
 .top-fixed {
@@ -476,8 +408,8 @@ input[type="text"]:-webkit-autofill:active {
 
 .dropdown-add {
     position: absolute;
-    top: 9%;
-    left: 28%;
+    top: 33%;
+    left: 25%;
     display: none;
     width: 10.25rem;
     height: 5.25rem;
@@ -557,11 +489,13 @@ input[type="text"]:-webkit-autofill:active {
 
 .page-container {
     padding-block: 4rem;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
+    overflow-y: auto;
+    width: inherit;
+    margin: 1rem;
 }
 
 .categories {
@@ -585,8 +519,9 @@ input[type="text"]:-webkit-autofill:active {
     flex-direction: column;
     align-items: center;
     width: 100%;
+    /* height: calc(100vh - 1rem); */
     background: linear-gradient(to bottom, var(--foreground-translucent2), var(--foreground));
-    flex-grow: 1;
+    flex-grow: auto;
 }
 
 .all-playlists-div {
@@ -594,8 +529,9 @@ input[type="text"]:-webkit-autofill:active {
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
     padding-block: 1rem;
-    padding-inline: 12rem;
-    width: 100%;
+    padding-inline: 3rem;
+    width: inherit;
+    place-items: center;
 }
 
 .index-playlist {
@@ -913,7 +849,7 @@ input[type="text"]:-webkit-autofill:active {
     align-items: center;
     width: 100%;
     flex-grow: 1;
-    margin-top: -5rem;
+    margin-top: -4rem;
     background: linear-gradient(to bottom, var(--foreground-translucent2), var(--foreground-translucent));
     box-shadow: var(--box-shadow);
     position: relative;
@@ -1492,7 +1428,7 @@ input[type='checkbox']:checked + .custom-checkbox > div {
 
 .one-song-playlist {
     display: flex;
-    gap: 3rem;
+    gap: 1rem;
     align-items: center;
     padding-inline: 2rem;
     padding-block: .2rem;
@@ -1652,7 +1588,7 @@ input[type='checkbox']:checked + .custom-checkbox > div {
 }
 
 .category-container-div {
-    width: fit-content;
+    width: inherit;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -1669,10 +1605,12 @@ input[type='checkbox']:checked + .custom-checkbox > div {
 .all-songs-div-b {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: .5rem;
     padding: 1rem;
     width: fit-content;
 }
+
+
 
 .left-title-a {
     padding-bottom: 1rem;
@@ -1866,14 +1804,9 @@ input[type='checkbox']:checked + .custom-checkbox > div {
 /* put all this in a media query for small screen sizes */
 /* then bottom navbar for phones */
 
-main {
-    margin-left: 5rem;
-    overflow-y: auto;
-}
+
 
 .navbar {
-    width: 5rem;
-    height: 100vh; 
     position: fixed;
     background-color: var(--foreground);
     z-index: 9999999;
@@ -1924,14 +1857,6 @@ main {
     margin: 0 1.5rem;
 }
 
-.navbar:hover {
-    width: 15rem;
-}
-
-.navbar:hover .link-text {
-    display: block;
-}
-
 .nav-link:hover i {
     color: var(--primary);
 }
@@ -1962,6 +1887,245 @@ main {
     transform-origin: center;
 }
 
-@media only screen and (max-width: 600px) {
-    
+.top-nav {
+    background-color: var(--foreground);
+    width: 16rem;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    font-size: .85rem;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.2rem;
 }
+
+.base-playlists-div-one {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+    padding-top: 4rem;
+}
+
+.base-playlists-div-two {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+    flex-grow: 1;
+}
+
+
+/* small screens */
+@media only screen and (max-width: 600px) {
+    .top-fixed {
+        height: 5rem;
+    }
+
+    .navbar {
+        bottom: 0;
+        width: 100vw;
+        height: 5rem;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .navbar-nav {
+        flex-direction: row;
+    }
+
+    .nav-link {
+        justify-content: center;
+    }
+
+    main {
+        margin: 0;
+    }
+
+    .all-songs-div-b {
+        grid-template-columns: 1fr; 
+    }
+
+    .all-playlists-div {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+/* medium screens */
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+    .navbar {
+        width: 5rem;
+        top: 0;
+        height: 100vh; 
+    }
+
+    .navbar:hover {
+        width: 16rem;
+    }
+    
+    .navbar:hover .link-text {
+        display: inline;
+        transition: opacity 600ms;
+    }
+
+    main {
+        margin-left: 5rem;
+        overflow-y: auto;
+    }
+
+    .top-fixed {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        padding-block: .5rem;
+        padding-inline: 1.5rem;
+        padding-top: 1rem;
+        background-color: var(--background-translucent2);
+        width: calc(100vw - 5rem);
+        z-index: 9999;
+        position: fixed;
+        box-shadow: var(--box-shadow);
+    }
+
+    .all-songs-div-b {
+        grid-template-columns: 1fr; 
+    }
+
+    .all-playlists-div {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* large screens */
+@media only screen and (min-width: 901px) {
+    main {
+        display: flex;
+        flex-direction: column;
+        flex-grow: auto;
+        margin: .5rem .5rem .5rem 17rem;
+        background-color: var(--foreground);
+        display: flex;
+        flex-direction: column;
+        flex-grow: auto;
+        border-radius: var(--border-radius);
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+
+    .navbar {
+        display: none;
+    }
+    
+    .top-fixed {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        padding-block: .5rem;
+        padding-inline: 1.5rem;
+        padding-top: 1rem;
+        background-color: var(--background-translucent2);
+        width: calc(100vw - 17rem);
+        z-index: 9999;
+        position: fixed;
+        box-shadow: var(--box-shadow);
+    }
+    
+    .nav-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: .5rem;
+        height: 100vh;
+    }
+    
+    .library-nav {
+        overflow-y: auto;
+        scrollbar-gutter: stable;
+        background-color: var(--foreground);
+        width: 16rem;
+        flex-grow: 1;
+        border-radius: var(--border-radius);
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+    }
+
+    .lib-nav-header {
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        color: var(--copy-light);
+        background-color: var(--foreground);
+        width: 15rem;
+        border-top-right-radius: var(--border-radius);
+        border-top-left-radius: var(--border-radius);
+    }
+    
+
+    .lib-nav-create-playlist,
+    .lib-nav-find-playlists {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1rem;
+        background-color: var(--border-translucent);
+        border-radius: var(--border-radius);
+        margin: .5rem;
+        height: 7.5rem;
+    }
+
+    .base-playlists-div-one {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .5rem;
+        padding-top: 4rem;
+    }
+    
+    .base-playlists-div-two {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .5rem;
+        flex-grow: 1;
+    }
+
+    .lib-nav-your-div {
+        display: flex;
+        gap: 1rem;
+        padding-left: .65rem;
+        padding-right: .5rem;
+    }
+
+    .lib-nav-new {
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 100px;
+        display: grid;
+        place-items: center;
+    }
+    
+    .top-nav {
+        background-color: var(--foreground);
+        width: 16rem;
+        padding: 1.5rem;
+        border-radius: var(--border-radius);
+        font-size: .85rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1.2rem;
+    }
+}
+
+
