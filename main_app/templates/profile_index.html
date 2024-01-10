@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
 <div class="page-container-home">
     <div class="user-things">
         <div class="user-avatar-photo">
@@ -16,7 +15,6 @@
             </div>
         </div>
     </div>
-
     <h1 class="left-title">Public Playlists</h1>
     <div class="all-playlists-div">
         {% for playlist in playlists %}
@@ -42,8 +40,6 @@
             </a>
         {% endfor %}
     </div>
-
-
     <h1 class="left-title">Favorited</h1>
     <div class="all-playlists-div">
         {% for playlist in user_favorites %}
@@ -70,9 +66,7 @@
         {% endfor %}
     </div>
 </div>
-
 <script>
-
     const topFixed2 = document.getElementById('top-fixed');
     const main2 = document.querySelector('main')
     const profileUsername = document.getElementById('profile-username')
@@ -95,7 +89,5 @@
             fixedUsername.classList.remove('fade-in');
         }
     });
-
 </script>
-
 {% endblock %}

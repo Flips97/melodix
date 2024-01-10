@@ -2,7 +2,6 @@
 {% extends 'base.html' %}
 {% load static %} 
 {% block content %}
-
 <div class="page-container-home">
     <div class="photo-container">
         <div class="photo-title">
@@ -45,7 +44,6 @@
             {% endfor %}
         </div>
     </div>
-
     <div class="category-container-div" id="home-songs">
         <div class="all-songs-div-a">
             {% regroup songs by name.0 as songs_by_letter %}
@@ -76,9 +74,7 @@
         </div>
     </div>
 </div>
-
 <script>
-
     const homePlaylists = document.getElementById('home-playlists')
     const homeSongs = document.getElementById('home-songs')
     const showPlaylists = document.getElementById('show-playlists')
@@ -103,6 +99,5 @@
     })
 
 </script>
-
 {% endblock %}
 
